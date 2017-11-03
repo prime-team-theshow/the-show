@@ -1,4 +1,7 @@
--- DB Name: mn-trails-finder
+-- DB Name: the-show
+
+-- data model --
+-- https://www.lucidchart.com/documents/embeddedchart/ef0c5e53-bdc9-46ed-899e-758ef4c83994 --
 
 
 -- Table Creation --
