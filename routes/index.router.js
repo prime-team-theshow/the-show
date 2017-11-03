@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+// base route
 
 // requires
 var express = require('express');
@@ -6,7 +6,7 @@ var router = express.Router();
 var passport = require('passport');
 var path = require('path');
 
-// GET index.html
+// GET serves index.html
 router.get('/', function(req, res) {
     console.log('In base route.');
     // the path may need to be updated

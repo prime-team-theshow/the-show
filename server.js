@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 // requires
 var express = require('express');
 var app = express();
