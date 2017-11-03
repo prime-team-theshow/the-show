@@ -1,0 +1,5 @@
+npm init
+
+npm install express pg body-parser bcrypt passport passport-local dotenv request --save
+
+npm install mocha chai --save-dev
