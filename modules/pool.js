@@ -1,6 +1,7 @@
 // require
 var Pool = require('pg').Pool;
-var url = require('url');
+
+// the config will likely need to be updated once we have the DB hosted
 
 //Database config
 var config = {
