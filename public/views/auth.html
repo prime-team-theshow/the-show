@@ -1,0 +1,32 @@
+<section layout="column">
+    <p>auth test view</p>
+
+    <div layout="row" layout-align="center center">
+        <div flex="25" layout="column">
+            <h2>Admin Login</h2>
+            <md-input-container>
+                <input type="text" placeholder="username" ng-model="ac.admin.username">
+            </md-input-container>
+            <md-input-container>
+                <input type="password" placeholder="password" ng-model="ac.admin.password">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="ac.adminLogin()">Login as Admin</md-button>
+            <md-button class="md-raised md-warn" ng-click="ac.adminRegister()">Register Admin</md-button>
+        </div>
+        <div flex="10">
+
+        </div>
+        <div flex="25" layout="column">
+            <h2>Agency/Organization Login</h2>
+            <md-input-container>
+                <input type="text" placeholder="username" ng-model="ac.user.username">
+            </md-input-container>
+            <md-input-container>
+                <input type="password" placeholder="password" ng-model="ac.user.password">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="ac.orgLogin()">Login as Agency</md-button>
+            <md-button class="md-raised md-warn" ng-click="ac.orgRegister()">Register Admin</md-button>
+        </div>
+    </div>
+
+</section>
