@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="en/">:
+<html lang="en">:
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Show</title>
 
-    <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
-    <script src="scripts/client.js"></script>
-    <script src="vendors/angular-material/angular-material.min.js" charset="utf-8"></script>
-    <script src="vendors/angular-animate/angular-animate.min.js" charset="utf-8"></script>
-   <script src="vendors/angular-aria/angular-aria.min.js" charset="utf-8"></script>
-   <script src="vendors/angular-messages/angular-messages.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="styles/style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- favicon -->
+    <!-- <link rel="icon" href="" type="image/x-icon" /> -->
+    
+    <!-- Angular Material -->
+    <link href="vendors/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    
+    <!-- Angular and Angular-Route -->
+    <script src="vendors/angular/angular.js" charset="utf-8" type="text/javascript"></script>
+    <script src="vendors/angular-route/angular-route.js" charset="utf-8" type="text/javascript"></script>
+    
+    <!-- Angular Material -->
+    <script src="vendors/angular-animate/angular-animate.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="vendors/angular-aria/angular-aria.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="vendors/angular-material/angular-material.min.js" charset="utf-8" type="text/javascript"></script>
+    <!-- ngMessages -->
+    <script src="vendors/angular-messages/angular-messages.min.js" charset="utf-8" type="text/javascript"></script>
+
+    <!-- ********* Client Side ********* -->
+    <script src="scripts/client.js" charset="utf-8" type="text/javascript"></script>
+    <!-- Controllers -->
+    <!-- <script src="scripts/controllers/.controller.js" charset="utf-8" type="text/javascript"></script> -->
+    <!-- Services -->
+    <!-- <script src="scripts/services/.service.js" charset="utf-8" type="text/javascript"></script> -->
 
 </head>
 
@@ -20,6 +42,9 @@
         <h1>The Show</h1>
     </header>
     <main>
+        <ng-view>
+            
+        </ng-view>
     </main>
     <footer>
     </footer>
