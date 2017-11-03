@@ -11,24 +11,18 @@
     "type": "git",
     "url": "git+https://github.com/prime-team-theshow/the-show.git"
   },
-  "author": "",
+  "authors": "Sarah Cooke, Alicia Wilking, Sam Martorana, Xiong Vang and Hunter Rancourt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/prime-team-theshow/the-show/issues"
   },
   "homepage": "https://github.com/prime-team-theshow/the-show#readme",
   "dependencies": {
-    "angular": "^1.6.6",
-    "angular-animate": "^1.6.6",
-    "angular-aria": "^1.6.6",
-    "angular-material": "^1.1.5",
-    "angular-messages": "^1.6.6",
-    "angular-route": "^1.6.6",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongoose": "^4.13.0",
+    "express-session": "^1.15.6",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
