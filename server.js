@@ -1,17 +1,17 @@
 /*jshint esversion: 6 */
 
 // requires
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 
 /**************
 // for user auth, not setup yet
-const passport = require('./strategies/local.strategy');
-const sessionConfig = require('./modules/session.config');
+var passport = require('./strategies/local.strategy');
+var sessionConfig = require('./modules/session.config');
 */
 
-const port = process.env.PORT || 6660;
+var port = process.env.PORT || 6660;
 
 // use body-parser
 app.use(bodyParser.json());
@@ -30,12 +30,12 @@ app.use(passport.session());
  */
 
 // route requires
-const indexRouter = require('./routes/index.router');
+var indexRouter = require('./routes/index.router');
 
 // use routes
 app.use('/', indexRouter); // this route should be last to catch everything
 
 // server listening
-app.listen(port, () => {
+app.listen(port, function() {
     console.log('Server listening on port: ', port);
 }); // end listen
