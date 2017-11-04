@@ -26,6 +26,18 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
     vm.adminRegister = function() {
         console.log('in adminRegister');
         
+        if (vm.admin.username === '' || vm.admin.password === '') {
+            vm.message = 'Empty Fields, Please enter a username and a password.';
+        } else {
+            console.log('adminRegister sending to server ->', vm.user);
+            $http.post('/register/admin', vm.admin).then(function (response) {
+                console.log('admin registration successful');
+                vm.message = 'Registered admin Successfully!';
+            }).catch(function (response) {
+                console.log('Registration error: ', response);
+                vm.message = 'Registration Error, Please try again.';
+            }); // end catch
+        } // end else
 
     }; // end adminRegister
 
@@ -39,7 +51,7 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
             console.log('orgRegister sending to server ->', vm.user);
             $http.post('/register/organization', vm.user).then( function(response) {
                 console.log('user registration successful');
-                vm.message = 'Registered Successfully!';
+                vm.message = 'Registered org Successfully!';
             }).catch( function(response) {
                 console.log('Registration error: ', response);
                 vm.message = 'Registration Error, Please try again.';
