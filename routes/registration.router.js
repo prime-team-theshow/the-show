@@ -1,3 +1,7 @@
+/*
+This router handles organization and admin user registration
+*/
+
 // requires
 var express = require('express');
 var router = express.Router();

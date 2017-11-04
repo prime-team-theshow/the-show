@@ -23,10 +23,12 @@ app.use(passport.session());
 
 // route requires
 var registrationRouter = require('./routes/registration.router');
+var userAuth = require('./routes/authentication.router');
 var indexRouter = require('./routes/index.router');
 
 // use routes
 app.use('/register', registrationRouter);
+app.use('/auth', userAuth);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 
