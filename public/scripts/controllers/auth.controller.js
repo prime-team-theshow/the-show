@@ -64,6 +64,31 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
     vm.adminLogin = function () {
         console.log('in adminLogin');
         
+        if (vm.admin.username === '' || vm.admin.password === '') {
+            vm.message = 'Missing Credentials!, please enter your username and password to login';
+        } else {
+            $http.post('/', vm.admin).then(function (response) {
+                if (response.data.username) {
+                    console.log('login success: ', response.data);
+
+                    // clear inputs
+                    vm.admin.username = null;
+                    vm.admin.password = null;
+
+                    console.log('response.data.isadmin', response.data.isadmin);
+                    // if the user is an admin redirect to admin view
+                    if (response.data.isadmin) {
+                        vm.message = 'admin user detected';
+                    } // end if
+                } else {
+                    console.log('login post failure: ', response);
+                    vm.message = 'Incorrect Credentials!, please try again';
+                } // end else
+            }).catch(function (response) {
+                console.log('login catch - failure: ', response);
+                vm.message = 'Incorrect Credentials!, please try again';
+            }); // end catch
+        } // end else
 
     }; // end adminLogin
 
