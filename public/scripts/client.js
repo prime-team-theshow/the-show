@@ -12,6 +12,9 @@ myApp.config(function ($routeProvider) {
     }).when('/auth', {
         templateUrl: '/views/auth.html',
         controller: 'AuthController as ac'
+    }).when('/profile/:name', {
+        templateUrl: '/views/profile.html',
+        controller: 'ProfileController as ac'
     }).otherwise('/');
 
 }); // end config
