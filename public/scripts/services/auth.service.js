@@ -14,4 +14,4 @@ myApp.service('AuthService', function ($http) {
 
 
 
-}); // end TrailService
+}); // end AuthService
