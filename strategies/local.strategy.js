@@ -19,8 +19,14 @@ passport.deserializeUser( function(id, done) {
         } // end if error
 
         var user = {};
-        var queryString = "SELECT * FROM organization WHERE id = $1";
-        var values = [id];
+        var queryString = "SELECT org.id, org.email, org.password, org.isadmin " +
+        "FROM organization org " +
+        "WHERE org.email = $1 " +
+        "UNION ALL " +
+        "SELECT admin.id, admin.email, admin.password, admin.isadmin " +
+        "FROM admin " +
+        "WHERE admin.email = $1";
+        var values = [client.user];
 
         client.query(queryString, values, function (queryErr, result) {
             // Handle Errors
@@ -51,7 +57,13 @@ passport.use('local', new localStrategy({
     pool.connect(function (err, client, release) {
         console.log('in local passport use');
         // username will be unique, thus returning 1 or 0 results
-        var queryString = "SELECT * FROM organization WHERE email = $1";
+        var queryString = "SELECT org.id, org.email, org.password, org.isadmin " +
+            "FROM organization org " +
+            "WHERE org.email = $1 " +
+            "UNION ALL " +
+            "SELECT admin.id, admin.email, admin.password, admin.isadmin " +
+            "FROM admin " +
+            "WHERE admin.email = $1";
         var values = [username];
         client.query(queryString, values, function(queryErr, result) {
             var user = {};
