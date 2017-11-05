@@ -32,8 +32,8 @@ CREATE TABLE organization (
     id SERIAL PRIMARY KEY,
 	name VARCHAR(200)  NOT NULL UNIQUE,
     description TEXT,
-    website VARCHAR(200),
-    logo VARCHAR(200),
+    website VARCHAR(500),
+    logo VARCHAR(500),
     email VARCHAR(200) UNIQUE,
     password VARCHAR(200),
     isadmin boolean DEFAULT FALSE,
@@ -58,13 +58,14 @@ CREATE TABLE category (
 CREATE TABLE media (
     id SERIAL PRIMARY KEY,
     type INT,
-    url VARCHAR(200),
+    url VARCHAR(500),
     ad_id INT
 ); 
 
 -- houses ads with relations to the category and agency they're tied to --
 CREATE TABLE ad (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(300),
     advertiser VARCHAR(200),
     award VARCHAR(10),
     year INT,
@@ -84,13 +85,13 @@ CREATE TABLE credit (
 CREATE TABLE social_media_type (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200),
-    logo VARCHAR(200)
+    logo VARCHAR(300)
 ); 
 
 -- houses social media links for agency profiles and the related social_media_type --
 CREATE TABLE social_media (
     id SERIAL PRIMARY KEY,
-    url VARCHAR(200),
+    url VARCHAR(300),
     organization_id INT,
     social_media_type_id INT
 
@@ -134,4 +135,70 @@ ALTER TABLE social_media
     ON DELETE CASCADE;
 
 -- ** Insert Mock Data **
---
+
+-- organization -- 
+INSERT INTO organization
+(name, description, website, logo)
+VALUES ('Prime', 'bootcamp', 'https://primeacademy.io/', 'https://static1.squarespace.com/static/56d5ff46c6fc08e0509790f4/t/5851ab54725e25c5318e535f/1481747309362/PrimeDigitalAcademy')
+RETURNING id;
+
+-- must register user first for authentication to work
+UPDATE organization 
+SET name = 'hunters agency',
+description = 'short bio here',
+website = 'https://github.com/skwid138',
+logo = 'http://www.gettingsmart.com/wp-content/uploads/2013/06/GSWebButton-DeeperLearning-Featured-482x335-copy.jpg'
+WHERE email = 'hunter'
+RETURNING id;
+
+-- category --
+INSERT INTO category
+(full_category)
+VALUES('school')
+RETURNING id
+;
+
+-- ad --
+INSERT INTO ad
+(name, advertiser, award, year, organization_id, category_id)
+VALUES('canopus campaign','prime academy', 'gold', 2017,
+	(SELECT id FROM organization WHERE name = 'Prime'),
+	(SELECT id FROM category WHERE full_category = 'school')
+    )
+RETURNING id
+; 
+
+-- media --
+INSERT INTO media
+(type, url, ad_id)
+VALUES(0, 'https://avatars1.githubusercontent.com/u/33233106?s=200&v=4',
+	(SELECT id FROM ad WHERE name = 'canopus campaign')
+	)
+RETURNING id
+;
+
+-- social_media_type -- 
+INSERT INTO social_media_type
+(name, logo)
+VALUES('Facebook', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/1000px-F_icon.svg.png')
+RETURNING id
+;
+
+-- social_media --
+INSERT INTO social_media
+(url, organization_id, social_media_type_id)
+VALUES('https://www.facebook.com/primedigitalacademy/',
+	(SELECT id FROM organization WHERE name = 'Prime'), -- likely can grab id from profile object and can insert it that way, this is more dynamic for testing
+	(SELECT id FROM social_media_type WHERE name = 'Facebook') -- same as the above we can grab the id from the profile controller
+	)
+RETURNING id
+;
+
+-- credit -- 
+INSERT INTO credit
+(title, name, ad_id)
+VALUES ('President', 'Mark Hurlburt',
+	(SELECT id FROM ad WHERE name = 'canopus campaign')
+	)
+RETURNING id
+;
