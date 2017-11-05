@@ -6,9 +6,6 @@ This router handles organization and admin user authentication
 var express = require('express');
 var router = express.Router();
 
-// I think this logout function will work for 
-// admin and org users, but I have not tested it
-
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function (req, res) {
     console.log('in auth GET route');
@@ -29,10 +26,6 @@ router.get('/', function (req, res) {
         res.send(false);
     } // end else
 }); // end auth GET
-
-
-// I think this logout function will work for 
-// admin and org users, but I have not tested it
 
 // clear all server session information about this user
 router.get('/logout', function(req, res){
