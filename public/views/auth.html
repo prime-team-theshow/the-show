@@ -1,8 +1,5 @@
 <section layout="column">
     <p>auth test view</p>
-    <div layout-align="center center">
-        <p>{{ac.message}}</p>
-    </div>
 
     <div layout="row" layout-align="center center">
         <div flex="25" layout="column">
@@ -13,11 +10,12 @@
             <md-input-container>
                 <input type="password" placeholder="password" ng-model="ac.admin.password">
             </md-input-container>
-            <md-button class="md-raised md-primary" ng-click="ac.adminLogin($event)">Login as Admin</md-button>
-            <md-button class="md-raised md-warn" ng-click="ac.adminRegister($event)">Register Admin</md-button>
+            <md-button class="md-raised md-primary" ng-click="ac.adminLogin()">Login as Admin</md-button>
+            <md-button class="md-raised md-warn" ng-click="ac.adminRegister()">Register Admin</md-button>
         </div>
-        <div flex="10">
-
+        <div flex="10" style="min-height: 300px;">
+            <md-button class="md-raised" style="background-color: purple; color: white;" ng-click="ac.logout()">Logout</md-button>
+            <md-button class="md-raised" style="background-color: rgb(25, 216, 175); color: white;" ng-click="ac.getUser()">User Info</md-button>
         </div>
         <div flex="25" layout="column">
             <h2>Organization Login</h2>
@@ -27,8 +25,8 @@
             <md-input-container>
                 <input type="password" placeholder="password" ng-model="ac.user.password">
             </md-input-container>
-            <md-button class="md-raised md-primary" ng-click="ac.orgLogin($event)">Login as Org</md-button>
-            <md-button class="md-raised md-warn" ng-click="ac.orgRegister($event)">Register Org</md-button>
+            <md-button class="md-raised md-primary" ng-click="ac.orgLogin()">Login as Org</md-button>
+            <md-button class="md-raised md-warn" ng-click="ac.orgRegister()">Register Org</md-button>
         </div>
     </div>
 
