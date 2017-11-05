@@ -8,6 +8,7 @@ var router = express.Router();
 var pool = require('../modules/pool');
 var encryptLib = require('../modules/encryption');
 
+// post for organization user registration
 router.post('/organization', function(req, res, next) {
     console.log('in register org user post route');
 
@@ -41,7 +42,40 @@ router.post('/organization', function(req, res, next) {
             }); // end query
         } // end else
     }); // end pool connect
-}); // end post
+}); // end organization post
+
+// post for admin user registration
+router.post('/admin', function (req, res, next) {
+    console.log('in register admin user post route');
+
+    // variables from client
+    var adminToSave = {
+        username: req.body.username,
+        password: encryptLib.encryptPassword(req.body.password)
+    }; // end saveUser
+    console.log('new admin user: ', adminToSave);
+
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log('POST connection error ->', err);
+            res.sendStatus(500);
+            done();
+        } else {
+
+            var queryString = "INSERT INTO admin (email, password) VALUES ($1, $2) RETURNING id";
+            var values = [adminToSave.username, adminToSave.password];
+            client.query(queryString, values, function (queryErr, result) {
+                if (queryErr) {
+                    console.log('Query POST connection Error ->', queryErr);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                } // end else
+                done();
+            }); // end query
+        } // end else
+    }); // end pool connect
+}); // end organization post
 
 //export
 module.exports = router;
