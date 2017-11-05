@@ -19,14 +19,12 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
         password: ''
     }; // end admin object
 
-
-    // logout admin and org users
-    vm.logout = function () {
-        console.log('in logout');
-        $http.get('/auth/logout').then( function(response) {
-            console.log('logged out');
-        }); // end GET
-    }; // end adminLogout
+    // holds data from get USer
+    vm.getUserObj = {
+        email: '',
+        id: '',
+        isadmin: false
+    }; // end getUserObj
 
 
     /************** $http **************/
@@ -124,6 +122,31 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
             }); // end catch
         } // end else
     }; // end orgLogin
+
+    // logout admin and org users
+    vm.logout = function () {
+        console.log('in logout');
+        $http.get('/auth/logout').then(function (response) {
+            console.log('logged out');
+        }); // end GET
+    }; // end adminLogout
+
+    // gets user info from the server and logs it on client
+    vm.getUser = function () {
+        console.log(' in getUser');
+        $http.get('/auth').then((response) => {
+            console.log('/auth response.data ', response.data);
+            // if the user has a current session on the server
+            if (response.data.username) {
+                // set these values
+                vm.getUserObj.email = response.data.email;
+                vm.getUserObj.id = response.data.id;
+                vm.getUserObj.isadmin = response.data.isadmin;
+            } else {
+                console.log('getUser failed', response);
+            } // end else
+        }); // end auth GET
+    }; // end getUser
 
 
 }); // end HomeController

@@ -1,8 +1,5 @@
 <section layout="column">
     <p>auth test view</p>
-    <div layout-align="center center">
-        <p>{{ac.message}}</p>
-    </div>
 
     <div layout="row" layout-align="center center">
         <div flex="25" layout="column">
@@ -18,6 +15,7 @@
         </div>
         <div flex="10" style="min-height: 300px;">
             <md-button class="md-raised" style="background-color: purple; color: white;" ng-click="ac.logout()">Logout</md-button>
+            <md-button class="md-raised" style="background-color: rgb(25, 216, 175); color: white;" ng-click="ac.getUser()">User Info</md-button>
         </div>
         <div flex="25" layout="column">
             <h2>Organization Login</h2>
