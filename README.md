@@ -9,7 +9,7 @@ All ads will have a clickable link that redirects to the Ad view. This page will
 
 ## Built With
  
-Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, NodeMailer, Filestack (Stretch)
+Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Filestack (Stretch)
 
 ## Getting Started
  
@@ -69,4 +69,4 @@ Alicia Wilking, Xiong Vang, Hunter Rancourt, Sam Martorana, and Sarah Cooke
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was useds
+- [ ] * Hat tip to anyone who's code was useds
