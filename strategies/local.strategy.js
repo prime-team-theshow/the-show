@@ -5,10 +5,10 @@ var encryptLib = require('../modules/encryption');
 var pool = require('../modules/pool');
 
 passport.serializeUser( function(user, done) {
-    done(null, user.id);
+    done(null, user.email);
 }); // end serializeUser
 
-passport.deserializeUser( function(id, done) {
+passport.deserializeUser( function(email, done) {
     console.log('in deserializeUser');
 
     pool.connect( function(err, client, release) {
@@ -26,7 +26,7 @@ passport.deserializeUser( function(id, done) {
         "SELECT admin.id, admin.email, admin.password, admin.isadmin " +
         "FROM admin " +
         "WHERE admin.email = $1";
-        var values = [client.user];
+        var values = [email];
 
         client.query(queryString, values, function (queryErr, result) {
             // Handle Errors
