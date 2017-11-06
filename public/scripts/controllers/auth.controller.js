@@ -35,7 +35,7 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
         if (vm.admin.username === '' || vm.admin.password === '') {
             alert('Empty Fields, Please enter a username and a password.');
         } else {
-            console.log('adminRegister sending to server ->', vm.user);
+            console.log('adminRegister sending to server ->', vm.admin);
             $http.post('/register/admin', vm.admin).then(function (response) {
                 console.log('admin registration successful');
                 alert('Registered admin Successfully!');
@@ -73,7 +73,7 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
         } else {
             $http.post('/', vm.admin).then(function (response) {
                 if (response.data.username) {
-                    console.log('login success: ', response.data);
+                    console.log('admin login success: ', response.data);
                     // clear inputs
                     vm.admin.username = null;
                     vm.admin.password = null;
@@ -103,7 +103,7 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
         } else {
             $http.post('/', vm.user).then(function (response) {
                 if (response.data.username) {
-                    console.log('login success: ', response.data);
+                    console.log('org login success: ', response.data);
                     // clear inputs
                     vm.user.username = null;
                     vm.user.password = null;

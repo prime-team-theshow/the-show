@@ -183,6 +183,16 @@ INSERT INTO social_media_type
 VALUES('Facebook', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/1000px-F_icon.svg.png')
 RETURNING id
 ;
+INSERT INTO social_media_type
+(name, logo)
+VALUES('Instagram', 'https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png')
+RETURNING id
+;
+INSERT INTO social_media_type
+(name, logo)
+VALUES('LinkedIn', 'http://www.copyblogger.com/cdn-origin/images/linkedin.png')
+RETURNING id
+;
 
 -- social_media --
 INSERT INTO social_media
@@ -190,6 +200,22 @@ INSERT INTO social_media
 VALUES('https://www.facebook.com/primedigitalacademy/',
 	(SELECT id FROM organization WHERE name = 'Prime'), -- likely can grab id from profile object and can insert it that way, this is more dynamic for testing
 	(SELECT id FROM social_media_type WHERE name = 'Facebook') -- same as the above we can grab the id from the profile controller
+	)
+RETURNING id
+;
+INSERT INTO social_media
+(url, organization_id, social_media_type_id)
+VALUES('https://www.instagram.com/explore/locations/755900110/prime-digital-academy/',
+	(SELECT id FROM organization WHERE name = 'Prime'),
+	(SELECT id FROM social_media_type WHERE name = 'Instagram')
+	)
+RETURNING id
+;
+INSERT INTO social_media
+(url, organization_id, social_media_type_id)
+VALUES('https://www.linkedin.com/edu/prime-digital-academy-170037',
+	(SELECT id FROM organization WHERE name = 'Prime'),
+	(SELECT id FROM social_media_type WHERE name = 'LinkedIn')
 	)
 RETURNING id
 ;
