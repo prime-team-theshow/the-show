@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../modules/pool');
 
-// GET all organizations for org profiles
+// GET all organizations and any social media links they may have for org profiles
 router.get('/', function (req, res) {
     console.log('In org GET route.');
     pool.connect( function(err, client, done) {
@@ -12,7 +12,17 @@ router.get('/', function (req, res) {
             res.sendStatus(500);
             done();
         } else {
-            var queryString = "SELECT * FROM trails";
+            // this only works if all the social media fields exist
+            var queryString = "SELECT org.id, org.name, org.description, org.website, org.logo, " +
+            "sm1.url AS facebook_url, sm2.url AS instagram_url, sm3.url AS linkedin_url " +
+            "FROM organization org " +
+            "LEFT JOIN social_media AS sm1 " +
+            "ON org.id = sm1.organization_id " +
+            "LEFT JOIN social_media AS sm2 "+
+            "ON sm1.organization_id = sm2.organization_id " +
+            "LEFT JOIN social_media AS sm3 " +
+            "ON sm1.organization_id = sm3.organization_id " +
+            "WHERE sm1.social_media_type_id = 1 AND sm2.social_media_type_id = 2 AND sm3.social_media_type_id = 3";
             client.query(queryString, function (queryErr, result) {
                 if (queryErr) {
                     console.log('Query GET connection Error ->', queryErr);
