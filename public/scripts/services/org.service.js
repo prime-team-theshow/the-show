@@ -14,6 +14,10 @@ myApp.service('OrgService', function ($http) {
     console.log('in AuthService');
     var self = this;
 
+    // object to hold org data
+    self.orgs = {
+        list: []
+    }; // end orgs
 
     // winner view  needs ad name, agency name, and award
 
@@ -22,6 +26,14 @@ myApp.service('OrgService', function ($http) {
 
     /************** $http **************/
 
+    // get all organizations from DB
+    self.getOrgs = function () {
+        console.log('in getOrgs');
+        $http.get('/org').then( function(response) {
+            console.log('getOrgs, response', response.data.rows);
+            self.orgs.list = response.data.rows;
+        }); // end GET
+    }; // end getOrgs
 
 
 }); // end OrgService
