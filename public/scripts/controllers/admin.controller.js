@@ -19,4 +19,5 @@ myApp.controller('AdminController', function ($http, $location, $mdDialog) {
         email: '',
         id: '',
         isadmin: false
-    }; // end getUserObj
+    };
+});
