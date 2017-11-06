@@ -14,7 +14,10 @@ myApp.config(function ($routeProvider) {
         controller: 'AuthController as ac'
     }).when('/profile/:name', {
         templateUrl: '/views/profile.html',
-        controller: 'ProfileController as ac'
+        controller: 'ProfileController as pc'
+    }).when('/admin', {
+        templateUrl: '/views/admin.html',
+        controller: 'AdminController as dc'
     }).otherwise('/');
 
 }); // end config
