@@ -7,6 +7,12 @@ myApp.service('AuthService', function ($http) {
     console.log('in AuthService');
     var self = this;
 
+    // object to hold getUser response
+    self.getUser = {};
+
+    // object to hold login response
+    self.user = {};
+
 
 
 
@@ -36,9 +42,11 @@ myApp.service('AuthService', function ($http) {
     self.login = function (userObj) {
         console.log('in login');
         $http.post('/', userObj).then(function (response) {
+            // if the response has a username
             if (response.data.username) {
                 console.log('login success: ', response.data);
                 console.log('response.data.isadmin', response.data.isadmin);
+                self.user = response.data;
             } else {
                 console.log('login post failure: ', response);
             } // end else
@@ -62,12 +70,8 @@ myApp.service('AuthService', function ($http) {
             console.log('/auth response.data ', response.data);
             // if the user has a current session on the server
             if (response.data.username) {
-                // return these values
-                return { 
-                    id: response.data.id,
-                    email : response.data.email,
-                    isadmin: response.data.isadmin
-                }; // end return object
+                // set the user object with the response values
+                self.user = response.data;
             } else {
                 console.log('getUser failed', response);
             } // end else

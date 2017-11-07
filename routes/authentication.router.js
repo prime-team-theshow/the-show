@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 
         var userInfo = {
             username: req.user.email,
-            user_id: req.user.id,
+            id: req.user.id,
             isadmin: req.user.isadmin
         }; // end userInfo
         res.send(userInfo);

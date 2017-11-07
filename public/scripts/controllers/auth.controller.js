@@ -20,7 +20,7 @@ myApp.controller('AuthController', function ($http, AuthService) {
     }; // end admin object
 
     // holds data from getUser
-    vm.getUserObj = {};
+    vm.getUserObj = AuthService.user;
 
 
     /************** $http **************/
@@ -47,7 +47,10 @@ myApp.controller('AuthController', function ($http, AuthService) {
         } // end else
     }; // end orgRegister
 
-    // allows admin users to login 
+    // allows admin users to login
+    // only separate from org login because both input fields
+    // are on the same page, which will likely not be the case
+    // this is for testing
     vm.adminLogin = function () {
         console.log('in adminLogin');
         if (vm.admin.username === '' || vm.admin.password === '') {
@@ -55,13 +58,13 @@ myApp.controller('AuthController', function ($http, AuthService) {
         } else {
             // passes data collected from the input fields to the service
             AuthService.login(vm.admin);
-            // clear inputs
-            vm.admin.username = null;
-            vm.admin.password = null;
         } // end else
     }; // end adminLogin
 
     // allows agency users to login
+    // only separate from admin login because both input fields
+    // are on the same page, which will likely not be the case
+    // this is for testing
     vm.orgLogin = function () {
         console.log('in orgLogin');
         if (vm.user.username === '' || vm.user.password === '') {
@@ -69,24 +72,24 @@ myApp.controller('AuthController', function ($http, AuthService) {
         } else {
             // passes data collected from the input fields to the service
             AuthService.login(vm.user);
-            // clear inputs
-            vm.user.username = null;
-            vm.user.password = null;
         } // end else
     }; // end orgLogin
 
     // logout admin and org users
     vm.logout = function () {
         console.log('in logout');
+        // clears current session on server
         AuthService.logout();
     }; // end adminLogout
 
     // gets user info from the server and logs it on client
+    // this can be used if we need to grab user credentials 
+    // on other views after login has ocurred
     vm.getUser = function () {
         console.log('in getUser');
-        // sets getUser to the current 
-        // session info returned by service
-        vm.getUser = AuthService.getUser();
+        // sets getUser object to the current
+        // session info returned by server
+        AuthService.getUser();
     }; // end getUser
 
 

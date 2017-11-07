@@ -18,9 +18,6 @@ myApp.config(function ($routeProvider) {
     }).when('/admin', {
         templateUrl: '/views/admin.html',
         controller: 'AdminController as dc'
-    }).when('/testauth', {
-        templateUrl: '/views/test.auth.html',
-        controller: 'TestAuthController as tac'
     }).otherwise('/');
 
 }); // end config
