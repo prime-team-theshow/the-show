@@ -13,27 +13,15 @@ router.get('/:id', function (req, res) {
         if (err) {
             console.log('GET org connection error ->', err);
             res.sendStatus(500);
-            done();
         } else {
-            // this only works if all the social media fields exist
-            // var queryString = "SELECT org.id, org.name, org.description, org.website, org.logo, " +
-            //     "sm1.url AS facebook_url, sm2.url AS instagram_url, sm3.url AS linkedin_url " +
-            //     "FROM organization org " +
-            //     "LEFT JOIN social_media AS sm1 " +
-            //     "ON org.id = sm1.organization_id " +
-            //     "LEFT JOIN social_media AS sm2 " +
-            //     "ON sm1.organization_id = sm2.organization_id " +
-            //     "LEFT JOIN social_media AS sm3 " +
-            //     "ON sm1.organization_id = sm3.organization_id " +
-            //     "WHERE sm1.social_media_type_id = 1 AND sm2.social_media_type_id = 2 AND sm3.social_media_type_id = 3";
 
             var organization;
 
             var orgQuery = "SELECT * FROM organization org WHERE org.id = $1"
             client.query(orgQuery, [orgId], function (queryErr, orgResult) {
-                done(); // release pool worker
 
                 if (queryErr) {
+                    done(); // release pool worker
                     console.log('Organization Query GET connection Error ->', queryErr);
                     res.sendStatus(500);
                 } else {
@@ -47,9 +35,9 @@ router.get('/:id', function (req, res) {
                         "ON sm.social_media_type_id = smt.id " +
                         "WHERE sm.organization_id = $1"
                     client.query(socialMediaQuery, [orgId], function (queryErr, socialMediaResult) {
-                        done(); // release pool worker
 
                         if (queryErr) {
+                            done(); // release pool worker
                             console.log('Social Media Query GET connection Error ->', queryErr);
                             res.sendStatus(500);
                         } else {
@@ -63,6 +51,7 @@ router.get('/:id', function (req, res) {
                                 done(); // release pool worker
 
                                 if (queryErr) {
+                                    
                                     console.log('Ads Query GET connection Error ->', queryErr);
                                     res.sendStatus(500);
                                 } else {

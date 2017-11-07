@@ -1,39 +1,29 @@
-/*
-This Service is currently for organization related information
-- it will be used for testing and possible more
-- get organization data, ads related to org, categories awards are in, 
-*/
-
-// could get all the data for org, ad, awards, categories, credits all in one get and filter on FE
-// alternatively could get org, ad, awards, categories 
-// in separate get ad, awards, categories, credits or just credits
-
-// are we showing ads on agency's profile?
+/**
+ * Service for interacting with organization profile
+ */
 
 myApp.service('OrgService', function ($http) {
-    console.log('in AuthService');
-    var self = this;
+    console.log('in Org Service');
 
-    // object to hold org data
-    self.orgs = {
-        list: []
-    }; // end orgs
+    var sv = this;
 
-    // winner view  needs ad name, agency name, and award
+    // object of organization profile
+    sv.orgProfileObj = { orgProfile: {} };
 
-
-
-
-    /************** $http **************/
-
-    // get all organizations from DB
-    self.getOrgs = function () {
-        console.log('in getOrgs');
-        $http.get('/org').then( function(response) {
-            console.log('getOrgs, response', response.data.rows);
-            self.orgs.list = response.data.rows;
-        }); // end GET
-    }; // end getOrgs
-
-
+    /**
+     * fetch organization profile from the server
+     * and updates sv.orgProfileObj.orgProfile with response data
+     * 
+     * @param orgId string
+     */
+    sv.getOrgProfile = function (orgId) {
+        $http.get('/org/' + orgId)
+            .then(function (response) {
+                sv.orgProfileObj.orgProfile = response.data;
+                console.log('sv.orgProfileObj.orgProfile', sv.orgProfileObj.orgProfile);
+            })
+            .catch(function (error) {
+                console.log('OrgService getOrgProfile error:', error);
+            });
+    }
 }); // end OrgService
