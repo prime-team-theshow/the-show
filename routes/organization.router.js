@@ -3,15 +3,15 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../modules/pool');
 
-// GET all organizations and any social media links they may have for org profiles
+// GET organization profile with social medias and associated ads
 router.get('/:id', function (req, res) {
 
     var orgId = req.params.id;
 
     console.log('In org GET route.');
-    pool.connect(function (err, client, done) {
-        if (err) {
-            console.log('GET org connection error ->', err);
+    pool.connect(function (connectionError, client, done) {
+        if (connectionError) {
+            console.log('GET org connection error ->', connectionError);
             res.sendStatus(500);
         } else {
 
@@ -51,7 +51,7 @@ router.get('/:id', function (req, res) {
                                 done(); // release pool worker
 
                                 if (queryErr) {
-                                    
+
                                     console.log('Ads Query GET connection Error ->', queryErr);
                                     res.sendStatus(500);
                                 } else {
@@ -72,7 +72,91 @@ router.get('/:id', function (req, res) {
     }); // end pool connect
 }); // end GET all org
 
+/**
+ * Updates a org profile
+ * @data
+ * {
+ *  name:
+ *  description:
+ *  website:
+ *  logo:
+ * }
+ */
+router.put('/:id', function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        console.log('organization.router PUT /:id user not authenticated');
+        res.sendStatus(401);
+    }
+}, function (req, res) {
 
+    var orgId = req.params.id
+    var data = req.body;
 
-// export
-module.exports = router;
+    // create the update query
+    var updateQuery = 'UPDATE organization SET';
+
+    // if an updated name was sent
+    if (data.name) {
+        updateQuery += ' name=' + data.name;
+    }
+    // if an updated description was sent
+    if (data.description) {
+        updateQuery += ' description=' + data.description;
+    }
+    // if an updated website was sent
+    if (data.website) {
+        updateQuery += ' website=' + data.website;
+    }
+    // if an updated logo was sent
+    if (data.logo) {
+        updateQuery += ' logo=' + data.logo;
+    }
+
+    // org id
+    updateQuery += ' WHERE id=' + orgId;
+
+    pool.connect(function (connectionError, client, done) {
+        if (connectionError) {
+            console.log('PUT org/:id pool connect error', connectionError);
+        } else {
+            client.query(updateQuery, function (queryError, result) {
+                done()
+                if (queryError) {
+                    console.log('PUT org/:id query error', queryError);
+                    res.sendStatus(501);
+                } else {
+                    res.sendStatus(201);
+                }
+            })
+        }
+    });
+
+    // add social media
+    router.post('/:orgId/socialmedia', function (req, res, next) {
+        if (req.isAuthenticated()) {
+            next();
+        }
+        else {
+            console.log('organization.router PUT /:id user not authenticated');
+            res.sendStatus(401);
+        }
+    }, function (req, res) {
+
+    });
+
+    router.delete('/:orgId,socialmedia', function (req, res, next) {
+        if (req.isAuthenticated()) {
+            next();
+        }
+        else {
+            console.log('organization.router PUT /:id user not authenticated');
+            res.sendStatus(401);
+        }
+    }, function (req, res) {
+
+    });
+
+    // export
+    module.exports = router;
