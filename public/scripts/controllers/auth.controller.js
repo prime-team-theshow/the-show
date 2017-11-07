@@ -3,7 +3,7 @@ This controller is for the auth view.
 - currently this controller is for testing only
 - the controller may be used later or integrated with another controller
 */
-myApp.controller('AuthController', function ($http, $location, $mdDialog) {
+myApp.controller('AuthController', function ($http, AuthService) {
     console.log('in AuthController');
     var vm = this;
 
@@ -19,12 +19,8 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
         password: ''
     }; // end admin object
 
-    // holds data from get USer
-    vm.getUserObj = {
-        email: '',
-        id: '',
-        isadmin: false
-    }; // end getUserObj
+    // holds data from getUser
+    vm.getUserObj = AuthService.user;
 
 
     /************** $http **************/
@@ -36,116 +32,64 @@ myApp.controller('AuthController', function ($http, $location, $mdDialog) {
             alert('Empty Fields, Please enter a username and a password.');
         } else {
             console.log('adminRegister sending to server ->', vm.admin);
-            $http.post('/register/admin', vm.admin).then(function (response) {
-                console.log('admin registration successful');
-                alert('Registered admin Successfully!');
-            }).catch(function (response) {
-                console.log('Registration error: ', response);
-                alert('Registration Error, Please try again.');
-            }); // end catch
+            AuthService.adminRegister(vm.admin);
         } // end else
     }; // end adminRegister
 
     // allows agencies to create a new login
-    vm.orgRegister = function ($event) {
+    vm.orgRegister = function () {
         console.log('in orgRegister');
         if (vm.user.username === '' || vm.user.password === '') {
             alert('Empty Fields, Please enter a username and a password.');
         } else {
-            console.log('orgRegister sending to server ->', vm.user);
-            $http.post('/register/organization', vm.user).then(function (response) {
-                console.log('user registration successful');
-                alert('Registered org Successfully!');
-            }).catch(function (response) {
-                console.log('Registration error: ', response);
-                alert('Registration Error, Please try again.');
-            }); // end catch
+            console.log('orgRegister sending to service ->', vm.user);
+            AuthService.orgRegister(vm.user);
         } // end else
     }; // end orgRegister
 
-    // allows admin users to login 
-    // using the same route as orgLogin 
-    // and could be combined on the service if needed
+    // allows admin users to login
+    // only separate from org login because both input fields
+    // are on the same page, which will likely not be the case
+    // this is for testing
     vm.adminLogin = function () {
         console.log('in adminLogin');
         if (vm.admin.username === '' || vm.admin.password === '') {
             alert('Missing Credentials!, please enter your username and password to login');
         } else {
-            $http.post('/', vm.admin).then(function (response) {
-                if (response.data.username) {
-                    console.log('admin login success: ', response.data);
-                    // clear inputs
-                    vm.admin.username = null;
-                    vm.admin.password = null;
-                    console.log('response.data.isadmin', response.data.isadmin);
-                    // if the user is an admin redirect to admin view
-                    if (response.data.isadmin) {
-                        alert('admin user detected');
-                    } // end if
-                } else {
-                    console.log('login post failure: ', response);
-                    alert('Incorrect Credentials!, please try again');
-                } // end else
-            }).catch(function (response) {
-                console.log('login catch - failure: ', response);
-                alert('Incorrect Credentials!, please try again');
-            }); // end catch
+            // passes data collected from the input fields to the service
+            AuthService.login(vm.admin);
         } // end else
     }; // end adminLogin
 
     // allows agency users to login
-    // using the same route as adminLogin 
-    // and could be combined on the service if needed
+    // only separate from admin login because both input fields
+    // are on the same page, which will likely not be the case
+    // this is for testing
     vm.orgLogin = function () {
         console.log('in orgLogin');
         if (vm.user.username === '' || vm.user.password === '') {
             alert('Missing Credentials!, please enter your username and password to login');
         } else {
-            $http.post('/', vm.user).then(function (response) {
-                if (response.data.username) {
-                    console.log('org login success: ', response.data);
-                    // clear inputs
-                    vm.user.username = null;
-                    vm.user.password = null;
-                    console.log('response.data.isadmin', response.data.isadmin);
-                    // if the user is an admin redirect to admin view
-                    if (response.data.isadmin) {
-                        alert('admin user detected');
-                    } // end if
-                } else {
-                    console.log('login post failure: ', response);
-                    alert('Incorrect Credentials!, please try again');
-                } // end else
-            }).catch(function (response) {
-                console.log('login catch - failure: ', response);
-                alert('Incorrect Credentials!, please try again');
-            }); // end catch
+            // passes data collected from the input fields to the service
+            AuthService.login(vm.user);
         } // end else
     }; // end orgLogin
 
     // logout admin and org users
     vm.logout = function () {
         console.log('in logout');
-        $http.get('/auth/logout').then(function (response) {
-            console.log('logged out');
-        }); // end GET
+        // clears current session on server
+        AuthService.logout();
     }; // end adminLogout
 
     // gets user info from the server and logs it on client
+    // this can be used if we need to grab user credentials 
+    // on other views after login has ocurred
     vm.getUser = function () {
-        console.log(' in getUser');
-        $http.get('/auth').then((response) => {
-            console.log('/auth response.data ', response.data);
-            // if the user has a current session on the server
-            if (response.data.username) {
-                // set these values
-                vm.getUserObj.email = response.data.email;
-                vm.getUserObj.id = response.data.id;
-                vm.getUserObj.isadmin = response.data.isadmin;
-            } else {
-                console.log('getUser failed', response);
-            } // end else
-        }); // end auth GET
+        console.log('in getUser');
+        // sets getUser object to the current
+        // session info returned by server
+        AuthService.getUser();
     }; // end getUser
 
 

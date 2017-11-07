@@ -32,7 +32,6 @@ router.get('/:id', function (req, res) {
             var orgQuery = "SELECT * FROM organization org WHERE org.id = $1"
             client.query(orgQuery, [orgId], function (queryErr, orgResult) {
                 done(); // release pool worker
-
                 if (queryErr) {
                     console.log('Organization Query GET connection Error ->', queryErr);
                     res.sendStatus(500);
