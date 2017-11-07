@@ -5,10 +5,10 @@ var encryptLib = require('../modules/encryption');
 var pool = require('../modules/pool');
 
 passport.serializeUser( function(user, done) {
-    done(null, user.id);
+    done(null, user.email);
 }); // end serializeUser
 
-passport.deserializeUser( function(id, done) {
+passport.deserializeUser( function(email, done) {
     console.log('in deserializeUser');
 
     pool.connect( function(err, client, release) {
@@ -19,6 +19,8 @@ passport.deserializeUser( function(id, done) {
         } // end if error
 
         var user = {};
+        // queries both organization and admin tables 
+        // looking for a unique email match
         var queryString = "SELECT org.id, org.email, org.password, org.isadmin " +
         "FROM organization org " +
         "WHERE org.email = $1 " +
@@ -26,7 +28,7 @@ passport.deserializeUser( function(id, done) {
         "SELECT admin.id, admin.email, admin.password, admin.isadmin " +
         "FROM admin " +
         "WHERE admin.email = $1";
-        var values = [client.user];
+        var values = [email];
 
         client.query(queryString, values, function (queryErr, result) {
             // Handle Errors
@@ -38,7 +40,7 @@ passport.deserializeUser( function(id, done) {
             user = result.rows[0];
             release();
             // if no user is found
-            if (!user) {
+            if (!user.email) {
                 return done(null, false, { message: 'Incorrect credentials.' });
                 // user found
             } else {
@@ -56,6 +58,7 @@ passport.use('local', new localStrategy({
 }, function(req, username, password, done) {
     pool.connect(function (err, client, release) {
         console.log('in local passport use');
+        // queries both organization and admin tables
         // username will be unique, thus returning 1 or 0 results
         var queryString = "SELECT org.id, org.email, org.password, org.isadmin " +
             "FROM organization org " +
@@ -64,7 +67,7 @@ passport.use('local', new localStrategy({
             "SELECT admin.id, admin.email, admin.password, admin.isadmin " +
             "FROM admin " +
             "WHERE admin.email = $1";
-        var values = [username];
+        var values = [username]; // in this case username is the user's email
         client.query(queryString, values, function(queryErr, result) {
             var user = {};
             // if error
@@ -87,7 +90,7 @@ passport.use('local', new localStrategy({
                     done(null, false, { message: 'Incorrect credentials.' });
                 } // end else
             } else {
-                console.log('no user');
+                console.log('no user email found');
                 done(null, false);
             } // end else
         }); // end query

@@ -4,8 +4,7 @@ This controller is for the home view.
 - and some other things
 */
 
-myApp.controller('HomeController', function () {
+myApp.controller('HomeController', function (OrgService) {
     console.log('in HomeController');
     var vm = this;
-
 }); // end HomeController
