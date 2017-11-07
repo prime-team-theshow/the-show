@@ -23,7 +23,14 @@ router.get('/', function (req, res) {
             "LEFT JOIN social_media AS sm3 " +
             "ON sm1.organization_id = sm3.organization_id " +
             "WHERE sm1.social_media_type_id = 1 AND sm2.social_media_type_id = 2 AND sm3.social_media_type_id = 3";
-            client.query(queryString, function (queryErr, result) {
+
+            var queryExample = "SELECT * FROM organization org " +
+            "LEFT JOIN social_media sm ON org.id = sm.organization_id " +
+            "LEFT JOIN social_media_type smt ON smt.id = sm.social_media_type_id " +
+            "LEFT JOIN ad ON org.id = ad.organization_id " +
+            "WHERE org.id = 1";
+
+            client.query(queryExample, function (queryErr, result) {
                 if (queryErr) {
                     console.log('Query GET connection Error ->', queryErr);
                     res.sendStatus(500);
