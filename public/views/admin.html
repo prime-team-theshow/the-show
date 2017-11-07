@@ -1,7 +1,7 @@
 <div>
     <form>
-        <input type="email" name="user" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <md-button>Admin Login</md-button>
+        <input type="email" name="user" placeholder="Email" ng-model="dc.admin.username">
+        <input type="password" name="password" placeholder="Password" ng-model="dc.admin.password">
+        <md-button ng-click="dc.adminLogin()">Admin Login</md-button>
     </form>
 </div>
