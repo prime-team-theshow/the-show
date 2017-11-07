@@ -7,7 +7,7 @@ This controller is for the agency/organization profile view.
 - have the ability for authenticated users to make edits and updates
 */
 
-myApp.controller('ProfileController', function (OrgService) {
+myApp.controller('ProfileController', function (OrgService, $http) {
     console.log('in ProfileController');
     var vm = this;
 
