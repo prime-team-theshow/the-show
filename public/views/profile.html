@@ -1,7 +1,7 @@
 <div>
-        <input type="email" name="user" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <md-button>Agency Login</md-button>
+        <input type="email" name="user" placeholder="Email" ng-model="pc.user.username">
+        <input type="password" name="password" placeholder="Password" ng-model="pc.user.password">
+        <md-button ng-click="pc.orgLogin()">Agency Login</md-button>
 </div>
 <div layout="row" layout-wrap>
         <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">
