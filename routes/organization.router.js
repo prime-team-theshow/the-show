@@ -137,26 +137,23 @@ router.put('/:id', function (req, res, next) {
     router.post('/:orgId/socialmedia', function (req, res, next) {
         if (req.isAuthenticated()) {
             next();
-        }
-        else {
+        } else {
             console.log('organization.router PUT /:id user not authenticated');
             res.sendStatus(401);
-        }
-    }, function (req, res) {
-
-    });
+        } // end else
+        }, function (req, res) {
+    }); // end social media post
 
     router.delete('/:orgId,socialmedia', function (req, res, next) {
         if (req.isAuthenticated()) {
             next();
-        }
-        else {
+        } else {
             console.log('organization.router PUT /:id user not authenticated');
             res.sendStatus(401);
-        }
+        } // end else
     }, function (req, res) {
 
-    });
+    }); // end delete social media
 
     // export
     module.exports = router;

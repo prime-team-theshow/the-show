@@ -10,4 +10,11 @@ myApp.service('AdminService', function ($http) {
     console.log('in AdminService');
     var self = this;
 
+
+
+    
+     /************** $http **************/
+
+
+
 }); // end AdminService
