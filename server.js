@@ -28,6 +28,7 @@ var registrationRouter = require('./routes/registration.router');
 var userAuth = require('./routes/authentication.router');
 var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
+var adminDashRouter = require('./routes/adminDash.router');
 
 // for testing nodeMailer
 var testNodeMailerRouter = require('./routes/test.nodemailer.router');
@@ -36,6 +37,7 @@ var testNodeMailerRouter = require('./routes/test.nodemailer.router');
 app.use('/register', registrationRouter);
 app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
+app.use('/adminDash', adminDashRouter);
 
 // for testing nodeMailer
 app.use('/testMail', testNodeMailerRouter);
