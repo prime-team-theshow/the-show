@@ -4,6 +4,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var passport = require('./strategies/local.strategy');
 var sessionConfig = require('./modules/session.config');
+var nodemailer = require('nodemailer');
+require('dotenv').config();
 
 var port = process.env.PORT || 6660;
 
@@ -28,11 +30,17 @@ var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
 var adminDashRouter = require('./routes/adminDash.router');
 
+// for testing nodeMailer
+var testNodeMailerRouter = require('./routes/test.nodemailer.router');
+
 // use routes
 app.use('/register', registrationRouter);
 app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
 app.use('/adminDash', adminDashRouter);
+
+// for testing nodeMailer
+app.use('/testMail', testNodeMailerRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 
