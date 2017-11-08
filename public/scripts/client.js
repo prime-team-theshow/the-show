@@ -18,6 +18,12 @@ myApp.config(function ($routeProvider) {
     }).when('/admin', {
         templateUrl: '/views/admin.html',
         controller: 'AdminController as dc'
+    }).when('/adminDash', {
+        templateUrl: '/views/adminDash.html',
+        controller: 'AdminDashController as adc'
+    }).when('/test', {
+        templateUrl: '/views/test.nodemailer.html',
+        controller: 'NodeMailerController as nmc'
     }).otherwise('/');
 
 }); // end config
