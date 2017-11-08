@@ -12,14 +12,14 @@ myApp.service('NodeMailerService', function ($http) {
 
 
      /************** $http **************/
-    self.inviteOrg = function (  ) {
+    self.inviteOrg = function ( email ) {
         // this would dynamically update based on info passed from client
         // for now it will be hard coded
         var thingToSend = {
-            email: 'hunter.rancourt@gmail.com'
+            email: email
         }; // thingToSend
 
-        $http.post('/testMail/test', thingToSend).then(function (response) {
+        $http.post('/mail/invite', thingToSend).then(function (response) {
             console.log('nodeMailer test successful');
         }).catch(function (response) {
             console.log('nodeMailer error: ', response);

@@ -30,7 +30,7 @@ var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
 
 // for testing nodeMailer
-var testNodeMailerRouter = require('./routes/test.nodemailer.router');
+var nodeMailerRouter = require('./routes/test.nodemailer.router');
 
 // use routes
 app.use('/register', registrationRouter);
@@ -38,7 +38,7 @@ app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
 
 // for testing nodeMailer
-app.use('/testMail', testNodeMailerRouter);
+app.use('/mail', nodeMailerRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 

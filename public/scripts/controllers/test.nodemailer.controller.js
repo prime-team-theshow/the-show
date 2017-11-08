@@ -6,12 +6,14 @@ myApp.controller('NodeMailerController', function (NodeMailerService ) {
     console.log('in NodeMailerController');
     var vm = this;
 
-    vm.inviteOrg = function () {
-        console.log('in inviteOrg');
-        NodeMailerService.inviteOrg();
-    }; // end iviteOrg
+    // object for holding organization info
+    vm.org = {};
 
-    // call on page load
-    vm.inviteOrg();
+    vm.inviteOrg = function (email) {
+        console.log('in inviteOrg');
+        NodeMailerService.inviteOrg(email);
+    }; // end inviteOrg
+
+    
 
 }); // end NodeMailerController
