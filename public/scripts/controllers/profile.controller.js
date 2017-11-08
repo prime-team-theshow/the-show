@@ -14,13 +14,6 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
     // object to hold organizations list
     vm.orgs = {};
 
-    vm.getOrgs = function () {
-        console.log('in getOrgs');
-        OrgService.getOrgs();
-    }; // end getOrgs
-
-    vm.getOrgs();
-
     // user object for agency/organization login
     vm.user = {
         username: '',
@@ -34,6 +27,8 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         isadmin: false
     }; // end getUserObj
 
-    vm.orgLogin = AuthService.login(vm.user)
-
+    
+    vm.orgLogin = function() {
+        AuthService.login(vm.user)
+    };
 }); // end ProfileController

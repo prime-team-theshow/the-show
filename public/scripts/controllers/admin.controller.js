@@ -6,15 +6,16 @@ myApp.controller('AdminController', function (AuthService, $http, $location, $md
     vm.admin = {
         username: '',
         password: ''
-    }; // end admin object
+    }; // end admin object 
 
     // holds data from get USer
     vm.getUserObj = {
         email: '',
         id: '',
-        isadmin: true
+        isadmin: false
     };
 
-    vm.adminLogin = AuthService.login(vm.amin);
-   
+    vm.adminLogin = function() {
+        AuthService.login(vm.admin);
+    };
 });
