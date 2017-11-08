@@ -23,6 +23,7 @@ require('dotenv').config();
 // }); // end transporter
 
 // GMAIL
+// (allow less secure apps on gmail) https://support.google.com/accounts/answer/6010255?hl=en
 var transporter = nodemailer.createTransport({
     service: 'gmail', // built in SMTP connection details - cases sensitive
     auth: {
