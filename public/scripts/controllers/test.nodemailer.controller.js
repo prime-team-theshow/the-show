@@ -1,10 +1,9 @@
 /*
-This controller is for the auth view.
+This controller is for node mailer
 - currently this controller is for testing only
-- the controller may be used later or integrated with another controller
 */
-myApp.controller('AuthController', function ($http, AuthService) {
-    console.log('in AuthController');
+myApp.controller('NodeMailerController', function (  ) {
+    console.log('in NodeMailerController');
     var vm = this;
 
-}); // end HomeController
+}); // end NodeMailerController
