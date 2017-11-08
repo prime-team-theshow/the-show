@@ -12,7 +12,7 @@ myApp.controller('AdminController', function (AuthService, $http, $location, $md
     vm.getUserObj = {
         email: '',
         id: '',
-        isadmin: false
+        isadmin: true
     };
 
     vm.adminLogin = function() {
