@@ -32,7 +32,7 @@ var socialMediaRouter = require('./routes/socialmedia.router');
 var adminDashRouter = require('./routes/adminDash.router');
 
 // for testing nodeMailer
-var testNodeMailerRouter = require('./routes/test.nodemailer.router');
+var nodeMailerRouter = require('./routes/test.nodemailer.router');
 
 // use routes
 app.use('/register', registrationRouter);
@@ -42,7 +42,7 @@ app.use('/socialmedia', socialMediaRouter);
 app.use('/adminDash', adminDashRouter);
 
 // for testing nodeMailer
-app.use('/testMail', testNodeMailerRouter);
+app.use('/mail', nodeMailerRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 

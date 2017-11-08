@@ -1,3 +1,14 @@
-<section>
-    <p>node mailer test page</p>
+<section layout-align="center center" layout="row">
+    <div flex="50" layout="column">
+        <h2>Node Mailer Test</h2>
+        <form name="emailForm" layout="row">
+            <md-input-container flex>
+                <input type="email" name="email" placeholder="your email address" ng-model="nmc.org.email" required>
+                <div ng-messages="emailForm.nmc.org.email.$error" role="alert">
+                    <div ng-message="required" class="my-message">You Must Enter an Email Address!</div>
+                </div>
+            </md-input-container>
+        </form>
+        <md-button class="md-raised md-primary" ng-click="nmc.inviteOrg(nmc.org.email)" required >Send Test Email</md-button>
+    </div>
 </section>

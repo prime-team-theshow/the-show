@@ -13,37 +13,48 @@ var pool = require('../modules/pool.js');
 var nodemailer = require('nodemailer');
 require('dotenv').config();
 
+// AOL (didn't work)
+// var transporter = nodemailer.createTransport({
+//     service: 'AOL', // built in SMTP connection details - cases sensitive
+//     auth: {
+//         user: process.env.EMAIL_UN,
+//         pass: process.env.EMAIL_PW
+//     } // end auth
+// }); // end transporter
+
+// GMAIL
+// (allow less secure apps on gmail) https://support.google.com/accounts/answer/6010255?hl=en
 var transporter = nodemailer.createTransport({
-    service: 'AOL', // built in SMTP connection details - cases sensitive
+    service: 'gmail', // built in SMTP connection details - cases sensitive
     auth: {
-        user: process.env.EMAIL_UN,
-        pass: process.env.EMAIL_PW
+        user: process.env.GMAIL_UN,
+        pass: process.env.GMAIL_PW
     } // end auth
 }); // end transporter
 
 var fromAdmin = {
     name: 'The Show Profile Administrator',
-    address: process.env.EMAIL_UN
+    address: process.env.GMAIL_UN
 }; // end fromAdmin
 
 // POST route for testing
-router.post('/test', function (req, res) {
-    console.log('in mailer /test POST');
+router.post('/invite', function (req, res) {
+    console.log('in mailer /invite POST');
 
     // email of organization to invite
     var emailToInvite = req.body.email; // this will need to be setup on client side post route
 
     // message to be sent to organization
-    var message = {
+    var mailOptions = {
         from: fromAdmin, // admin user email
         to: emailToInvite, // organization who receives the invite
-        subject: '', // Subject line
+        subject: "You're invited to The Show!", // Subject line
         text: 'node mailer test', // plain text body
-        html: '<p>paragraph html test</p>' // html body
+        html: '<p>Please follow this link to create a profile. <br> <a href="google.com">Link Name</a></p>' // html body
     }; // end mailOptions
 
     // send message using the above information
-    transporter.sendMail(message, function (err, info) {
+    transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
             console.log('sendMail error: ', err);
             res.sendStatus(500);
