@@ -41,7 +41,7 @@ myApp.service('AuthService', function ($http) {
     // takes user credentials and authenticates them on the server
     self.login = function (userObj) {
         console.log('in login');
-        $http.post('/', userObj).then(function (response) {
+        return $http.post('/', userObj).then(function (response) {
             // if the response has a username
             if (response.data.username) {
                 console.log('login success: ', response.data);
