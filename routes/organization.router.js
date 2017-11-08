@@ -132,6 +132,7 @@ router.put('/:id', function (req, res, next) {
             })
         }
     });
+});
 
     // add social media
     router.post('/:orgId/socialmedia', function (req, res, next) {
