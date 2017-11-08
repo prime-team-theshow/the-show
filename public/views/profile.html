@@ -6,7 +6,12 @@
 <div ng-if="pc.loggedin === true">
         <md-button ng-click="pc.logout()">Logout</md-button>
 </div>
-<div ng-if="pc.loggedin === true" layout="row" layout-wrap>
+<div ng-if="pc.loggedin === true">
+        <div></div>
+        <div></div>
+        <div></div>
+</div>
+<div ng-if="pc.editable === true" layout="row" layout-wrap>
         <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">
         <input type="url" name="agency-site" placeholder="Enter Your Organization Website" flex="30">
         <input type="text" name="logo-link" placeholder="Paste The URL to Your Logo" flex="30">
