@@ -2,6 +2,8 @@ myApp.controller('AdminController', function (AuthService, $http, $location, $md
     console.log('in AdminController');
     var vm = this;
 
+    vm.loggedin = false;
+
     // admin user object for admin login
     vm.admin = {
         username: '',
@@ -15,7 +17,13 @@ myApp.controller('AdminController', function (AuthService, $http, $location, $md
         isadmin: true
     };
 
+    vm.logout = function() {
+        AuthService.logout();
+        vm.loggedin = false;
+    };
+
     vm.adminLogin = function() {
-        AuthService.login(vm.admin);
+        AuthService.login();
+        vm.loggedin = true;
     };
 });
