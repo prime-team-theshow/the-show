@@ -11,6 +11,8 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
     console.log('in ProfileController');
     var vm = this;
 
+    vm.loggedin = false;
+
     // object to hold organizations list
     vm.orgs = {};
 
@@ -29,6 +31,12 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
 
     
     vm.orgLogin = function() {
-        AuthService.login(vm.user)
+        AuthService.login(vm.user);
+        vm.loggedin = true;
+    };
+
+    vm.logout = function() {
+        AuthService.logout()
+        vm.loggedin = false;
     };
 }); // end ProfileController
