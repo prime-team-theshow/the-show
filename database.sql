@@ -7,6 +7,8 @@ ALTER TABLE IF EXISTS ad
     DROP CONSTRAINT IF EXISTS organization_fk;
 ALTER TABLE IF EXISTS ad
     DROP CONSTRAINT IF EXISTS category_fk;
+ALTER TABLE IF EXISTS ad
+    DROP CONSTRAINT IF EXISTS year_fk;
 ALTER TABLE IF EXISTS media
     DROP CONSTRAINT IF EXISTS ad_fk;
 ALTER TABLE IF EXISTS credit
@@ -21,6 +23,7 @@ DROP TABLE IF EXISTS organization;
 DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS media;
+DROP TABLE IF EXISTS year;
 DROP TABLE IF EXISTS ad;
 DROP TABLE IF EXISTS credit;
 DROP TABLE IF EXISTS social_media_type;
@@ -62,6 +65,12 @@ CREATE TABLE media (
     ad_id INT
 ); 
 
+CREATE TABLE year (
+    id SERIAL PRIMARY KEY,
+    num INT,
+    background VARCHAR(200),
+    png VARCHAR(200)
+)
 -- houses ads with relations to the category and agency they're tied to --
 CREATE TABLE ad (
     id SERIAL PRIMARY KEY,
@@ -70,7 +79,8 @@ CREATE TABLE ad (
     award VARCHAR(10),
     year INT,
     organization_id INT,
-    category_id INT
+    category_id INT,
+    year_id INT
 ); 
 
 -- houses the people credited for producing a certain ad --
@@ -107,6 +117,10 @@ ALTER TABLE ad
     ADD CONSTRAINT category_fk
     FOREIGN KEY (category_id)
     REFERENCES category (id);
+ALTER TABLE ad
+    ADD CONSTRAINT year_fk
+    FOREIGN KEY (year_id)
+    REFERENCES year (id);
 
 -- media foreign key
 ALTER TABLE media
