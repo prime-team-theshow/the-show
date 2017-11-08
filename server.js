@@ -26,11 +26,13 @@ var registrationRouter = require('./routes/registration.router');
 var userAuth = require('./routes/authentication.router');
 var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
+var adminDashRouter = require('./routes/adminDash.router');
 
 // use routes
 app.use('/register', registrationRouter);
 app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
+app.use('/adminDash', adminDashRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 
