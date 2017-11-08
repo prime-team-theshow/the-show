@@ -131,10 +131,10 @@ function (req, res) {
                 } else {
                     res.sendStatus(200);
                 }
-            })
-        }
-    })
-});
+            }); // end client query
+        } // end if else
+    }); // end pool.connect
+}); // end router.put('/:id')
 
 // export
 module.exports = router;
