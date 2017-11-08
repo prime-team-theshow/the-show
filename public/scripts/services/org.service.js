@@ -26,4 +26,27 @@ myApp.service('OrgService', function ($http) {
                 console.log('OrgService getOrgProfile error:', error);
             });
     }
+
+    /**
+     * update organization profile
+     * 
+     * @param orgId string
+     * @param changes object
+      * {
+    *  name:
+    *  description:
+    *  website:
+    *  logo:
+    * } --> ONLY INCLUDE THE PROPERTIES THAT CHANGED IN CHANGES OBJECT <--
+     */
+    sv.updateOrgProfile = function (orgId, changes) {
+        $http.put('/org/' + orgId, changes)
+        .then(function (response) {
+            // fetch and update when successful
+            sv.getOrgProfile(orgId);
+        })
+        .catch(function (error) {
+            console.log('OrgService updateOrgProfile error:', error);
+        });
+    }
 }); // end OrgService
