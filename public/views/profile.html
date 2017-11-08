@@ -1,6 +1,6 @@
 <div ng-if="pc.loggedin === false">
-        <input type="email" name="user" placeholder="Email" ng-model="pc.user.username">
-        <input type="password" name="password" placeholder="Password" ng-model="pc.user.password">
+        <input type="email" name="user" placeholder="Email" ng-model="pc.userToLogin.username">
+        <input type="password" name="password" placeholder="Password" ng-model="pc.userToLogin.password">
         <md-button ng-click="pc.orgLogin()">Agency Login</md-button>
 </div>
 <div ng-if="pc.loggedin === true">

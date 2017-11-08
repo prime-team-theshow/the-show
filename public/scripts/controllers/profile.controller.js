@@ -11,8 +11,10 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
     console.log('in ProfileController');
     var vm = this;
 
-    vm.displayProfile = function(id) {
-        OrgService.getOrgProfile(id)
+    vm.orgProfileObject = OrgService.orgProfileObj;
+
+    vm.displayProfile = function() {
+        OrgService.getOrgProfile(AuthService.user.id);
     };
 
     vm.loggedin = false;
@@ -22,24 +24,17 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
     vm.orgs = {};
 
     // user object for agency/organization login
-    vm.user = {
+    vm.userToLogin = {
         username: '',
         password: ''
-    }; // end user object
-
-    // holds data from get USer
-    vm.getUserObj = {
-        email: '',
-        id: '',
-        isadmin: false
-    }; // end getUserObj
+    };
 
     
     vm.orgLogin = function() {
-        AuthService.login(vm.user);
-        vm.loggedin = true;
-        vm.displayProfile(vm.getUserObj.id);
-        console.log("vm.getUserObj.id: ", vm.getUserObj.id);
+        AuthService.login(vm.userToLogin).then(function(response){
+            vm.loggedin = true;
+            vm.displayProfile();
+        });
     };
 
     vm.logout = function() {
