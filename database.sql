@@ -70,7 +70,7 @@ CREATE TABLE year (
     num INT,
     background VARCHAR(200),
     png VARCHAR(200)
-)
+);
 -- houses ads with relations to the category and agency they're tied to --
 CREATE TABLE ad (
     id SERIAL PRIMARY KEY,
