@@ -82,40 +82,42 @@ router.get('/:id', function (req, res) {
  *  logo:
  * }
  */
-router.put('/:id', function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        console.log('organization.router PUT /:id user not authenticated');
-        res.sendStatus(401);
-    }
-}, function (req, res) {
+router.put('/:id', 
+// function (req, res, next) {
+//     if (req.isAuthenticated()) {
+//         next();
+//     } else {
+//         console.log('organization.router PUT /:id user not authenticated');
+//         res.sendStatus(401);
+//     }
+// }, 
+function (req, res) {
 
     var orgId = req.params.id
     var data = req.body;
 
     // create the update query
-    var updateQuery = 'UPDATE organization SET';
+    var updateQuery = "UPDATE organization SET";
 
     // if an updated name was sent
     if (data.name) {
-        updateQuery += ' name=' + data.name;
+        updateQuery += " name='" + data.name + "'";
     }
     // if an updated description was sent
     if (data.description) {
-        updateQuery += ' description=' + data.description;
+        updateQuery += ", description='" + data.description + "'"
     }
     // if an updated website was sent
     if (data.website) {
-        updateQuery += ' website=' + data.website;
+        updateQuery += ", website='" + data.website + "'"
     }
     // if an updated logo was sent
     if (data.logo) {
-        updateQuery += ' logo=' + data.logo;
+        updateQuery += ", logo='" + data.logo + "'"
     }
 
     // org id
-    updateQuery += ' WHERE id=' + orgId;
+    updateQuery += " WHERE id=" + orgId;
 
     pool.connect(function (connectionError, client, done) {
         if (connectionError) {
@@ -127,34 +129,13 @@ router.put('/:id', function (req, res, next) {
                     console.log('PUT org/:id query error', queryError);
                     res.sendStatus(501);
                 } else {
-                    res.sendStatus(201);
+                    res.sendStatus(200);
                 }
-            })
-        }
-    });
-});
 
-    // add social media
-    router.post('/:orgId/socialmedia', function (req, res, next) {
-        if (req.isAuthenticated()) {
-            next();
-        } else {
-            console.log('organization.router PUT /:id user not authenticated');
-            res.sendStatus(401);
-        } // end else
-        }, function (req, res) {
-    }); // end social media post
+            }); // end client query
+        } // end if else
+    }); // end pool.connect
+}); // end router.put('/:id')
 
-    router.delete('/:orgId,socialmedia', function (req, res, next) {
-        if (req.isAuthenticated()) {
-            next();
-        } else {
-            console.log('organization.router PUT /:id user not authenticated');
-            res.sendStatus(401);
-        } // end else
-    }, function (req, res) {
-
-    }); // end delete social media
-
-    // export
-    module.exports = router;
+// export
+module.exports = router;
