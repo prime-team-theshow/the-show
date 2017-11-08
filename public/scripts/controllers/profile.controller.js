@@ -7,18 +7,28 @@ This controller is for the agency/organization profile view.
 - have the ability for authenticated users to make edits and updates
 */
 
-myApp.controller('ProfileController', function (OrgService) {
+myApp.controller('ProfileController', function (OrgService, AuthService, $http) {
     console.log('in ProfileController');
     var vm = this;
 
     // object to hold organizations list
     vm.orgs = {};
 
-    vm.getOrgs = function () {
-        console.log('in getOrgs');
-        OrgService.getOrgs();
-    }; // end getOrgs
+    // user object for agency/organization login
+    vm.user = {
+        username: '',
+        password: ''
+    }; // end user object
 
-    vm.getOrgs();
+    // holds data from get USer
+    vm.getUserObj = {
+        email: '',
+        id: '',
+        isadmin: false
+    }; // end getUserObj
 
+    
+    vm.orgLogin = function() {
+        AuthService.login(vm.user)
+    };
 }); // end ProfileController
