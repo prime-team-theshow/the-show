@@ -1,7 +1,7 @@
 console.log('client.js sourced');
 
 // AngularJS and sourced in modules
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngUpload']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
 myApp.config(function ($routeProvider) {
 
@@ -21,6 +21,9 @@ myApp.config(function ($routeProvider) {
     }).when('/mail', {
         templateUrl: '/views/test.nodemailer.html',
         controller: 'NodeMailerController as nmc'
+    }).when('/adminDash', {
+        templateUrl: '/views/adminDash.html',
+        controller: 'AdminDashController as adc'
     }).otherwise('/');
 
 }); // end config
