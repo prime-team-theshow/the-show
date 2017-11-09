@@ -6,10 +6,10 @@
 <div ng-if="pc.loggedin === true">
         <md-button ng-click="pc.logout()">Logout</md-button>
 </div>
-<div ng-if="pc.loggedin === true">
-        <div></div>
-        <div></div>
-        <div></div>
+<div ng-show="pc.loggedin === true">
+        <img src="{{pc.profileData.logo}}" height="100">
+        <div>{{pc.profileData.name}}</div>
+        <div>{{pc.profileData.description}}</div>
 </div>
 <div ng-if="pc.editable === true" layout="row" layout-wrap>
         <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">

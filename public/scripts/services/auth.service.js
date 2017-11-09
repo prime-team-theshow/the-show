@@ -7,16 +7,8 @@ myApp.service('AuthService', function ($http) {
     console.log('in AuthService');
     var self = this;
 
-    // object to hold getUser response
-    self.getUser = {};
-
     // object to hold login response
     self.user = {};
-
-
-
-
-    /************** $http **************/
 
     // temporary - allows admins to create a new admin login
     self.adminRegister = function (userObj) {
@@ -60,6 +52,7 @@ myApp.service('AuthService', function ($http) {
         console.log('in logout');
         return $http.get('/auth/logout').then(function (response) {
             console.log('logged out');
+            self.user = {};
         }); // end GET
     }; // end adminLogout
 
@@ -77,7 +70,5 @@ myApp.service('AuthService', function ($http) {
             } // end else
         }); // end auth GET
     }; // end getUser
-
-
 
 }); // end AuthService
