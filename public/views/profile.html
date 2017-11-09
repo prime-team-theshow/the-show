@@ -10,6 +10,43 @@
         <img src="{{pc.profileData.logo}}" height="100">
         <div>{{pc.profileData.name}}</div>
         <div>{{pc.profileData.description}}</div>
+        <a href="{{pc.profileData.website}}" target="_blank">See Our Website</a>
+        <div ng-repeat="social in pc.profileData.social_medias">
+                <a href="{{social.url}}" target="_blank">
+                        <img src="{{social.logo}}" height="20">
+                </a>
+        </div>
+        <div ng-repeat="ad in pc.profileData.ads">
+                <md-content class="md-padding" layout-xs="column" layout="row">
+                        <div flex-xs flex-gt-xs="30" layout="column">
+                                <md-card>
+                                        <md-card-header>
+                                                <md-card-avatar>
+                                                        <img ng-if="ad.award === 'gold'" src="assets/gold.png" />
+                                                        <img ng-if="ad.award === 'silver'" src="assets/silver.png">
+                                                        <img ng-if="ad.award === 'bronze'" src="assets/bronze.png">
+                                                </md-card-avatar>
+                                                <md-card-header-text>
+                                                        <span class="md-title">Award: {{ad.award}}</span>
+                                                        <span class="md-subhead">Category: {{ad.category}}</span>
+                                                </md-card-header-text>
+                                        </md-card-header>
+                                        <img src="assets/annualTitle.png" class="md-card-image" alt="Washed Out" height="50">
+                                        <md-card-title>
+                                                <md-card-title-text>
+                                                        <span class="md-headline">{{ad.name}}</span>
+                                                </md-card-title-text>
+                                        </md-card-title>
+                                        <md-card-content>
+                                                        <p>{{ad.advertiser}}</p>
+                                                        <p>{{ad.year}}</p>
+                                                        <a href="#">See Ad Details</a>
+                                        </md-card-content>
+                                </md-card>
+
+                        </div>
+                </md-content>
+        </div>
 </div>
 <div ng-if="pc.editable === true" layout="row" layout-wrap>
         <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">
@@ -17,4 +54,4 @@
         <input type="text" name="logo-link" placeholder="Paste The URL to Your Logo" flex="30">
         <input type="textarea" bame="agency-bio" placeholder="Enter Your Agency Bio" flex="50">
         <md-button>Save Changes</md-button>
-    </div>
+</div>
