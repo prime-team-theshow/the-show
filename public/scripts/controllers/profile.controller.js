@@ -13,8 +13,15 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
 
     vm.orgProfileObject = OrgService.orgProfileObj;
 
-    vm.displayProfile = function() {
-        OrgService.getOrgProfile(AuthService.user.id);
+    vm.displayProfile = function () {
+        OrgService.getOrgProfile(AuthService.user.id).then(function (response) {
+            vm.profileData.ads = OrgService.orgProfileObj.ads;
+            vm.profileData.name = OrgService.orgProfileObj.name;
+            vm.profileData.logo = OrgService.orgProfileObj.logo;
+            vm.profileData.social_medias = OrgService.orgProfileObj.social_medias;
+            vm.profileData.website = OrgService.orgProfileObj.website;
+            vm.profileData.description = OrgService.orgProfileObj.description;
+        });
     };
 
     vm.loggedin = false;
@@ -29,16 +36,24 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         password: ''
     };
 
-    
-    vm.orgLogin = function() {
-        AuthService.login(vm.userToLogin).then(function(response){
+    vm.profileData = {
+        ads: [],
+        name: '',
+        logo: '',
+        social_medias: [],
+        website: '',
+        description: ''
+    };
+
+    vm.orgLogin = function () {
+        AuthService.login(vm.userToLogin).then(function (response) {
             vm.loggedin = true;
             vm.displayProfile();
         });
     };
 
-    vm.logout = function() {
-        AuthService.logout()
+    vm.logout = function () {
+        AuthService.logout();
         vm.loggedin = false;
     };
 
