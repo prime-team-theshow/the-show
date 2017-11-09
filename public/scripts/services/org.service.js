@@ -39,10 +39,6 @@ myApp.service('OrgService', function ($http) {
      */
     sv.updateOrgProfile = function (orgId, changes) {
         return $http.put('/org/' + orgId, changes)
-            .then(function (response) {
-                // fetch and update when successful
-                sv.getOrgProfile(orgId);
-            })
             .catch(function (error) {
                 console.error('OrgService updateOrgProfile() error:', error);
             }); // end $http.put
