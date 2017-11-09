@@ -50,6 +50,8 @@ router.post('/invite', function (req, res) {
         to: emailToInvite, // organization who receives the invite
         subject: "You're invited to The Show!", // Subject line
         text: 'node mailer test', // plain text body
+        // the href below will need to be dynamic and use req.params
+        // it can then update the org row with a username and password
         html: '<p>Please follow this link to create a profile. <br> <a href="google.com">Link Name</a></p>' // html body
     }; // end mailOptions
 
