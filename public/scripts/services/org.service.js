@@ -2,7 +2,7 @@
  * Service for interacting with organization profile
  */
 
-myApp.service('OrgService', function ($http, AuthService) {
+myApp.service('OrgService', function ($http) {
     console.log('in Org Service');
 
     var sv = this;
@@ -85,11 +85,7 @@ myApp.service('OrgService', function ($http, AuthService) {
      * @param socialMediaId string
      */
     sv.deleteSocialMedia = function (socialMediaId) {
-        $http.delete('/socialmedia/' + socialMediaId)
-            .then(function (response) {
-                // fetch and update when successful
-                sv.getOrgProfile(AuthService.user.id);
-            })
+        return $http.delete('/socialmedia/' + socialMediaId)
             .catch(function (error) {
                 console.error('OrgService deleteSocialMedia() error:', error);
             }); // end $http.post
