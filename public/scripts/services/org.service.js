@@ -20,7 +20,7 @@ myApp.service('OrgService', function ($http) {
      * @param orgId string
      */
     sv.getOrgProfile = function (orgId) {
-        $http.get('/org/' + orgId)
+        return $http.get('/org/' + orgId)
             .then(function (response) {
                 sv.orgProfileObj.orgProfile = response.data;
                 console.log('sv.orgProfileObj.orgProfile', sv.orgProfileObj.orgProfile);
@@ -38,7 +38,7 @@ myApp.service('OrgService', function ($http) {
      * ONLY INCLUDE THE PROPERTIES THAT CHANGED IN CHANGES OBJECT
      */
     sv.updateOrgProfile = function (orgId, changes) {
-        $http.put('/org/' + orgId, changes)
+        return $http.put('/org/' + orgId, changes)
             .then(function (response) {
                 // fetch and update when successful
                 sv.getOrgProfile(orgId);
@@ -52,11 +52,10 @@ myApp.service('OrgService', function ($http) {
      * fetch social media types
      */
     sv.getSocialMediaTypes = function () {
-        $http.get('/socialmedia/types')
+        return $http.get('/socialmedia/types')
             .then(function (result) {
                 sv.socialMediaTypesObj.socialMediaTypes = result.data;
                 console.log('sv.socialMediaTypesObj.socialMediaTypes:', sv.socialMediaTypesObj.socialMediaTypes);
-
             })
             .catch(function (error) {
                 console.error('OrgService getSocialMediaTypes() error:', error);
@@ -69,11 +68,7 @@ myApp.service('OrgService', function ($http) {
      * @param socialMedia {typeId:, orgId:, url:}
      */
     sv.addSocialMedia = function (socialMedia) {
-        $http.post('/socialmedia', socialMedia)
-            .then(function (response) {
-                // fetch and update when successful
-                sv.getOrgProfile(AuthService.user.id);
-            })
+        return $http.post('/socialmedia', socialMedia)
             .catch(function (error) {
                 console.error('OrgService addSocialMedia() error:', error);
             }); // end $http.post

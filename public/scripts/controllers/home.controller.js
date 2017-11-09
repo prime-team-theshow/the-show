@@ -7,4 +7,5 @@ This controller is for the home view.
 myApp.controller('HomeController', function (OrgService) {
     console.log('in HomeController');
     var vm = this;
+    
 }); // end HomeController
