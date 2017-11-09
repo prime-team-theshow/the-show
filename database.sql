@@ -39,6 +39,7 @@ CREATE TABLE organization (
     logo VARCHAR(500),
     email VARCHAR(200) UNIQUE,
     password VARCHAR(200),
+    invited BOOLEAN DEFAULT FALSE,
     isadmin boolean DEFAULT FALSE,
     CHECK (isadmin = FALSE)
 );
