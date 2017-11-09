@@ -43,6 +43,7 @@ CREATE TABLE organization (
     CHECK (isadmin = FALSE)
 );
 
+-- houses admin info --
 CREATE TABLE admin (
     id SERIAL PRIMARY KEY,
     email VARCHAR(200) NOT NULL UNIQUE,
@@ -60,50 +61,50 @@ CREATE TABLE category (
 -- houses links to media files for a related ad --
 CREATE TABLE media (
     id SERIAL PRIMARY KEY,
-    type INT,
-    url VARCHAR(500),
-    ad_id INT
+    type INT NOT NULL,
+    url VARCHAR(500) NOT NULL,
+    ad_id INT NOT NULL
 ); 
 
+-- houses year each ad won --
 CREATE TABLE year (
     id SERIAL PRIMARY KEY,
-    num INT,
+    num INT NOT NULL,
     background VARCHAR(200),
     png VARCHAR(200)
 );
 -- houses ads with relations to the category and agency they're tied to --
 CREATE TABLE ad (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(300),
+    name VARCHAR(300) NOT NULL,
     advertiser VARCHAR(200),
-    award VARCHAR(10),
-    year INT,
-    organization_id INT,
-    category_id INT,
-    year_id INT
+    award VARCHAR(10) NOT NULL,
+    organization_id INT NOT NULL,
+    category_id INT NOT NULL,
+    year_id INT NOT NULL
 ); 
 
 -- houses the people credited for producing a certain ad --
 CREATE TABLE credit (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(200),
-    name VARCHAR(200),
-    ad_id INT
+    title VARCHAR(200) NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    ad_id INT NOT NULL
 ); 
 
 -- houses social media platform information --
 CREATE TABLE social_media_type (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(200),
-    logo VARCHAR(300)
+    name VARCHAR(200) NOT NULL,
+    logo VARCHAR(300) NOT NULL
 ); 
 
 -- houses social media links for agency profiles and the related social_media_type --
 CREATE TABLE social_media (
     id SERIAL PRIMARY KEY,
-    url VARCHAR(300),
-    organization_id INT,
-    social_media_type_id INT
+    url VARCHAR(300) NOT NULL,
+    organization_id INT NOT NULL,
+    social_media_type_id INT NOT NULL
 
 );
 
@@ -172,6 +173,8 @@ VALUES('school')
 RETURNING id
 ;
 
+-- year --
+INSERT INTO year ()
 -- ad --
 INSERT INTO ad
 (name, advertiser, award, year, organization_id, category_id)
