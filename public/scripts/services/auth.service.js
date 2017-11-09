@@ -21,7 +21,7 @@ myApp.service('AuthService', function ($http) {
     // temporary - allows admins to create a new admin login
     self.adminRegister = function (userObj) {
         console.log('in adminRegister');
-        $http.post('/register/admin', userObj).then(function (response) {
+        return $http.post('/register/admin', userObj).then(function (response) {
             console.log('admin registration successful');
         }).catch(function (response) {
             console.log('Registration error: ', response);
@@ -31,7 +31,7 @@ myApp.service('AuthService', function ($http) {
     // allows agencies to create a new login
     self.orgRegister = function (userObj) {
         console.log('in orgRegister');
-        $http.post('/register/organization', userObj).then(function (response) {
+        return $http.post('/register/organization', userObj).then(function (response) {
             console.log('user registration successful');
         }).catch(function (response) {
             console.log('Registration error: ', response);
@@ -58,7 +58,7 @@ myApp.service('AuthService', function ($http) {
     // logout admin and org users
     self.logout = function () {
         console.log('in logout');
-        $http.get('/auth/logout').then(function (response) {
+        return $http.get('/auth/logout').then(function (response) {
             console.log('logged out');
         }); // end GET
     }; // end adminLogout
@@ -66,7 +66,7 @@ myApp.service('AuthService', function ($http) {
     // gets user info from the server and logs it on client
     self.getUser = function () {
         console.log(' in getUser');
-        $http.get('/auth').then( function(response) {
+        return $http.get('/auth').then( function(response) {
             console.log('/auth response.data ', response.data);
             // if the user has a current session on the server
             if (response.data.username) {
