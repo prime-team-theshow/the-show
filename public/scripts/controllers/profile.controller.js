@@ -24,17 +24,8 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         });
     };
 
-    vm.loggedin = false;
-    vm.editable = false;
-
     // object to hold organizations list
     vm.orgs = {};
-
-    // user object for agency/organization login
-    vm.userToLogin = {
-        username: '',
-        password: ''
-    };
 
     vm.profileData = {
         ads: [],
@@ -44,17 +35,4 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         website: '',
         description: '',
     };
-
-    vm.orgLogin = function () {
-        AuthService.login(vm.userToLogin).then(function (response) {
-            vm.loggedin = true;
-            vm.displayProfile();
-        });
-    };
-
-    vm.logout = function () {
-        AuthService.logout();
-        vm.loggedin = false;
-    };
-
 }); // end ProfileController
