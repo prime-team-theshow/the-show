@@ -20,9 +20,10 @@ router.get('/invite', function (req, res) {
                 res.sendStatus(500);
                 done();
             } else {
-                var queryString = "SELECT [what do we want?] FROM organization WHERE [both fields are null]";
-                // var values = [];
-                client.query(queryString, values, function (queryErr, result) {
+                var queryString = "SELECT org.id, org.name, org.email, org.invited " +
+                "FROM organization org " +
+                "WHERE org.password IS NULL";
+                client.query(queryString, function (queryErr, result) {
                     if (queryErr) {
                         console.log('Query GET connection Error ->', queryErr);
                         res.sendStatus(500);
