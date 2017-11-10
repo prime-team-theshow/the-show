@@ -1,8 +1,5 @@
-<div ng-if="lc.loggedin === false">
-        <input type="email" name="user" placeholder="Email" ng-model="pc.userToLogin.username">
-        <input type="password" name="password" placeholder="Password" ng-model="pc.userToLogin.password">
+<div>
+        <input type="email" name="user" placeholder="Email" ng-model="lc.userToLogin.username">
+        <input type="password" name="password" placeholder="Password" ng-model="lc.userToLogin.password">
         <md-button ng-click="lc.login()">Login</md-button>
-</div>
-<div ng-if="lc.loggedin === true">
-        <md-button ng-click="lc.logout()">Logout</md-button>
 </div>
