@@ -40,7 +40,8 @@ CREATE TABLE organization (
     email VARCHAR(200) UNIQUE,
     password VARCHAR(200),
     invited BOOLEAN DEFAULT FALSE,
-    isadmin boolean DEFAULT FALSE,
+    claimed BOOLEAN DEFAULT FALSE
+    isadmin BOOLEAN DEFAULT FALSE,
     CHECK (isadmin = FALSE)
 );
 
