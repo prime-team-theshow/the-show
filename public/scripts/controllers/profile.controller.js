@@ -33,6 +33,9 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         logo: '',
         social_medias: [],
         website: '',
-        description: '',
+        description: ''
     };
+
+    vm.displayProfile();
+
 }); // end ProfileController

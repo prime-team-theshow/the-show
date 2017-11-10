@@ -1,20 +1,15 @@
 myApp.controller('LoginController', function (AuthService, $location) {
     console.log('in LoginController');
     var vm = this;
-    var orgId = AuthService.user.id;
 
     vm.goToProfile = function() {
-        if (AuthService.user.isadmin = false) {
-            vm.loggedin = true;
-            $location.path('/profile/:', orgId);
-        } else {
-            vm.loggedin = true;
+        console.log("AuthService.user: ", AuthService.user);
+        if (AuthService.user.isadmin) {
             $location.path('/adminDash');
+        } else {
+            $location.path('/profile/:' + AuthService.user.id);
         }
     };
-
-    vm.loggedin = false;
-    vm.editable = false;
 
     // user object for agency/organization login
     vm.userToLogin = {
@@ -24,12 +19,9 @@ myApp.controller('LoginController', function (AuthService, $location) {
 
     vm.login = function () {
         AuthService.login(vm.userToLogin).then(function (response) {
-            vm.goToProfile();
+            console.log("AuthService.user: ", AuthService.user);
+           vm.goToProfile();
         });
-    };
-
-    vm.logout = function () {
-        AuthService.logout();
     };
 
 }); // end ProfileController
