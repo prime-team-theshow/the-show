@@ -1,12 +1,4 @@
-<div ng-if="pc.loggedin === false">
-        <input type="email" name="user" placeholder="Email" ng-model="pc.userToLogin.username">
-        <input type="password" name="password" placeholder="Password" ng-model="pc.userToLogin.password">
-        <md-button ng-click="pc.orgLogin()">Agency Login</md-button>
-</div>
-<div ng-if="pc.loggedin === true">
-        <md-button ng-click="pc.logout()">Logout</md-button>
-</div>
-<div ng-show="pc.loggedin === true">
+<div>
         <img src="{{pc.profileData.logo}}" height="100">
         <div>{{pc.profileData.name}}</div>
         <div>{{pc.profileData.description}}</div>
@@ -31,7 +23,6 @@
                                                         <span class="md-subhead">Category: {{ad.category}}</span>
                                                 </md-card-header-text>
                                         </md-card-header>
-                                        <img src="assets/annualTitle.png" class="md-card-image" alt="Washed Out" height="50">
                                         <md-card-title>
                                                 <md-card-title-text>
                                                         <span class="md-headline">{{ad.name}}</span>

@@ -12,7 +12,7 @@ myApp.config(function ($routeProvider) {
     }).when('/auth', {
         templateUrl: '/views/auth.html',
         controller: 'AuthController as ac'
-    }).when('/profile/:name', {
+    }).when('/profile/:Id', {
         templateUrl: '/views/profile.html',
         controller: 'ProfileController as pc'
     }).when('/admin', {
@@ -24,6 +24,12 @@ myApp.config(function ($routeProvider) {
     }).when('/adminDash', {
         templateUrl: '/views/adminDash.html',
         controller: 'AdminDashController as adc'
+    }).when('/login', {
+        templateUrl: '/views/login.html',
+        controller: 'LoginController as lc'
+    }).when('/winners/:year', {
+        templateUrl: '/views/winner.html',
+        controller: 'WinnerController as wc'
     }).otherwise('/');
 
 }); // end config
