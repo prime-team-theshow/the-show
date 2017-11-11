@@ -7,9 +7,9 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../modules/pool');
 
-// GET organization that currently do not have an email or password
-router.get('/invite', function (req, res) {
-    console.log('in invite GET route.');
+// GET organizations for admin dashboard
+router.get('/orgs', function (req, res) {
+    console.log('in orgs GET route.');
     var isAdmin = req.user.isadmin;
     // check if user is logged in and is an admin
     if (req.isAuthenticated() && isAdmin) {
@@ -20,9 +20,10 @@ router.get('/invite', function (req, res) {
                 res.sendStatus(500);
                 done();
             } else {
-                var queryString = "SELECT org.id, org.name, org.email, org.invited " +
-                "FROM organization org " +
-                "WHERE org.password IS NULL";
+                var queryString = "SELECT org.id, org.name, org.claimed, org.invited, org.email, " +
+                // if the org has a password set has_password property to true
+                "CASE WHEN org.password IS NULL THEN 'false' else 'true' END AS has_password " +
+                "FROM organization org;";
                 client.query(queryString, function (queryErr, result) {
                     if (queryErr) {
                         console.log('Query GET connection Error ->', queryErr);

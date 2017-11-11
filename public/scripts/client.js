@@ -30,6 +30,9 @@ myApp.config(function ($routeProvider) {
     }).when('/winners/:year', {
         templateUrl: '/views/winner.html',
         controller: 'WinnerController as wc'
+    }).when('/test-admin', {
+        templateUrl: '/views/test-admin.html',
+        controller: 'TestAdmin as tac'
     }).otherwise('/');
 
 }); // end config
