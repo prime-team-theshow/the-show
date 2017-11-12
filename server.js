@@ -4,6 +4,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var passport = require('./strategies/local.strategy');
 var sessionConfig = require('./modules/session.config');
+var nodemailer = require('nodemailer');
+require('dotenv').config();
 
 var port = process.env.PORT || 6660;
 
@@ -27,17 +29,24 @@ var userAuth = require('./routes/authentication.router');
 var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
 var socialMediaRouter = require('./routes/socialmedia.router');
+var adminDashRouter = require('./routes/adminDash.router');
+var nodeMailerRouter = require('./routes/nodemailer.router');
+var adminRouter = require('./routes/admin.router');
+var winnersRouter = require('./routes/winners.router');
 
 // use routes
 app.use('/register', registrationRouter);
 app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
 app.use('/socialmedia', socialMediaRouter);
-
+app.use('/adminDash', adminDashRouter);
+app.use('/winners', winnersRouter);
+app.use('/mail', nodeMailerRouter);
+app.use('/admin', adminRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 
 // server listening
-app.listen(port, function() {
+app.listen(port, function () {
     console.log('Server listening on port: ', port);
 }); // end listen

@@ -8,7 +8,7 @@
     <title>The Show</title>
 
     <!-- favicon -->
-    <!-- <link rel="icon" href="" type="image/x-icon" /> -->
+    <link rel="icon" type="image/png" href="myfavicon.png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles/style.css">
@@ -27,21 +27,34 @@
     <!-- ngMessages -->
     <script src="vendors/angular-messages/angular-messages.min.js" charset="utf-8" type="text/javascript"></script>
 
+    <!-- ng-upload -->
+    <script src="vendors/ng-upload/ng-upload.js" charset="utf-8" type="text/javascript"></script>
+
     <!-- ********* Client Side ********* -->
     <script src="scripts/client.js" charset="utf-8" type="text/javascript"></script>
-    <!-- Services -->
-    <script src="scripts/services/auth.service.js" charset="utf-8" type="text/javascript"></script>
-    <script src="scripts/services/org.service.js" charset="utf-8" type="text/javascript"></script>
     <!-- Controllers -->
     <script src="scripts/controllers/home.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/auth.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/profile.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/admin.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/adminDash.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/test.nodemailer.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/login.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/test.admin.controller.js" charset="utf-8" type="text/javascript"></script>
+  <!-- Services -->
+    <script src="scripts/services/auth.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/org.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/admin.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/test.nodemailer.service.js" charset="utf-8" type="text/javascript"></script>
+
+
 </head>
 
 <body ng-app="myApp">
     <header>
-        <h1>The Show</h1>
+        <div class="title">
+        <img src="assets/annualTitle.png" height="100" width="100">
+        </div>
     </header>
     <main>
         <ng-view>
