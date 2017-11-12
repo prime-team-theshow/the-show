@@ -72,7 +72,7 @@ CREATE TABLE category (
 -- ads with relations to the category and agency they're tied to --
 CREATE TABLE ad (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(300),
+    name VARCHAR(300) NOT NULL,
     advertiser VARCHAR(200),
     award VARCHAR(10),
     organization_id INT,
@@ -91,24 +91,24 @@ CREATE TABLE media (
 -- people credited for producing a certain ad --
 CREATE TABLE credit (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(200),
-    name VARCHAR(200),
-    ad_id INT
+    title VARCHAR(200) NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    ad_id INT NOT NULL
 ); 
 
 -- social media platform information --
 CREATE TABLE social_media_type (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(200),
-    logo VARCHAR(300)
+    name VARCHAR(200) NOT NULL,
+    logo VARCHAR(300) NOT NULL
 ); 
 
 -- social media links for agency profiles and the related social_media_type --
 CREATE TABLE social_media (
     id SERIAL PRIMARY KEY,
-    url VARCHAR(300),
-    organization_id INT,
-    social_media_type_id INT
+    url VARCHAR(300) NOT NULL,
+    organization_id INT NOT NULL,
+    social_media_type_id INT NOT NULL
 
 );
 

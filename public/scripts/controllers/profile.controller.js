@@ -11,10 +11,24 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
     console.log('in ProfileController');
     var vm = this;
 
+    vm.editable = false;
+
     vm.orgProfileObject = OrgService.orgProfileObj;
 
-    vm.displayProfile = function () {
+    vm.displayProfileToAgencyAdmin = function () {
         OrgService.getOrgProfile(AuthService.user.id).then(function (response) {
+            vm.editable = true;
+            vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
+            vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
+            vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
+            vm.profileData.social_medias = OrgService.orgProfileObj.orgProfile.social_medias;
+            vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
+            vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
+        });
+    };
+
+    vm.displayProfileToPublic = function () {
+        OrgService.getOrgProfile().then(function (response) {
             vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
             vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
             vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
@@ -36,6 +50,7 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         description: ''
     };
 
-    vm.displayProfile();
+    vm.displayProfileToAgencyAdmin();
+    vm.displayProfileToPublic();
 
 }); // end ProfileController
