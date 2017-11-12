@@ -30,7 +30,7 @@ router.get('/:id', function (req, res) {
                     // store organization object
                     organization = orgResult.rows[0];
 
-                    var socialMediaQuery = "SELECT * FROM social_media sm " +
+                    var socialMediaQuery = "SELECT sm.id, sm.url, smt.logo FROM social_media sm " +
                         "INNER JOIN social_media_type smt " +
                         "ON sm.social_media_type_id = smt.id " +
                         "WHERE sm.organization_id = $1"
@@ -46,7 +46,10 @@ router.get('/:id', function (req, res) {
                             // append social medias array to organization object
                             organization.social_medias = socialMediaResult.rows;
 
-                            var adsQuery = "SELECT * FROM ad WHERE ad.organization_id = $1";
+                            var adsQuery = "SELECT ad.id, ad.name, ad.award, ad.advertiser, category.full_category as category, year.num AS year FROM ad " +
+                            "INNER JOIN category ON ad.category_id = category.id " +
+                            "INNER JOIN year ON ad.year_id = year.id " +
+                            "WHERE ad.organization_id = $1";
                             client.query(adsQuery, [orgId], function (queryErr, adResult) {
                                 done(); // release pool worker
 
@@ -82,59 +85,59 @@ router.get('/:id', function (req, res) {
  *  logo:
  * }
  */
-router.put('/:id', 
-// function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         next();
-//     } else {
-//         console.log('organization.router PUT /:id user not authenticated');
-//         res.sendStatus(401);
-//     }
-// }, 
-function (req, res) {
-
-    var orgId = req.params.id
-    var data = req.body;
-
-    // create the update query
-    var updateQuery = "UPDATE organization SET";
-
-    // if an updated name was sent
-    if (data.name) {
-        updateQuery += " name='" + data.name + "'";
-    }
-    // if an updated description was sent
-    if (data.description) {
-        updateQuery += ", description='" + data.description + "'"
-    }
-    // if an updated website was sent
-    if (data.website) {
-        updateQuery += ", website='" + data.website + "'"
-    }
-    // if an updated logo was sent
-    if (data.logo) {
-        updateQuery += ", logo='" + data.logo + "'"
-    }
-
-    // org id
-    updateQuery += " WHERE id=" + orgId;
-
-    pool.connect(function (connectionError, client, done) {
-        if (connectionError) {
-            console.log('PUT org/:id pool connect error', connectionError);
+router.put('/:id',
+    function (req, res, next) {
+        if (req.isAuthenticated()) {
+            next();
         } else {
-            client.query(updateQuery, function (queryError, result) {
-                done()
-                if (queryError) {
-                    console.log('PUT org/:id query error', queryError);
-                    res.sendStatus(501);
-                } else {
-                    res.sendStatus(200);
-                }
-            }); // end client query
-        } // end if else
-    }); // end pool.connect
-}); // end router.put('/:id')
+            console.log('organization.router PUT /:id user not authenticated');
+            res.sendStatus(401);
+        }
+    },
+    function (req, res) {
+
+        var orgId = req.params.id
+        var data = req.body;
+
+        // create the update query
+        var updateQuery = "UPDATE organization SET";
+
+        // if an updated name was sent
+        if (data.name) {
+            updateQuery += " name='" + data.name + "'";
+        }
+        // if an updated description was sent
+        if (data.description) {
+            updateQuery += ", description='" + data.description + "'"
+        }
+        // if an updated website was sent
+        if (data.website) {
+            updateQuery += ", website='" + data.website + "'"
+        }
+        // if an updated logo was sent
+        if (data.logo) {
+            updateQuery += ", logo='" + data.logo + "'"
+        }
+
+        // org id
+        updateQuery += " WHERE id=" + orgId;
+
+        pool.connect(function (connectionError, client, done) {
+            if (connectionError) {
+                console.log('PUT org/:id pool connect error', connectionError);
+            } else {
+                client.query(updateQuery, function (queryError, result) {
+                    done()
+                    if (queryError) {
+                        console.log('PUT org/:id query error', queryError);
+                        res.sendStatus(501);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                }); // end client query
+            } // end if else
+        }); // end pool.connect
+    }); // end router.put('/:id')
 
 // export
 module.exports = router;
