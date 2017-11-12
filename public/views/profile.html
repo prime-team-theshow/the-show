@@ -1,11 +1,11 @@
-<div>
-        <img src="{{pc.profileData.logo}}" height="100">
-        <div>{{pc.profileData.name}}</div>
+<div layout="column" md-cloak class="md-padding">
+        <img src="{{pc.profileData.logo}}" width="100">
+        <div class="title">{{pc.profileData.name}}</div>
         <div>{{pc.profileData.description}}</div>
         <a href="{{pc.profileData.website}}" target="_blank">See Our Website</a>
         <div ng-repeat="social in pc.profileData.social_medias">
                 <a href="{{social.url}}" target="_blank">
-                        <img src="{{social.logo}}" height="20">
+                        <img src="{{social.logo}}" height="20" layout="column">
                 </a>
         </div>
         <div ng-repeat="ad in pc.profileData.ads">
@@ -29,9 +29,9 @@
                                                 </md-card-title-text>
                                         </md-card-title>
                                         <md-card-content>
-                                                        <p>{{ad.advertiser}}</p>
-                                                        <p>{{ad.year}}</p>
-                                                        <a href="#">See Ad Details</a>
+                                                <p>{{ad.advertiser}}</p>
+                                                <p>{{ad.year}}</p>
+                                                <a href="#">See Ad Details</a>
                                         </md-card-content>
                                 </md-card>
 
