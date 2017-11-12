@@ -30,7 +30,7 @@ router.get('/:id', function (req, res) {
                     // store organization object
                     organization = orgResult.rows[0];
 
-                    var socialMediaQuery = "SELECT * FROM social_media sm " +
+                    var socialMediaQuery = "SELECT sm.id, sm.url, smt.logo FROM social_media sm " +
                         "INNER JOIN social_media_type smt " +
                         "ON sm.social_media_type_id = smt.id " +
                         "WHERE sm.organization_id = $1"
@@ -46,7 +46,10 @@ router.get('/:id', function (req, res) {
                             // append social medias array to organization object
                             organization.social_medias = socialMediaResult.rows;
 
-                            var adsQuery = "SELECT * FROM ad WHERE ad.organization_id = $1";
+                            var adsQuery = "SELECT ad.id, ad.name, ad.award, ad.advertiser, category.full_category as category, year.num AS year FROM ad " +
+                            "INNER JOIN category ON ad.category_id = category.id " +
+                            "INNER JOIN year ON ad.year_id = year.id " +
+                            "WHERE ad.organization_id = $1";
                             client.query(adsQuery, [orgId], function (queryErr, adResult) {
                                 done(); // release pool worker
 
