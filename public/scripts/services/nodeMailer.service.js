@@ -15,9 +15,11 @@ myApp.service('NodeMailerService', function ($http) {
 
      // takes in organization/agency email and sends 
      // them an invite to create a user profile
-    self.inviteOrg = function ( email ) {
+    self.inviteOrg = function ( email, message, orgId ) {
         var thingToSend = {
-            email: email
+            email: email,
+            message: message,
+            link: 'http://localhost:6660/#!/registration' + orgId
         }; // end thingToSend
         return $http.post('/mail/invite', thingToSend).then(function (response) {
             console.log('nodeMailer test successful');

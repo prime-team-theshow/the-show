@@ -2,7 +2,7 @@
 This controller is for testing admin related functions
 - 
 */
-myApp.controller('TestAdmin', function (AdminService) {
+myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     console.log('in TestAdminController');
     var vm = this;
 

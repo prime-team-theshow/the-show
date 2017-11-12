@@ -1,9 +1,14 @@
 // nodemailer route
-
 /*
 Documentation
 - https://nodemailer.com/
 - https://community.nodemailer.com/2-0-0-beta/setup-smtp/well-known-services/
+
+To use this DOT ENV is required 
+with GMAIL_UN as the email address of admin 
+and GMAIL_PW aw admin email's password
+
+May need to make changes for justin's email
 */
 
 // requires
@@ -44,15 +49,21 @@ router.post('/invite', function (req, res) {
     // email of organization to invite
     var emailToInvite = req.body.email; // this will need to be setup on client side post route
 
+    // message to send org
+    var message = req.body.message;
+
+    // dynamic link for org profile registration
+    var link = req.body.link;
+
     // message to be sent to organization
     var mailOptions = {
         from: fromAdmin, // admin user email
         to: emailToInvite, // organization who receives the invite
         subject: "You're invited to The Show!", // Subject line
-        text: 'node mailer test', // plain text body
-        // the href below will need to be dynamic and use req.params
+        text: 'node mailer test', // plain text body (I don't know where this is going)
+        // the href below will need to be dynamic and use req.params or req.body
         // it can then update the org row with a username and password
-        html: '<p>Please follow this link to create a profile. <br> <a href="google.com">Link Name</a></p>' // html body
+        html: '<p>' + message + '<br> <a href="' + link + '">Create a Profile</a></p>'
     }; // end mailOptions
 
     // send message using the above information
