@@ -12,6 +12,7 @@ myApp.service('AdminService', function ($http) {
 
     // object to hold filtered org data
     self.orgs = {
+        all: [],
         pending: [],
         notPending: []
     }; // end orgs
@@ -22,7 +23,8 @@ myApp.service('AdminService', function ($http) {
     self.getOrgs = function () {
         console.log('in getOrgs');
         return $http.get('/admin/orgs').then(function (response) {
-            console.log('getOrgs successful');
+            console.log('getOrgs successful :', response.data.rows);
+            self.orgs.all = response.data.rows;
         }).catch(function (response) {
             console.log('getOrgs error: ', response);
         }); // end catch
