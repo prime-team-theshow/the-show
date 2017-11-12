@@ -33,6 +33,9 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/test-admin', {
         templateUrl: '/views/test-admin.html',
         controller: 'TestAdmin as tac'
+    }).when('/registration/:orgId', {
+    templateUrl: '/views/registration.html',
+    controller: 'RegistrationController as rc'
     }).otherwise('/');
 
 }); // end config
