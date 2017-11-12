@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function (AuthService, $location) {
+myApp.controller('LoginController', function (AuthService, OrgService, $location) {
     console.log('in LoginController');
     var vm = this;
 

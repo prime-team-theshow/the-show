@@ -3,7 +3,7 @@ console.log('client.js sourced');
 // AngularJS and sourced in modules
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-myApp.config(function ($routeProvider) {
+myApp.config(function ($routeProvider, $mdThemingProvider) {
 
     // client side routing
     $routeProvider.when('/', {
