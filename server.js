@@ -30,10 +30,9 @@ var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
 var socialMediaRouter = require('./routes/socialmedia.router');
 var adminDashRouter = require('./routes/adminDash.router');
+var nodeMailerRouter = require('./routes/nodemailer.router');
+var adminRouter = require('./routes/admin.router');
 var winnersRouter = require('./routes/winners.router');
-
-// for testing nodeMailer
-var nodeMailerRouter = require('./routes/test.nodemailer.router');
 
 // use routes
 app.use('/register', registrationRouter);
@@ -42,9 +41,8 @@ app.use('/org', organizationRouter);
 app.use('/socialmedia', socialMediaRouter);
 app.use('/adminDash', adminDashRouter);
 app.use('/winners', winnersRouter);
-
-// for testing nodeMailer
 app.use('/mail', nodeMailerRouter);
+app.use('/admin', adminRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 

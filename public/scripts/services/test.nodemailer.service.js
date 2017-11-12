@@ -19,7 +19,7 @@ myApp.service('NodeMailerService', function ($http) {
         var thingToSend = {
             email: email
         }; // end thingToSend
-        $http.post('/mail/invite', thingToSend).then(function (response) {
+        return $http.post('/mail/invite', thingToSend).then(function (response) {
             console.log('nodeMailer test successful');
         }).catch(function (response) {
             console.log('nodeMailer error: ', response);

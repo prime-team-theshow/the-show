@@ -1,0 +1,11 @@
+<section layout="row">
+    <p>test admin view</p>
+    <div layout="column">
+        <h3>pending</h3>
+        <p ng-repeat="org in tac.orgs.pending">{{org.name}}</p>
+    </div>
+    <div layout="column">
+        <h3>not pending</h3>
+        <p ng-repeat="org in tac.orgs.notPending">{{org.name}}</p>
+    </div>
+</section>
