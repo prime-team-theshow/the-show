@@ -39,6 +39,12 @@
                 </md-content>
         </div>
 </div>
+<div ng-if="pc.claimed === false">
+        <md-button>Is this your organization?</md-button>
+</div>
+<div ng-if="pc.claimed === true">
+        <md-button>Contact this Organization</md-button>
+</div>
 <div ng-if="pc.editable === true" layout="row" layout-wrap>
         <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">
         <input type="url" name="agency-site" placeholder="Enter Your Organization Website" flex="30">
