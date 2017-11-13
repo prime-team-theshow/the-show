@@ -10,11 +10,9 @@ myApp.service('AdminService', function ($http) {
     console.log('in AdminService');
     var self = this;
 
-    // object to hold filtered org data
+    // object to hold org data
     self.orgs = {
-        all: [],
-        pending: [],
-        notPending: []
+        all: [], // this is being set, but not used on controller
     }; // end orgs
 
     
@@ -29,6 +27,5 @@ myApp.service('AdminService', function ($http) {
             console.log('getOrgs error: ', response);
         }); // end catch
     }; // end getOrgs
-
 
 }); // end AdminService

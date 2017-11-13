@@ -44,7 +44,7 @@ passport.deserializeUser( function(email, done) {
                 return done(null, false, { message: 'Incorrect credentials.' });
                 // user found
             } else {
-                console.log('User row ', user);
+                console.log('User id, email, isadmin ', user.id, user.email, user.isadmin);
                 done(null, user);
             } // end else
         }); // end query
@@ -79,7 +79,7 @@ passport.use('local', new localStrategy({
             // if user is found
             if (result.rows[0] != undefined) {
                 user = result.rows[0];
-                console.log('User obj', user);
+                console.log('User id, email, isadmin ', user.id, user.email, user.isadmin);
                 // Hash and compare
                 if (encryptLib.comparePassword(password, user.password)) {
                     // all good!

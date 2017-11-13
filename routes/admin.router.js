@@ -20,9 +20,10 @@ router.get('/orgs', function (req, res) {
                 res.sendStatus(500);
                 done();
             } else {
-                var queryString = "SELECT org.id, org.name, org.claimed, org.invited, org.email, " +
+                var queryString = "SELECT org.id, org.name, org.claimed, org.invited, org.email, org.logo," +
                 // if the org has a password set has_password property to true
-                "CASE WHEN org.password IS NULL THEN 'false' else 'true' END AS has_password " +
+                "CASE WHEN org.password IS NULL THEN false else true END AS has_password, " +
+                "CASE WHEN org.email IS NULL THEN false else true END AS has_email " +
                 "FROM organization org;";
                 client.query(queryString, function (queryErr, result) {
                     if (queryErr) {
