@@ -30,5 +30,4 @@ myApp.service('AdminService', function ($http) {
         }); // end catch
     }; // end getOrgs
 
-
 }); // end AdminService
