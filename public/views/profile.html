@@ -1,46 +1,68 @@
 <div layout="column" md-cloak class="md-padding">
-        <img src="{{pc.profileData.logo}}" width="100">
-        <div class="title">{{pc.profileData.name}}</div>
-        <div>{{pc.profileData.description}}</div>
-        <a href="{{pc.profileData.website}}" target="_blank">See Our Website</a>
-        <div ng-repeat="social in pc.profileData.social_media">
-                <a href="{{social.url}}" target="_blank">
-                        <img src="{{social.logo}}" height="20" layout="column">
-                </a>
-        </div>
-        <div ng-repeat="ad in pc.profileData.ads">
-                <md-content class="md-padding" layout-xs="column">
-                        <div flex-xs flex-gt-xs="40" layout="row">
-                                <md-card>
-                                        <md-card-header>
-                                                <md-card-avatar>
-                                                        <img ng-if="ad.award === 'Gold'" src="assets/gold.png" />
-                                                        <img ng-if="ad.award === 'Silver'" src="assets/silver.png">
-                                                        <img ng-if="ad.award === 'Bronze'" src="assets/bronze.png">
-                                                </md-card-avatar>
-                                                <md-card-header-text>
-                                                        <span class="md-title">Award: {{ad.award}}</span>
-                                                        <span class="md-subhead">Category: {{ad.category}}</span>
-                                                </md-card-header-text>
-                                        </md-card-header>
-                                        <md-card-title>
-                                                <md-card-title-text>
-                                                        <span class="md-headline">{{ad.name}}</span>
-                                                </md-card-title-text>
-                                        </md-card-title>
-                                        <md-card-content>
-                                                <p>{{ad.advertiser}}</p>
-                                                <p>{{ad.year}}</p>
-                                                <a href="#">See Ad Details</a>
-                                        </md-card-content>
-                                </md-card>
+        <md-content class="md-padding" layout-lg="column">
+                <div>
+                        <md-card id="orgProfile">
+                                <md-card-header>
+                                        <md-card-avatar>
+                                                <img src="{{pc.profileData.logo}}" class="centered">
+                                        </md-card-avatar>
+                                        <md-card-header-text>
+                                                <span class="md-title">{{pc.profileData.name}}</span>
+                                                <span class "md-subhead">{{pc.profileData.description}}</span>
+                                        </md-card-header-text>
+                                </md-card-header>
+                                <md-card-body>
+                                        <div layout="row">
+                                                <a href="{{pc.profileData.website}}" target="_blank" class="centered">See Our Website</a>
+                                        </div>
+                                        <div layout="row">
+                                                <div layout="cloumn" class="centered">
+                                                        <span ng-repeat="social in pc.profileData.social_medias" class="socialLogo">
+                                                                <a href="{{social.url}}" target="_blank">
+                                                                        <img src="{{social.logo}}" height="20">
+                                                                </a>
+                                                        </span>
+                                                </div>
+                                        </div>
+                                </md-card-body>
+                        </md-card>
+                </div>
+        </md-content>
+</div>
+<div layout="row" layout-wrap>
+<div ng-repeat="ad in pc.profileData.ads" flex="flex">
+        <md-content class="md-padding">
+                <div>
+                        <md-card>
+                                <md-card-header>
+                                        <md-card-avatar>
+                                                <img ng-if="ad.award === 'Gold'" src="assets/gold.png" />
+                                                <img ng-if="ad.award === 'Silver'" src="assets/silver.png">
+                                                <img ng-if="ad.award === 'Bronze'" src="assets/bronze.png">
+                                        </md-card-avatar>
+                                        <md-card-header-text>
+                                                <span class="md-title">Award: {{ad.award}}</span>
+                                                <span class="md-subhead">Category: {{ad.category}}</span>
+                                        </md-card-header-text>
+                                </md-card-header>
+                                <md-card-title>
+                                        <md-card-title-text>
+                                                <span class="md-headline centered">{{ad.name}}</span>
+                                        </md-card-title-text>
+                                </md-card-title>
+                                <md-card-content>
+                                        <p class="centered">{{ad.advertiser}}</p>
+                                        <p class="centered">{{ad.year}}</p>
+                                        <p class="centered"><a href="#">See Ad Details</a></p>
+                                </md-card-content>
+                        </md-card>
 
-                        </div>
-                </md-content>
-        </div>
+                </div>
+        </md-content>
+</div>
 </div>
 <div ng-if="pc.profileData.claimed === false">
-        <md-button>Is this your organization?</md-button>
+        <md-button ng-click="pc.claimProfile()">Is this your organization?</md-button>
 </div>
 <div ng-if="pc.profileData.claimed === true">
         <md-button>Contact this Organization</md-button>
@@ -62,7 +84,7 @@
                                 <label>Agency Logo (image URL):</label>
                                 <input ng-value="pc.profileData.logo" ng-model="pc.logo" type="url">
                         </md-input-container>
-                        
+
                         <md-input-container>
                                 <label>Agency Website (URL):</label>
                                 <input ng-value="pc.profileData.website" ng-model="pc.website" type="url">
@@ -70,21 +92,23 @@
 
                         <md-input-container>
                                 <label>Agency Facebook (URL):</label>
-                                <input ng-value="pc.profileData.social_media.url[0]" ng-model="pc.facebook" type="url">
+                                <input ng-value="pc.profileData.social_media" ng-model="pc.facebook" type="url">
                         </md-input-container>
 
                         <md-input-container>
                                 <label>Agency Twitter (URL):</label>
-                                <input ng-value="pc.profileData.social_media.url[1]" ng-model="pc.twitter" type="url">
+                                <input ng-value="pc.profileData.social_media" ng-model="pc.twitter" type="url">
                         </md-input-container>
 
                         <md-input-container>
                                 <label>Agency LinkedIn (URL):</label>
-                                <input ng-value="pc.profileData.social_media.url[2]" ng-model="pc.linkedin" type="url">
+                                <input ng-value="pc.profileData.social_media" ng-model="pc.linkedin" type="url">
                         </md-input-container>
-
+                        <a href="#">Change Password?</a>
                         <md-button ng-click="pc.editProfileInfo()">Update Your Agency Profile</md-button>
+
                 </div>
+
         </md-content>
-        <a href="#">Change Password?</a>
+
 </div>
