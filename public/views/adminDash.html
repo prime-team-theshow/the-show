@@ -9,35 +9,12 @@ md-rowspan="1" md-colspan="3">
 <md-card flex="100">
     <md-toolbar class="md-warn">
         <div class="md-toolbar-tools">
-            <h2 class="md-flex">Current Agency Profiles</h2>
+            <h2 class="md-flex">All Agencies</h2>
         </div>
     </md-toolbar>
 <md-content flex layout-margin>
-    <ul>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
+    <ul ng-repeat="org in adc.orgs.all">
+        <li>{{org.name}}</li>
     </ul>
 </md-content>
 </md-card>
