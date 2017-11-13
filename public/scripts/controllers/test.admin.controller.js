@@ -19,7 +19,7 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     vm.notPendingOrgs = function () {
         console.log('in notPendingOrgs');
         return vm.orgs.all.filter(function (org) {
-            return org.has_password === true || org.email === null;
+            return org.has_password === true || org.has_email === false;
         }); // end return
     }; // end noPendingOrgs
 
@@ -28,7 +28,7 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     vm.pendingOrgs = function () {
         console.log('in pendingOrgs');
         return vm.orgs.all.filter(function (org) {
-            return org.has_password === false && (org.claimed || org.invited);
+            return org.has_password === false && org.has_email === true;
         }); // end return
     }; // end noPendingOrgs
 
