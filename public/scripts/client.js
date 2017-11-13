@@ -36,6 +36,9 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/registration/:orgId', {
     templateUrl: '/views/registration.html',
     controller: 'RegistrationController as rc'
+    }).when('/createyear', {
+        templateUrl: '/views/createYear.html',
+        controller: 'CreateYearController as cyc'
     }).otherwise('/');
 
 }); // end config
