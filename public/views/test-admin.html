@@ -4,7 +4,7 @@
         <div ng-repeat="org in tac.orgs.pending">
             <p>{{org.name}}</p>
             <!-- show the button if the account has not been claimed -->
-            <md-button ng-hide="{{org.invited}} || !{{org.claimed}}"class="md-raised md-primary" ng-click="tac.acceptOrgClaim(org.id)">Accept Claim</md-button>
+            <md-button ng-hide="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.acceptOrgClaim(org.id)">Accept Claim</md-button>
             <!-- show this button if the account has been invited or if it has an email and has not been invited or claimed -->
             <md-button ng-show="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.remindOrg(org.id)">Remind</md-button>
             <md-button class="md-raised md-warn" ng-click="tac.denyOrg()">Deny</md-button>
