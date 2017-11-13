@@ -1,22 +1,35 @@
-<section layout="row" md-padding md-margin>
-    <div flex layout="column">
-        <h3>pending</h3>
-        <div ng-repeat="org in tac.orgs.pending">
-            <p>{{org.name}}</p>
-            <!-- show the button if the account has not been claimed -->
-            <md-button ng-hide="{{org.invited}} || !{{org.claimed}}"class="md-raised md-primary" ng-click="tac.acceptOrgClaim(org.id)">Accept Claim</md-button>
-            <!-- show this button if the account has been invited or if it has an email and has not been invited or claimed -->
-            <md-button ng-show="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.remindOrg(org.id)">Remind</md-button>
-            <md-button class="md-raised md-warn" ng-click="tac.denyOrg()">Deny</md-button>
+<section layout="column" md-padding md-margin>
+    <div layout="row">
+        <div flex layout="column">
+            <h3>pending</h3>
+            <div ng-repeat="org in tac.orgs.pending">
+                <p>{{org.name}}</p>
+                <!-- show the button if the account has not been claimed -->
+                <md-button ng-hide="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.acceptOrgClaim(org.id, org.email, tac.acceptMessage)">Accept Claim</md-button>
+                <!-- show this button if the account has been invited or if it has an email and has not been invited or claimed -->
+                <md-button ng-show="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.remindOrg(org.id, org.email, tac.remindMessage)">Remind</md-button>
+                <md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button>
+            </div>
+        </div>
+        <div flex layout="column">
+            <h3>not pending</h3>
+            <div ng-repeat="org in tac.orgs.notPending">
+                <p>{{org.name}}</p>
+                <p>{{org.has_password}}</p>
+                <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="tac.deactivateOrg(org.id)">Deactivate</md-button>
+                <md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="tac.inviteOrg(tac.email, tac.inviteMessage, org.id)">Invite</md-button>
+            </div>
         </div>
     </div>
-    <div flex layout="column">
-        <h3>not pending</h3>
-        <div ng-repeat="org in tac.orgs.notPending">
-            <p>{{org.name}}</p>
-            <p>{{org.has_password}}</p>
-            <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="tac.deactivateOrg(org.id)">Deactivate</md-button>
-            <md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="tac.inviteOrg(org.id)">Invite</md-button>
-        </div>
+    <div layout="column">
+        <h3>nodemailer invite</h3>
+        <md-input-container flex>
+            <input type="email" name="email" placeholder="your email address" ng-model="tac.email" required>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Message</label>
+            <textarea name="inviteMessage" ng-model="tac.inviteMessage" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <!-- <md-button class="md-raised md-primary" ng-click="tac.inviteOrg(tac.org.email, tac.inviteMessage, )" required>Send Invite Email</md-button> -->
     </div>
 </section>
