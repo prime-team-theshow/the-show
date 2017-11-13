@@ -28,7 +28,7 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     vm.pendingOrgs = function () {
         console.log('in pendingOrgs');
         return vm.orgs.all.filter(function (org) {
-            return org.has_password === false || org.email !== null;
+            return org.has_password === false && (org.claimed || org.invited);
         }); // end return
     }; // end noPendingOrgs
 
@@ -39,13 +39,13 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     /************* Should be in admin controller ************/
     // gets org info from server and builds arrays to admin view
     vm.getOrgs = function() {
-        console.log('in getOrgd');
+        console.log('in getOrgs');
         AdminService.getOrgs().then(function(){
             vm.orgs.all = AdminService.orgs.all;
             // if the get works and builds org.all array 
             if(vm.orgs.all.length > 0) {
-                vm.orgs.pending = vm.pendingOrgs();
                 vm.orgs.notPending = vm.notPendingOrgs();
+                vm.orgs.pending = vm.pendingOrgs();
             } // end if
         }); // end setting array values
     }; // end getOrgs
