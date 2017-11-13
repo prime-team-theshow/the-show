@@ -30,7 +30,7 @@ router.get('/:id', function (req, res) {
                     // store organization object
                     organization = orgResult.rows[0];
 
-                    var socialMediaQuery = "SELECT sm.id, sm.url, smt.logo FROM social_media sm " +
+                    var socialMediaQuery = "SELECT sm.id, sm.url, smt.name AS type, smt.logo FROM social_media sm " +
                         "INNER JOIN social_media_type smt " +
                         "ON sm.social_media_type_id = smt.id " +
                         "WHERE sm.organization_id = $1"
