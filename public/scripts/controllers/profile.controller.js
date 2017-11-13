@@ -13,9 +13,6 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
 
     vm.orgProfileObject = OrgService.orgProfileObj.orgProfile;
 
-    vm.checkforAgencyAdmin(vm.orgProfileObject.email, Authservice.user.email);
-    vm.display(vm.profileData.editable);
-
     // if the email of the logged in user is the same as the email of the orgprofile email, show agencyadmin view
 
     vm.checkForAgencyAdmin = function (profileEmail, userEmail) {
@@ -23,7 +20,7 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
             vm.profileData.editable = true;
         } else {
             vm.profileData.editable = false;
-        }
+        } 
     };
 
     vm.display = function (adminStatus) {
@@ -36,26 +33,26 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
 
     vm.displayProfileToAgencyAdmin = function () {
         OrgService.getOrgProfile(AuthService.user.id).then(function (response) {
-            vm.profileData.ads = vm.orgProfileObject.ads;
-            vm.profileData.name = vm.orgProfileObject.name;
-            vm.profileData.logo = vm.orgProfileObject.logo;
-            vm.profileData.social_medias = vm.orgProfileObject.social_medias;
-            vm.profileData.website = vm.orgProfileObject.website;
-            vm.profileData.description = vm.orgProfileObject.description;
-            vm.profileData.claimed = vm.orgProfileObject.claimed;
+            vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
+            vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
+            vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
+            vm.profileData.social_media = OrgService.orgProfileObj.orgProfile.social_media;
+            vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
+            vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
+            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
         });
     };
 
     vm.displayProfileToPublic = function () {
         OrgService.getOrgProfile(vm.orgProfileObject.id).then(function (response) {
-            vm.profileData.orgId = vm.orgProfileObject.id;
-            vm.profileData.ads = vm.orgProfileObject.ads;
-            vm.profileData.name = vm.orgProfileObject.name;
-            vm.profileData.logo = vm.orgProfileObject.logo;
-            vm.profileData.social_medias = vm.orgProfileObject.social_medias;
-            vm.profileData.website = vm.orgProfileObject.website;
-            vm.profileData.description = vm.orgProfileObject.description;
-            vm.profileData.claimed = vm.orgProfileObject.claimed;
+            vm.profileData.orgId = OrgService.orgProfileObj.orgProfile.id;
+            vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
+            vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
+            vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
+            vm.profileData.social_media = OrgService.orgProfileObj.orgProfile.social_media;
+            vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
+            vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
+            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
         });
     };
 
@@ -65,13 +62,61 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         ads: [],
         name: '',
         logo: '',
-        social_medias: [],
+        social_media: [],
         website: '',
         description: '',
         claimed: ''
     };
 
+    vm.checkForAgencyAdmin(vm.orgProfileObject.email, AuthService.user.email);
+    vm.display(vm.profileData.editable);
 
-
+    vm.editProfileInfo = function() {
+        var name = vm.name;
+        var description = vm.description;
+        var logo = vm.logo;
+        var website = vm.website;
+        var facebook = vm.facebook;
+        var twitter = vm.twitter;
+        var linkedin = vm.linkedin;
+        var instagram = vm.instagram;
+        var profile = {};
+        if (name) {
+            profile.name === vm.name
+        } else {
+            profile.name = vm.profileData.name;
+        };
+        if (description) {
+            profile.description === vm.description;
+        } else {
+            profile.description = vm.profileData.description;
+        };
+        if (logo) {
+            profile.logo === vm.logo;
+        } else {
+            profile.logo = vm.profileData.logo;
+        };
+        if (website) {
+            profile.website === vm.website;
+        } else {
+            profile.website = vm.profileData.website;
+        };
+        if (facebook) {
+            profile.facebook === vm.facebook;
+        } else {
+            profile.facebook = vm.profileData.social_media.facebook;
+        };
+        if (twitter) {
+            profile.twitter === vm.twitter;
+        } else {
+            profile.twitter = vm.profileData.social_media.twitter;
+        };
+        if (linkedin) {
+            profile.linkedin === vm.linkedin;
+        } else {
+            profile.linkedin = vm.profileData.social_media.linkedin;
+        };
+        OrgService.updateOrgProfile(vm.profileData.orgId, profile);
+    };
 
 }); // end ProfileController
