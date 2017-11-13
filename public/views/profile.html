@@ -3,14 +3,14 @@
         <div class="title">{{pc.profileData.name}}</div>
         <div>{{pc.profileData.description}}</div>
         <a href="{{pc.profileData.website}}" target="_blank">See Our Website</a>
-        <div ng-repeat="social in pc.profileData.social_medias">
+        <div ng-repeat="social in pc.profileData.social_media">
                 <a href="{{social.url}}" target="_blank">
                         <img src="{{social.logo}}" height="20" layout="column">
                 </a>
         </div>
         <div ng-repeat="ad in pc.profileData.ads">
-                <md-content class="md-padding" layout-xs="column" layout="row">
-                        <div flex-xs flex-gt-xs="30" layout="column">
+                <md-content class="md-padding" layout-xs="column">
+                        <div flex-xs flex-gt-xs="40" layout="row">
                                 <md-card>
                                         <md-card-header>
                                                 <md-card-avatar>
@@ -39,16 +39,52 @@
                 </md-content>
         </div>
 </div>
-<div ng-if="pc.claimed === false">
+<div ng-if="pc.profileData.claimed === false">
         <md-button>Is this your organization?</md-button>
 </div>
-<div ng-if="pc.claimed === true">
+<div ng-if="pc.profileData.claimed === true">
         <md-button>Contact this Organization</md-button>
 </div>
-<div ng-if="pc.editable === true" layout="row" layout-wrap>
-        <input type="text" name="agency-name" placeholder="Enter Your Organization Name" flex="30">
-        <input type="url" name="agency-site" placeholder="Enter Your Organization Website" flex="30">
-        <input type="text" name="logo-link" placeholder="Paste The URL to Your Logo" flex="30">
-        <input type="textarea" bame="agency-bio" placeholder="Enter Your Agency Bio" flex="50">
-        <md-button>Save Changes</md-button>
+<div ng-if="pc.profileData.editable === true" layout="column" ng-cloak class="md-inline-form">
+        <md-content theme="dark" layout-gt-sm="row" layout-padding>
+                <div>
+                        <md-input-container>
+                                <label>Agency Name:</label>
+                                <input ng-value="pc.profileData.name" ng-model="pc.name" type="text">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Agency Bio:</label>
+                                <input ng-value="pc.profileData.description" ng-model="pc.description" type="textarea">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Agency Logo (image URL):</label>
+                                <input ng-value="pc.profileData.logo" ng-model="pc.logo" type="url">
+                        </md-input-container>
+                        
+                        <md-input-container>
+                                <label>Agency Website (URL):</label>
+                                <input ng-value="pc.profileData.website" ng-model="pc.website" type="url">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Agency Facebook (URL):</label>
+                                <input ng-value="pc.profileData.social_media.url[0]" ng-model="pc.facebook" type="url">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Agency Twitter (URL):</label>
+                                <input ng-value="pc.profileData.social_media.url[1]" ng-model="pc.twitter" type="url">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Agency LinkedIn (URL):</label>
+                                <input ng-value="pc.profileData.social_media.url[2]" ng-model="pc.linkedin" type="url">
+                        </md-input-container>
+
+                        <md-button ng-click="pc.editProfileInfo()">Update Your Agency Profile</md-button>
+                </div>
+        </md-content>
+        <a href="#">Change Password?</a>
 </div>
