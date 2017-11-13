@@ -42,46 +42,7 @@ router.get('/orgs', function (req, res) {
     } // end else for authentication
 }); // end GET organizations to invite
 
-// invite an org to add an email and password to their org's row
-// save email in email column, but it can be overwritten when 
-// org registers
-router.put('/invite/:org_id', function(req, res) {
-    console.log('in invite org PUT route.');
-    var isAdmin = req.user.isadmin;
-    // check if user is logged in and is an admin
-    if (req.isAuthenticated() && isAdmin) {
-        // org id from client
-        var orgId = req.params.org_id;
-        var orgEmail = req.body.email;
-        var message = req.body.message;
-        pool.connect( function(err, client, done) {
-            if (err) {
-                console.log('PUT connection error ->', err);
-                res.sendStatus(500);
-                done();
-            } else {
-                var queryString = "UPDATE organization " +
-                "SET invited='true', email=$2 " +
-                "WHERE id=$1";
-                var values = [orgId, orgEmail];
-                client.query(queryString, values, function(queryErr, result) {
-                    if (queryErr) {
-                        console.log('Query PUT connection Error ->', queryErr);
-                        res.sendStatus(500);
-                    } else {
-                        // need to put nodemailer stuff here
 
-                        res.sendStatus(201);
-                    } // end else
-                    done();
-                }); // end query
-            } // end else
-        }); // end pool connect
-    } else {
-        console.log('not logged in');
-        res.sendStatus(403);
-    } // end else
-}); // end PUT
 
 
 // export
