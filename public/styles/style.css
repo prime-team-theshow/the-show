@@ -3,8 +3,21 @@
 }
 
 .title {
-    float: right;
+    float: left;
     text-decoration-style: bold;
+}
+
+.socialLogo {
+    margin: 2px;
+}
+
+.centered {
+    margin: auto;
+    text-align: center;
+}
+
+#orgProfile {
+    background-color: gray;
 }
 
 
