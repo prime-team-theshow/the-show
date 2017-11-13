@@ -24,6 +24,7 @@
                                                         </span>
                                                 </div>
                                         </div>
+                                        <md-button ng-if="pc.profileData.editable === true" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
                                 </md-card-body>
                         </md-card>
                 </div>
@@ -66,49 +67,4 @@
 </div>
 <div ng-if="pc.profileData.claimed === true">
         <md-button>Contact this Organization</md-button>
-</div>
-<div ng-if="pc.profileData.editable === true" layout="column" ng-cloak class="md-inline-form">
-        <md-content theme="dark" layout-gt-sm="row" layout-padding>
-                <div>
-                        <md-input-container>
-                                <label>Agency Name:</label>
-                                <input ng-value="pc.profileData.name" ng-model="pc.name" type="text">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency Bio:</label>
-                                <input ng-value="pc.profileData.description" ng-model="pc.description" type="textarea">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency Logo (image URL):</label>
-                                <input ng-value="pc.profileData.logo" ng-model="pc.logo" type="url">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency Website (URL):</label>
-                                <input ng-value="pc.profileData.website" ng-model="pc.website" type="url">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency Facebook (URL):</label>
-                                <input ng-value="pc.profileData.social_media" ng-model="pc.facebook" type="url">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency Twitter (URL):</label>
-                                <input ng-value="pc.profileData.social_media" ng-model="pc.twitter" type="url">
-                        </md-input-container>
-
-                        <md-input-container>
-                                <label>Agency LinkedIn (URL):</label>
-                                <input ng-value="pc.profileData.social_media" ng-model="pc.linkedin" type="url">
-                        </md-input-container>
-                        <a href="#">Change Password?</a>
-                        <md-button ng-click="pc.editProfileInfo()">Update Your Agency Profile</md-button>
-
-                </div>
-
-        </md-content>
-
 </div>
