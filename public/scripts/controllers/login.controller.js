@@ -7,7 +7,7 @@ myApp.controller('LoginController', function (AuthService, OrgService, $location
         if (AuthService.user.isadmin) {
             $location.path('/adminDash');
         } else {
-            $location.path('/profile/:' + AuthService.user.id);
+            $location.path('/profile/' + AuthService.user.id);
         }
     };
 

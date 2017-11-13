@@ -12,7 +12,7 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/auth', {
         templateUrl: '/views/auth.html',
         controller: 'AuthController as ac'
-    }).when('/profile/:Id', {
+    }).when('/profile/:id', {
         templateUrl: '/views/profile.html',
         controller: 'ProfileController as pc'
     }).when('/admin', {
@@ -21,7 +21,7 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/mail', {
         templateUrl: '/views/test.nodemailer.html',
         controller: 'NodeMailerController as nmc'
-    }).when('/edit/:Id', {
+    }).when('/edit/:id', {
         templateUrl: '/views/edit.html',
         controller: 'EditController as ec'
     }).when('/adminDash', {
