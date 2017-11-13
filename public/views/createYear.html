@@ -1,0 +1,21 @@
+<md-content>
+    <div>
+        <form name="yearForm">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>year</label>
+                <input type="number" min="1906" step="1" ng-model="cyc.year">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>background</label>
+                <input type="url" ng-model="cyc.background">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>png</label>
+                <input type="url" ng-model="cyc.png">
+            </md-input-container>
+        </form>
+        <md-input-container class="md-block" flex-gt-sm>
+            <input type="file" accept=".csv" onchange="angular.element(this).controller().onFileNameChanged(this)">            
+        </md-input-container>
+    </div>
+</md-content>
