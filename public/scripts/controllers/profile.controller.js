@@ -49,7 +49,7 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
             vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
             vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
             vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
-            vm.profileData.social_media = OrgService.orgProfileObj.orgProfile.social_media;
+            vm.profileData.social_medias = OrgService.orgProfileObj.orgProfile.social_medias;
             vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
             vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
             vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
@@ -62,7 +62,7 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         ads: [],
         name: '',
         logo: '',
-        social_media: [],
+        social_medias: [],
         website: '',
         description: '',
         claimed: ''
@@ -79,7 +79,6 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         var facebook = vm.facebook;
         var twitter = vm.twitter;
         var linkedin = vm.linkedin;
-        var instagram = vm.instagram;
         var profile = {};
         if (name) {
             profile.name === vm.name
@@ -101,20 +100,21 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http) 
         } else {
             profile.website = vm.profileData.website;
         };
+        // not sure how to get these...
         if (facebook) {
             profile.facebook === vm.facebook;
         } else {
-            profile.facebook = vm.profileData.social_media.facebook;
+            profile.facebook = vm.profileData.social_medias;
         };
         if (twitter) {
             profile.twitter === vm.twitter;
         } else {
-            profile.twitter = vm.profileData.social_media.twitter;
+            profile.twitter = vm.profileData.social_medias.twitter;
         };
         if (linkedin) {
             profile.linkedin === vm.linkedin;
         } else {
-            profile.linkedin = vm.profileData.social_media.linkedin;
+            profile.linkedin = vm.profileData.social_medias.linkedin;
         };
         OrgService.updateOrgProfile(vm.profileData.orgId, profile);
     };
