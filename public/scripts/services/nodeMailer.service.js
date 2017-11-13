@@ -20,7 +20,7 @@ myApp.service('NodeMailerService', function ($http) {
         var thingToSend = {
             email: email,
             message: message,
-            link: 'http://localhost:6660/#!/registration' + orgId
+            link: 'http://localhost:6660/#!/registration/' + orgId
         }; // end thingToSend
         return $http.post('/mail/invite-test', thingToSend).then(function (response) {
             console.log('nodeMailer test successful');
@@ -36,7 +36,7 @@ myApp.service('NodeMailerService', function ($http) {
         var objectToSend = {
             email: email,
             message: message,
-            link: 'http://localhost:6660/#!/registration' + orgId
+            link: 'http://localhost:6660/#!/registration/' + orgId
         }; // end thingToSend
         var route = '/mail/invite/' + orgId; // not sure this is needed yet
         return $http.put(route, objectToSend).then(function (response) {

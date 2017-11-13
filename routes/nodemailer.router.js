@@ -87,7 +87,7 @@ router.put('/invite/:org_id', function (req, res) {
     // check if user is logged in and is an admin
     if (req.isAuthenticated() && isAdmin) {
         // org id from client
-        var orgId = req.params.org_id;
+        var orgId = req.params.org_id; // not sure this is needed
         var orgEmail = req.body.email;
         var message = req.body.message;
         var link = req.body.link; // url for registration with route.params (org.id)
