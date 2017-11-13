@@ -21,6 +21,9 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/mail', {
         templateUrl: '/views/test.nodemailer.html',
         controller: 'NodeMailerController as nmc'
+    }).when('/edit/:Id', {
+        templateUrl: '/views/edit.html',
+        controller: 'EditController as ec'
     }).when('/adminDash', {
         templateUrl: '/views/adminDash.html',
         controller: 'AdminDashController as adc'
