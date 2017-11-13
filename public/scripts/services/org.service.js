@@ -89,8 +89,8 @@ myApp.service('OrgService', function ($http) {
         console.log('in getOrgRegistration');
         var route = '/register/' + orgId;
         return $http.get(route).then(function (response) {
-            console.log('getOrg successful :', response.data);
-            sv.orgToRegister = response.data;
+            console.log('getOrg successful :', response.data.rows[0]);
+            sv.orgToRegister = response.data.rows[0];
         }).catch(function (response) {
             console.log('getOrgs error: ', response);
         }); // end catch

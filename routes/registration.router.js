@@ -93,7 +93,7 @@ router.get('/:orgId', function (req, res) {
                 "CASE WHEN org.password IS NULL THEN false else true END AS has_password, " +
                 "CASE WHEN org.email IS NULL THEN false else true END AS has_email " +
                 "FROM organization org " +
-                "WHERE $1";
+                "WHERE org.id=$1";
             var values = [orgId];
             client.query(queryString, values, function (queryErr, result) {
                 if (queryErr) {
