@@ -13,6 +13,9 @@ myApp.service('OrgService', function ($http) {
     // object of social media types
     sv.socialMediaTypesObj = { socialMediaTypes: {} };
 
+    // object for org registration
+    sv.orgToRegister = {};
+
     /**
      * fetch organization profile from the server
      * and updates sv.orgProfileObj.orgProfile with response data
@@ -81,5 +84,16 @@ myApp.service('OrgService', function ($http) {
                 console.error('OrgService deleteSocialMedia() error:', error);
             }); // end $http.post
     } // end deleteSocialMedia()
+
+    sv.getOrgRegistration = function (orgId) {
+        console.log('in getOrgRegistration');
+        var route = '/register/' + orgId;
+        return $http.get(route).then(function (response) {
+            console.log('getOrg successful :', response.data);
+            sv.orgToRegister = response.data;
+        }).catch(function (response) {
+            console.log('getOrgs error: ', response);
+        }); // end catch
+    }; // end getOrgRegistration
 
 }); // end OrgService
