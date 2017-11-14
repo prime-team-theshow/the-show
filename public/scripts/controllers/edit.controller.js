@@ -1,7 +1,13 @@
 myApp.controller('EditController', function (OrgService, AuthService, $http, $location) {
     console.log('in EditController');
     var vm = this;
+
     vm.orgProfileObject = OrgService.orgProfileObj.orgProfile;
+    vm.socialMediaTypesObj = OrgService.socialMediaTypesObj;
+
+    vm.socialId = OrgService.socialMediaTypesObj.socialMediaTypes.id;
+
+
     vm.profileData = {
         orgId: '',
         editable: '',
@@ -13,6 +19,29 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         description: '',
         claimed: ''
     };
+
+    vm.displayProfileInfo = function () {
+        OrgService.getOrgProfile(OrgService.orgProfileObj.orgProfile.id).then(function (response) {
+            vm.profileData.orgId = OrgService.orgProfileObj.orgProfile.id;
+            vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
+            vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
+            vm.profileData.logo = OrgService.orgProfileObj.orgProfile.logo;
+            vm.profileData.social_medias = OrgService.orgProfileObj.orgProfile.social_medias;
+            vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
+            vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
+            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
+            OrgService.getSocialMediaTypes().then(function(response) {
+                
+                //loop through each social media type and check if the orgprofile has a matching type id on its social media
+                //if that matches, then attach a value to the social media type object, adding the url of the agency's social media of that type
+                vm.socialMediaTypesObj.socialMediaTypes.map(function(type) {
+                    return type.url = "example.com"
+                })
+                
+            })
+        });
+    };
+
     vm.editProfileInfo = function() {
         var name = vm.name;
         var description = vm.description;
@@ -21,6 +50,7 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         var facebook = vm.facebook;
         var twitter = vm.twitter;
         var linkedin = vm.linkedin;
+        var instagram = vm.instagram;
         var profile = {};
         if (name) {
             profile.name = vm.name
@@ -46,7 +76,7 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         if (facebook) {
             profile.facebook = vm.facebook;
         } else {
-            profile.facebook = vm.profileData.social_medias;
+            profile.facebook = vm.profileData.social_medias.facebook;
         };
         if (twitter) {
             profile.twitter = vm.twitter;
@@ -58,6 +88,14 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         } else {
             profile.linkedin = vm.profileData.social_medias.linkedin;
         };
+        if (instagram) {
+            profile.instagram = vm.instagram;
+        } else {
+            profile.instagram = vm.profileData.social_medias.instagram;
+        };
         OrgService.updateOrgProfile(vm.profileData.orgId, profile);
     };
+
+    vm.displayProfileInfo();
+    
 });

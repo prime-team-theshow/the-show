@@ -1,32 +1,34 @@
 <div ng-cloak class="md-inline-form">
-        <md-content layout="row" layout-wrap>
-                <div>
+        <md-content>
+                <div layout="row" layout-wrap>
                         <md-input-container flex="30">
                                 <label>Agency Name:</label>
                                 <input ng-value="ec.profileData.name" ng-model="ec.name" type="text">
                         </md-input-container>
 
-                        <md-input-container flex="50">
+                        <md-input-container flex="90">
                                 <label>Agency Bio:</label>
                                 <input ng-value="ec.profileData.description" ng-model="ec.description" type="textarea">
                         </md-input-container>
 
-                        <md-input-container flex="50">
+                        <md-input-container flex="60">
                                 <label>Agency Logo (image URL):</label>
                                 <input ng-value="ec.profileData.logo" ng-model="ec.logo" type="url">
                         </md-input-container>
 
-                        <md-input-container flex="50">
+                        <md-input-container flex="30">
                                 <label>Agency Website (URL):</label>
                                 <input ng-value="ec.profileData.website" ng-model="ec.website" type="url">
                         </md-input-container>
 
-                        <md-input-container flex="50">
-                                <label>Agency Facebook (URL):</label>
-                                <input ng-value="ec.profileData.social_media" ng-model="ec.facebook" type="url">
+                        <div ng-repeat="type in ec.socialMediaTypesObj.socialMediaTypes" layout="row" layout-wrap>
+                        <md-input-container flex="100">
+                                <label>{{type.name}} (URL):</label>
+                                <input ng-value="type.url" ng-model="" type="url">
                         </md-input-container>
+                        </div>
 
-                        <md-input-container flex="50">
+                        <!-- <md-input-container flex="50">
                                 <label>Agency Twitter (URL):</label>
                                 <input ng-value="ec.profileData.social_media" ng-model="ec.twitter" type="url">
                         </md-input-container>
@@ -34,10 +36,10 @@
                         <md-input-container flex="50">
                                 <label>Agency LinkedIn (URL):</label>
                                 <input ng-value="ec.profileData.social_media" ng-model="ec.linkedin" type="url">
-                        </md-input-container>
+                        </md-input-container> -->
 
                         <a href="#">Change Password</a>
-                        <md-button ng-click="ec.editProfileInfo()">Update Your Agency Profile</md-button>
+                        <md-button ng-click="ec.editProfileInfo()" class="centered">Update Your Agency Profile</md-button>
 
                 </div>
 
