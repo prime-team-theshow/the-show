@@ -114,7 +114,8 @@ router.put('/organization', function (req, res, next) {
 
     // variables from client
     var userToSave = {
-        username: req.body.username,
+        id: req.body.id,
+        email: req.body.newEmail,
         password: encryptLib.encryptPassword(req.body.password)
     }; // end saveUser
     console.log('new org user: ', userToSave);
@@ -125,12 +126,10 @@ router.put('/organization', function (req, res, next) {
             res.sendStatus(500);
             done();
         } else {
-
-            // this will eventually need to use the id of the existing org and then update that record
-            // for now it will just create a new row and return the primary key of the new row
-
-            var queryString = "INSERT INTO organization (email, password) VALUES ($1, $2) RETURNING id";
-            var values = [userToSave.username, userToSave.password];
+             var queryString = "UPDATE organization " +
+            "SET email=$1, password=$2 " +
+            "WHERE id=$3";
+            var values = [userToSave.email, userToSave.password, userToSave.id];
             client.query(queryString, values, function (queryErr, result) {
                 if (queryErr) {
                     console.log('Query POST connection Error ->', queryErr);
@@ -142,7 +141,7 @@ router.put('/organization', function (req, res, next) {
             }); // end query
         } // end else
     }); // end pool connect
-}); // end organization post
+}); // end organization put
 
 //export
 module.exports = router;

@@ -24,7 +24,7 @@
                         <div ng-repeat="type in ec.socialMediaTypesObj.socialMediaTypes" layout="row" layout-wrap>
                         <md-input-container flex="100">
                                 <label>{{type.name}} (URL):</label>
-                                <input ng-value="type.url" ng-model="" type="url">
+                                <input ng-value="type.url" ng-model="type.url" type="url">
                         </md-input-container>
                         </div>
 
