@@ -7,7 +7,6 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
 
     vm.socialId = OrgService.socialMediaTypesObj.socialMediaTypes.id;
 
-
     vm.profileData = {
         orgId: '',
         editable: '',
@@ -34,9 +33,20 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
                 
                 //loop through each social media type and check if the orgprofile has a matching type id on its social media
                 //if that matches, then attach a value to the social media type object, adding the url of the agency's social media of that type
-                vm.socialMediaTypesObj.socialMediaTypes.map(function(type) {
-                    return type.url = "example.com"
-                })
+                vm.socialMediaTypesObj.socialMediaTypes.map(function(socialMediaType) {
+
+                    var socialMedia = OrgService.orgProfileObj.orgProfile.social_medias.find(function(socialMedia){
+                        return socialMediaType.id === socialMedia.type_id;
+                    });
+
+                    if(socialMedia) {                  
+                        socialMediaType.url = socialMedia.url;
+                    } else {
+                        socialMediaType.url = '';
+                    }
+
+                    return socialMediaType;
+                });
                 
             })
         });
@@ -47,10 +57,6 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         var description = vm.description;
         var logo = vm.logo;
         var website = vm.website;
-        var facebook = vm.facebook;
-        var twitter = vm.twitter;
-        var linkedin = vm.linkedin;
-        var instagram = vm.instagram;
         var profile = {};
         if (name) {
             profile.name = vm.name
@@ -72,27 +78,14 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         } else {
             profile.website = vm.profileData.website;
         };
-        // not sure how to get these...
-        if (facebook) {
-            profile.facebook = vm.facebook;
-        } else {
-            profile.facebook = vm.profileData.social_medias.facebook;
-        };
-        if (twitter) {
-            profile.twitter = vm.twitter;
-        } else {
-            profile.twitter = vm.profileData.social_medias.twitter;
-        };
-        if (linkedin) {
-            profile.linkedin = vm.linkedin;
-        } else {
-            profile.linkedin = vm.profileData.social_medias.linkedin;
-        };
-        if (instagram) {
-            profile.instagram = vm.instagram;
-        } else {
-            profile.instagram = vm.profileData.social_medias.instagram;
-        };
+        // lop through the social media types and if it is blank, then don't set it
+        
+        vm.socialMediaTypesObj.socialMediaTypes.forEach(function(socialMediaType) {
+            if (socialMediaType.url != '') {
+                //OrgService.updateSocialMedia(vm.profileData.orgId, vm.socialMediaTypesObj.typeId, url);
+                console.log("socialMediaType Info:", socialMediaType.url, socialMediaType.name)
+            }
+        });
         OrgService.updateOrgProfile(vm.profileData.orgId, profile);
     };
 

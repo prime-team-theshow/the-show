@@ -21,6 +21,7 @@ myApp.service('AuthService', function ($http) {
         }); // end catch
     }; // end adminRegister
 
+
     // allows agencies to create a new login - POST
     // this is for testing and works with /auth view
     self.orgRegister = function (userObj) {
@@ -74,6 +75,7 @@ myApp.service('AuthService', function ($http) {
     }; // end getUser
 
     // allows agencies to create a new login - PUT
+
     // this is for the registration view
     self.orgRegistration = function (userObj) {
         console.log('in orgRegister');

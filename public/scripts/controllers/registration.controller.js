@@ -4,12 +4,15 @@ This controller is for org registration
 - update the org row in DB with credentials
 - redirect to login view
 */
+
 myApp.controller('RegistrationController', function (AuthService, OrgService, $routeParams, $location) {
+
     console.log('in RegistrationController');
     var vm = this;
 
     // org id from invite link
     vm.orgId = $routeParams.orgId;
+
 
     // org Object for holding 
     // user input and sending to DB
