@@ -43,31 +43,8 @@ md-rowspan="1" md-colspan="3">
         </div>
     </md-toolbar>
 <md-content flex layout-margin>
-    <ul>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
+    <ul ng-repeat="org in adc.orgs.pending">
+        <li>{{org.name}}</li>
     </ul>
 </md-content>
 </md-card>
