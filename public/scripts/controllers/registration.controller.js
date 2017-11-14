@@ -13,7 +13,9 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
 
     // org Object for holding 
     // user input and sending to DB
-    vm.org = {};
+    vm.org = {
+        name: ''
+    };
 
 
     // creates boolean for NG-IF
