@@ -2,7 +2,7 @@
 This controller is for node mailer
 - currently this controller is for testing only
 */
-myApp.controller('NodeMailerController', function (NodeMailerService, $mdDialog) {
+myApp.controller('NodeMailerController', function (NodeMailerService) {
     console.log('in NodeMailerController');
     var vm = this;
 
@@ -15,7 +15,7 @@ myApp.controller('NodeMailerController', function (NodeMailerService, $mdDialog)
     vm.inviteOrg = function (email) {
         console.log('in inviteOrg');
         if(email) {
-            NodeMailerService.inviteOrg(email);
+            NodeMailerService.inviteOrgTest(email);
         } else {
             alert('Please enter a valid email address');
         } // end else

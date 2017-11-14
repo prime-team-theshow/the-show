@@ -14,6 +14,8 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
         notPending: []
     }; // end orgs
 
+    vm.inviteMessage = 'Hello, please follow the link below to create a username and password for your organization.';
+
     /************* Should be in admin controller ************/
     // filter org get into an array for non-pending orgs
     vm.notPendingOrgs = function () {
@@ -49,6 +51,13 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
             } // end if
         }); // end setting array values
     }; // end getOrgs
+
+    // invite an organization to create a profile
+    vm.inviteOrg = function (email, message, orgId) {
+        console.log('in inviteOrg');
+        // pass client side input to service
+        NodeMailerService.inviteOrg(email, message, orgId);
+    }; // end inviteOrg
 
      /************** on page load **************/
 

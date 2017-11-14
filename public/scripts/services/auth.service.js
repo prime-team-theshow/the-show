@@ -11,6 +11,7 @@ myApp.service('AuthService', function ($http) {
     self.user = {};
 
     // temporary - allows admins to create a new admin login
+    // this is for testing and works with /auth view
     self.adminRegister = function (userObj) {
         console.log('in adminRegister');
         return $http.post('/register/admin', userObj).then(function (response) {
@@ -21,6 +22,7 @@ myApp.service('AuthService', function ($http) {
     }; // end adminRegister
 
     // allows agencies to create a new login
+    // this is for testing and works with /auth view
     self.orgRegister = function (userObj) {
         console.log('in orgRegister');
         return $http.post('/register/organization', userObj).then(function (response) {
@@ -70,5 +72,16 @@ myApp.service('AuthService', function ($http) {
             } // end else
         }); // end auth GET
     }; // end getUser
+
+    // allows agencies to create a new login
+    // this is for the registration view
+    self.orgRegistration = function (userObj) {
+        console.log('in orgRegister');
+        return $http.put('/register/organization', userObj).then(function (response) {
+            console.log('user registration successful');
+        }).catch(function (response) {
+            console.log('Registration error: ', response);
+        }); // end catch
+    }; // end orgRegister
 
 }); // end AuthService
