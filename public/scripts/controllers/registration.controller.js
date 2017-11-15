@@ -20,10 +20,25 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
         name: ''
     };
 
-
+    vm.agencyUser = {
+        username: usernameIn,
+        password: passwordin
+    };
+    vm.show = false;
     // creates boolean for NG-IF
     vm.showContent = function () {
-
+            // if user does not have an email
+        if (vm.agencyUser.username === '') {
+            redirect to profile
+        } // end redirect for no email to profile view
+            // if user has a password 
+        else if (vm.agencyUser.password) {
+            redirect to login
+        } // end redirect for password to login view
+            // if user has email and no password
+        else {
+            vm.show = true;
+        } // end show register view ngfi = show true
     }; // end showContent
     
 
