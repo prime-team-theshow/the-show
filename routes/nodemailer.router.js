@@ -134,7 +134,10 @@ router.put('/invite/:org_id', function (req, res) {
         console.log('not logged in');
         res.sendStatus(403);
     } // end else
-}); // end PUT
+}); // end invite PUT
+
+
+
 
 // export
 module.exports = router;
