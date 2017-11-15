@@ -17,12 +17,24 @@
 }
 
 .bottom-margin-shrink {
-    margin-bottom: -30px;
+    margin-bottom: -10%;
 }
+
+.top-margin-shrink {
+    margin-top: -4%;
+}
+
+.svg {
+    height: 100% !important;
+    width: 15% !important;
+    margin-right: 12px;
+}
+
 
 #orgProfile {
     background-color: gray;
 }
+
 
 
   
