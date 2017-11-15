@@ -53,11 +53,21 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     }; // end getOrgs
 
     // invite an organization to create a profile
+    // email the user with a unique link to register
+    // add their email to the DB and set invited to true
     vm.inviteOrg = function (email, message, orgId) {
         console.log('in inviteOrg');
         // pass client side input to service
         NodeMailerService.inviteOrg(email, message, orgId);
     }; // end inviteOrg
+
+    // deny a user invite or deactivate an org user
+    // removes email and password from DB
+    // sets invited to false
+    vm.denyOrg = function () {
+        console.log('in denyOrg');
+        AdminService.denyOrg();
+    }; // end denyOrg
 
      /************** on page load **************/
 

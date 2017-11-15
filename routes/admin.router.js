@@ -43,7 +43,6 @@ router.get('/orgs', function (req, res) {
 }); // end GET organizations to invite
 
 
-// I need to test this, just pushing SVGs
 // put route to deny or deactivate an org profile user
 router.put('/deny/:org_id', function (req, res) {
     console.log('in invite org PUT route.');
@@ -51,7 +50,7 @@ router.put('/deny/:org_id', function (req, res) {
     // check if user is logged in and is an admin
     if (req.isAuthenticated() && isAdmin) {
         // org id from client
-        var orgId = req.params.org_id; // not sure this is needed
+        var orgId = req.params.org_id;
         pool.connect(function (err, client, done) {
             if (err) {
                 console.log('PUT connection error ->', err);
@@ -59,7 +58,7 @@ router.put('/deny/:org_id', function (req, res) {
                 done();
             } else {
                 var queryString = "UPDATE organization " +
-                    "SET invited='false', email=null, password=null " +
+                    "SET invited=false, email=null, password=null " +
                     "WHERE id=$1";
                 var values = [orgId];
                 client.query(queryString, values, function (queryErr, result) {
