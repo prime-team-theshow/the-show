@@ -64,9 +64,11 @@ myApp.controller('TestAdmin', function (AdminService, NodeMailerService) {
     // deny a user invite or deactivate an org user
     // removes email and password from DB
     // sets invited to false
-    vm.denyOrg = function () {
+    vm.denyOrg = function (orgId) {
         console.log('in denyOrg');
-        AdminService.denyOrg();
+        AdminService.denyOrg(orgId).then(function () {
+            vm.getOrgs();
+        }); // end AdminService.denyOrg
     }; // end denyOrg
 
      /************** on page load **************/

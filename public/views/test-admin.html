@@ -13,8 +13,7 @@
             <h3>not pending</h3>
             <div ng-repeat="org in tac.orgs.notPending">
                 <p>{{org.name}}</p>
-                <p>{{org.has_password}}</p>
-                <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="tac.deactivateOrg(org.id)">Deactivate</md-button>
+                <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deactivate</md-button>
                 <md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="tac.inviteOrg(tac.email, tac.inviteMessage, org.id)">Invite</md-button>
             </div>
         </div>
