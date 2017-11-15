@@ -38,9 +38,9 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
             vm.if.show = true;
         } // end show register view ngif = show true
             // catch all
-        // else {
-        //     $location.path('/profile/' + vm.orgId);
-        // } // end catch all
+        else {
+         $location.path('/profile/' + vm.orgId);
+        } // end catch all
     }; // end showContent
     
 
