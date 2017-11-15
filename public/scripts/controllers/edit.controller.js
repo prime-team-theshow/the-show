@@ -7,6 +7,10 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
 
     vm.socialId = OrgService.socialMediaTypesObj.socialMediaTypes.id;
 
+    vm.goToProfile = function(orgId) {
+        $location.path('/profile/' + orgId);
+    };
+
     vm.profileData = {
         orgId: '',
         editable: '',
@@ -29,30 +33,25 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
             vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
             vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
             vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
-            OrgService.getSocialMediaTypes().then(function(response) {
-                
+            OrgService.getSocialMediaTypes().then(function (response) {
                 //loop through each social media type and check if the orgprofile has a matching type id on its social media
                 //if that matches, then attach a value to the social media type object, adding the url of the agency's social media of that type
-                vm.socialMediaTypesObj.socialMediaTypes.map(function(socialMediaType) {
-
-                    var socialMedia = OrgService.orgProfileObj.orgProfile.social_medias.find(function(socialMedia){
+                vm.socialMediaTypesObj.socialMediaTypes.map(function (socialMediaType) {
+                    var socialMedia = OrgService.orgProfileObj.orgProfile.social_medias.find(function (socialMedia) {
                         return socialMediaType.id === socialMedia.type_id;
                     });
-
-                    if(socialMedia) {                  
+                    if (socialMedia) {
                         socialMediaType.url = socialMedia.url;
                     } else {
                         socialMediaType.url = '';
                     }
-
                     return socialMediaType;
                 });
-                
             })
         });
     };
 
-    vm.editProfileInfo = function() {
+    vm.editProfileInfo = function () {
         var name = vm.name;
         var description = vm.description;
         var logo = vm.logo;
@@ -78,17 +77,16 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         } else {
             profile.website = vm.profileData.website;
         };
-        // lop through the social media types and if it is blank, then don't set it
-        
-        vm.socialMediaTypesObj.socialMediaTypes.forEach(function(socialMediaType) {
+        vm.socialMediaTypesObj.socialMediaTypes.forEach(function (socialMediaType) {
             if (socialMediaType.url != '') {
                 //OrgService.updateSocialMedia(vm.profileData.orgId, vm.socialMediaTypesObj.typeId, url);
                 console.log("socialMediaType Info:", socialMediaType.url, socialMediaType.name)
             }
         });
         OrgService.updateOrgProfile(vm.profileData.orgId, profile);
+        vm.goToProfile(vm.profileData.orgId);
     };
 
     vm.displayProfileInfo();
-    
+
 });

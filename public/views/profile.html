@@ -30,41 +30,28 @@
                 </div>
         </md-content>
 </div>
-<div layout="row" layout-wrap>
-<div ng-repeat="ad in pc.profileData.ads" flex="flex">
-        <md-content class="md-padding">
-                <div>
-                        <md-card>
-                                <md-card-header>
-                                        <md-card-avatar>
-                                                <img ng-if="ad.award === 'Gold'" src="assets/gold.png" />
-                                                <img ng-if="ad.award === 'Silver'" src="assets/silver.png">
-                                                <img ng-if="ad.award === 'Bronze'" src="assets/bronze.png">
-                                        </md-card-avatar>
-                                        <md-card-header-text>
-                                                <span class="md-title">Award: {{ad.award}}</span>
-                                                <span class="md-subhead">Category: {{ad.category}}</span>
-                                        </md-card-header-text>
-                                </md-card-header>
-                                <md-card-title>
-                                        <md-card-title-text>
-                                                <span class="md-headline centered">{{ad.name}}</span>
-                                        </md-card-title-text>
-                                </md-card-title>
-                                <md-card-content>
-                                        <p class="centered">{{ad.advertiser}}</p>
-                                        <p class="centered">{{ad.year}}</p>
-                                        <p class="centered"><a href="#">See Ad Details</a></p>
-                                </md-card-content>
-                        </md-card>
 
-                </div>
-        </md-content>
-</div>
-</div>
-<div ng-if="pc.profileData.claimed === false">
-        <md-button ng-click="pc.claimProfile()">Is this your organization?</md-button>
-</div>
-<div ng-if="pc.profileData.claimed === true">
-        <md-button>Contact this Organization</md-button>
-</div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+        <div ng-repeat="ad in pc.profileData.ads" flex-xs flex-gt-xs="45" layout="column">
+                <md-card ng-click="pc.goToWinnersView()">
+                        <md-card-header class="bottom-margin-shrink">
+                                <md-card-avatar>
+                                                <md-icon ng-if="ad.award === 'Gold'" md-svg-src="assets/AdFed.gold.svg" aria-label="gold"></md-icon>
+                                                <md-icon ng-if="ad.award === 'Silver'" md-svg-src="assets/AdFed.silver.svg" aria-label="silver"></md-icon>
+                                                <md-icon ng-if="ad.award === 'Bronze'" md-svg-src="assets/AdFed.bronze.svg" aria-label="bronze"></md-icon>
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                        <span class="md-subhead">Award: {{ad.award}}</span>
+                                        <span class="md-subhead">Category: {{ad.category}}</span>
+                                </md-card-header-text>
+                        </md-card-header>
+                        <md-card-title>
+                                <md-card-title-text>
+                                        <span class="md-title centered">{{ad.name}}</span>
+                                        <span class="md-subhead centered margin-bottom-shrink">{{ad.advertiser}}</span>
+                                        <span class="md-subhead centered margin-bottom-shrink">{{ad.year}}</span>
+                                </md-card-title-text>
+                        </md-card-title>
+                </md-card>
+        </div>
+</md-content>

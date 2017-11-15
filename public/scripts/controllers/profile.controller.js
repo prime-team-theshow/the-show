@@ -59,6 +59,10 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
         $location.path('/edit/' + vm.profileData.orgId);
     };
 
+    vm.goToWinnersView = function() {
+        $location.path('/winners/2017');
+    };
+
     vm.checkForAgencyAdmin(OrgService.orgProfileObj.orgProfile.email, AuthService.user.email);
     vm.displayProfile();
 
