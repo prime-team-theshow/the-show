@@ -18,6 +18,7 @@ myApp.service('AdminService', function ($http) {
     
      /************** $http **************/
 
+     // get org list for admin dashboard
     self.getOrgs = function () {
         console.log('in getOrgs');
         return $http.get('/admin/orgs').then(function (response) {
@@ -25,6 +26,17 @@ myApp.service('AdminService', function ($http) {
             self.orgs.all = response.data.rows;
         }).catch(function (response) {
             console.log('getOrgs error: ', response);
+        }); // end catch
+    }; // end getOrgs
+
+    // set org email and password to null
+    // set invited to false
+    self.denyOrg = function (orgId) {
+        console.log('in denyOrg');
+        return $http.put('/admin/deny/' + orgId).then(function (response) {
+            console.log('denyOrg successful :', response);
+        }).catch(function (response) {
+            console.log('denyOrg error: ', response);
         }); // end catch
     }; // end getOrgs
 
