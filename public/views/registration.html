@@ -1,13 +1,20 @@
 <section ng-if="rc.if.show">
-   <div layout="column">
+    <div layout="column" ng-cloak class="md-inline-form">
         <h2>Register</h2>
         <h3>{{rc.org.name}}</h3>
-        <md-input-container>
-            <input type="email" placeholder="email" ng-model="rc.org.newEmail">
-        </md-input-container>
-        <md-input-container>
-            <input type="password" placeholder="password" ng-model="rc.org.password">
-        </md-input-container>
-        <md-button class="md-raised md-warn" ng-click="rc.orgRegister()">Register Admin</md-button>
+        <md-content theme="dark" layout-gt-sm="row" layout-padding>
+            <div>
+                <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="rc.org.newEmail" type="email">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Password</label>
+                    <input ng-model="rc.org.password" type="password">
+                </md-input-container>
+                <md-button class="md-raised md-warn" ng-click="rc.orgRegister()">Register User</md-button>
+            </div>
+        </md-content>
     </div>
 </section>
