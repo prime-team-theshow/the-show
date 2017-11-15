@@ -40,7 +40,7 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
             // catch all
         else {
          $location.path('/profile/' + vm.orgId);
-        // } // end catch all
+        } // end catch all
     }; // end showContent
     
 
