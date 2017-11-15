@@ -98,7 +98,7 @@ router.put('/invite/:org_id', function (req, res) {
                 done();
             } else {
                 var queryString = "UPDATE organization " +
-                    "SET invited='true', email=$2 " +
+                    "SET invited=true, email=$2 " +
                     "WHERE id=$1";
                 var values = [orgId, orgEmail];
                 client.query(queryString, values, function (queryErr, result) {
