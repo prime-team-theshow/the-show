@@ -20,25 +20,25 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
         name: ''
     };
 
-    vm.agencyUser = {
-        username: usernameIn,
-        password: passwordin
-    };
     vm.show = false;
     // creates boolean for NG-IF
-    vm.showContent = function () {
+    vm.showContent = function (orgObject) {
             // if user does not have an email
-        if (vm.agencyUser.username === '') {
-            redirect to profile
+        if (orgObject.has_email === false) {
+            $location.path('/profile/' + vm.orgId);
         } // end redirect for no email to profile view
             // if user has a password 
-        else if (vm.agencyUser.password) {
-            redirect to login
+        else if (orgObject.has_password) {
+            $location.path('/login')
         } // end redirect for password to login view
             // if user has email and no password
-        else {
+        else if (orgObject.invited) {
             vm.show = true;
-        } // end show register view ngfi = show true
+        } // end show register view ngif = show true
+            // catch all
+        else {
+            $location.path('/profile/' + vm.orgId);
+        } // end catch all
     }; // end showContent
     
 
@@ -50,7 +50,8 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
         console.log('in getOrg');
         OrgService.getOrgRegistration(vm.orgId).then(
             // org object to hold get response
-            vm.org = OrgService.orgToRegister
+            vm.org = OrgService.orgToRegister,
+            vm.showContent(OrgService.orgToRegister)
         );// end get
     }; // end getOrg
 
@@ -69,5 +70,4 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
     /************** on page load **************/
 
     vm.getOrg($routeParams.orgId);
-
 });
