@@ -4,21 +4,20 @@ myApp.controller('CreateYearController', function () {
     var vm = this;
 
     vm.fileContent;
+    vm.disableCreateBtn = true;
 
+    var fileJson;
     // setup file reader
     var reader = new FileReader();
     reader.onload = function () {
-        vm.fileContent = reader.result;
-        console.log('CSV2JSON:', JSON.parse(CSV2JSON(vm.fileContent)));
+        fileJson = JSON.parse(CSV2JSON(reader.result));
 
+        console.log('fileJson:', fileJson);
+        vm.disableCreateBtn = false;
     }
 
     vm.onFileNameChanged = function (element) {
-        var file = element.files[0];
-        console.log('file:', file);
-
-        reader.readAsText(file);
-
+        reader.readAsText(element.files[0]);
     }
 
     // This will parse a delimited string into an array of
