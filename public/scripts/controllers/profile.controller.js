@@ -34,7 +34,7 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
             vm.profileData.social_medias = OrgService.orgProfileObj.orgProfile.social_medias;
             vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
             vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
-            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
+            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed; // this doesn't exist anymore
         });
     };
 

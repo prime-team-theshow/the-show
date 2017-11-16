@@ -160,6 +160,17 @@ ALTER TABLE social_media
 -- email: admin@gmail.com --
 INSERT INTO admin (email, password)
     VALUES ('admin@gmail.com', '$2a$10$8eXkBQUGwQo8CFt4LgYRQ.4nHFnpR96xaVHHyBKj6GtGSKDU/QOjO');
+-- mailer account -- 
+INSERT INTO admin (email, password, ismailer, invite_template, remind_template, pass_reset)
+    VALUES ('theshowbookmn@gmail.com', 
+    '$2a$10$n9vs7Yhn55fMrDyaf0Z.gODx.NcvZoEmwIJg8mwt5BwQN4kSNGQ9.',
+     true,
+     'Hello, please follow the link below to create a username and password for your organization.',
+     'Hello, we noticed your account is still not setup yet. Please follow the link below to create a username and password.',
+     'Hello, please follow the below link and enter in the provided temporary password.'
+     );
+
+
 
 -- social media types --
 INSERT INTO social_media_type (name, logo)
