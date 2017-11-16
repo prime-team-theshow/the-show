@@ -62,6 +62,18 @@ myApp.service('OrgService', function ($http) {
     } // end getSocialMediaTypes()
 
     /**
+     * update social media links
+     */
+    sv.updateSocialMedia = function (orgId, typeId, url) {
+        return $http.put('/socialmedia/' + orgId, typeId, url)
+        .catch(function (error) {
+            console.error('OrgService updateSocialMedia() error:', error);
+        }); // end $http.put
+} // end updateOrgProfile()
+
+
+
+    /**
      * add social media to an org
      * 
      * @param socialMedia {typeId:, orgId:, url:}
