@@ -1,47 +1,49 @@
 <div style="height:768px;" layout="column" ng-cloak>
-  <section layout="row" flex>
+    <section layout="row" flex>
 
-      <!-- sidenav view -->
-      <md-sidenav
-          class="md-sidenav-left"
-          md-component-id="left"
-          md-is-locked-open="true"
-          md-whiteframe="2">
+        <!-- sidenav view -->
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true" md-whiteframe="2">
 
-          <!-- sidenav toolbar -->
-          <md-toolbar class="md-theme-gray">
-              <h1 class="md-toolbar-tools">The Show</h1>
-          </md-toolbar>
+            <!-- sidenav toolbar -->
+            <md-toolbar class="md-theme-gray">
+                <h1 class="md-toolbar-tools">The Show</h1>
+            </md-toolbar>
 
-          <!-- sidenav content -->
-          <md-content layout-padding>
-              <!-- categories -->
-              <div ng-repeat="category in wc.sampleList">
-                  <div layout="row">
-                      <md-subheader
-                          class="md-no-sticky"
-                          ng-click="wc.toggleShowCategory($index)">
-                          {{ category.name }}
-                          <md-icon>{{ category.show ? "expand_less" : "expand_more" }}</md-icon>
-                      </md-subheader>
-                  </div>
-                  <!-- winners -->
-                  <div ng-show="category.show" ng-repeat="winner in category.winners">
-                      <md-list-item ng-click="null">
-                          <p>{{ winner }}</p>
-                      </md-list-item>
-                  </div>
-              </div>
-          </md-content>
-      </md-sidenav>
+            <!-- sidenav content -->
+            <md-content layout-padding>
+                <!-- toggle groupBy -->
+                <div layout="row">
+                    Group by:
+                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByCategoryBtn">Category</md-button>
+                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByOrgBtn">Organization</md-button>
+                </div>
 
-      <!-- details view -->
-      <md-content flex layout-padding>
+                <!-- categories -->
+                <div ng-repeat="group in wc.groupBy">
+                    <div layout="row">
+                        <md-subheader class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                            {{ group.name }}
+                            <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                        </md-subheader>
+                    </div>
+                    <!-- winners -->
+                    <div ng-show="group.show" ng-repeat="winner in group.winners">
+                        <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                            <p>{{ winner.name }}</p>
+                        </md-list-item>
+                    </div>
+                </div>
+            </md-content>
+        </md-sidenav>
 
-          <div layout="column" layout-align="top center">
-              winner details here
-          </div>
-          <div flex></div>
-      </md-content>
-  </section>
+        <!-- details view -->
+        <md-content flex layout-padding>
+            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
+                {{wc.adObj.ad}}
+            </div>
+            <div ng-if="!wc.adObj.ad">
+                {{wc.yearObj.year.background}} {{wc.yearObj.year.png}}
+            </div>
+        </md-content>
+    </section>
 </div>

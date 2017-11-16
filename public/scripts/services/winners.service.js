@@ -2,7 +2,7 @@
  * Service for interacting with winner view/ winner controller
  */
 
-myApp.service('WinnerService', function ($http) {
+myApp.service('WinnersService', function ($http) {
     console.log('in Winner Service');
 
     var sv = this;
@@ -10,7 +10,7 @@ myApp.service('WinnerService', function ($http) {
     // stores all ads for a given yer
     sv.yearObj = { year: {} };
 
-    // stores details about an given ad
+    // stores details about a given ad
     sv.adObj = { ad: {} };
 
     /**
@@ -22,7 +22,7 @@ myApp.service('WinnerService', function ($http) {
         return $http.get('winners/year/' + year)
             .then(function (response) {
                 // store ads in yearObj
-                sv.yearObj.ads = response.data;
+                sv.yearObj.year = response.data;
             })
             .catch(function (error) {
                 console.log('Winner Service GET /winners/year/:year error', error);
