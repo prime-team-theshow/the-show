@@ -32,7 +32,7 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
             vm.profileData.social_medias = OrgService.orgProfileObj.orgProfile.social_medias;
             vm.profileData.website = OrgService.orgProfileObj.orgProfile.website;
             vm.profileData.description = OrgService.orgProfileObj.orgProfile.description;
-            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed;
+            vm.profileData.claimed = OrgService.orgProfileObj.orgProfile.claimed; // this doesn't exist anymore
             OrgService.getSocialMediaTypes().then(function (response) {
                 //loop through each social media type and check if the orgprofile has a matching type id on its social media
                 //if that matches, then attach a value to the social media type object, adding the url of the agency's social media of that type

@@ -1,24 +1,25 @@
 <md-content>
-    <div>
+    <div layout="column" layout-align="center">
         <form name="yearForm">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>year</label>
-                <input type="number" min="1906" step="1" ng-model="cyc.year">
+                <input type="number" min="1906" step="1" ng-model="cyc.yearIn">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>background</label>
-                <input type="url" ng-model="cyc.background">
+                <input type="url" ng-model="cyc.backgroundIn">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>png</label>
-                <input type="url" ng-model="cyc.png">
+                <input type="url" ng-model="cyc.pngIn">
             </md-input-container>
         </form>
-        <md-input-container class="md-block" flex-gt-sm>
-            <input 
-                type="file" 
-                accept=".csv" 
-                onchange="angular.element(this).controller().onFileNameChanged(this)">            
-        </md-input-container>
+        <div layout="row">
+            <p>CSV:</p>
+            <md-input-container class="md-block" flex-gt-sm>
+                <input type="file" accept=".csv" onchange="angular.element(this).controller().onFileNameChanged(this)" aria-label="CSV File">
+            </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary" ng-disabled="cyc.disableCreateBtn">Create</md-button>
     </div>
 </md-content>

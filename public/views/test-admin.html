@@ -4,7 +4,7 @@
             <h3>pending</h3>
             <div ng-repeat="org in tac.orgs.pending">
                 <p>{{org.name}}</p>
-                <!-- show this button if the account has been invited or if it has an email and has not been invited or claimed -->
+                <!-- show this button if the account has been invited or if it has an email and has not been invited  -->
                 <md-button class="md-raised md-primary" ng-click="tac.setRemind(org.id, org.email)">Remind</md-button>
                 <md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button>
             </div>
