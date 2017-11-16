@@ -160,6 +160,17 @@ ALTER TABLE social_media
 -- email: admin@gmail.com --
 INSERT INTO admin (email, password)
     VALUES ('admin@gmail.com', '$2a$10$8eXkBQUGwQo8CFt4LgYRQ.4nHFnpR96xaVHHyBKj6GtGSKDU/QOjO');
+-- mailer account -- 
+INSERT INTO admin (email, password, ismailer, invite_template, remind_template, pass_reset)
+    VALUES ('theshowbookmn@gmail.com', 
+    '$2a$10$n9vs7Yhn55fMrDyaf0Z.gODx.NcvZoEmwIJg8mwt5BwQN4kSNGQ9.',
+     true,
+     'Hello, please follow the link below to create a username and password for your organization.',
+     'Hello, we noticed your account is still not setup yet. Please follow the link below to create a username and password.',
+     'Hello, please follow the below link and enter in the provided temporary password.'
+     );
+
+
 
 -- social media types --
 INSERT INTO social_media_type (name, logo)
@@ -179,7 +190,7 @@ INSERT INTO year (num, background, png)
 
 -- Organizations --
 -- organization #1: active --
-INSERT INTO organization (name, description, website, logo, email, password, claimed, invited)
+INSERT INTO organization (name, description, website, logo, email, password, invited)
     VALUES (
         'BBDO',
         'In 1891, a small agency named Batten Company opened in a single room on Park Row in New York City. In subsequent years, it thrived, and in 1928, merged with Barton, Durstine and Osborn. Thus, BBDO was born.',
@@ -187,7 +198,6 @@ INSERT INTO organization (name, description, website, logo, email, password, cla
         'https://www.bbdo.com/assets/images/BBDO_logo_white.svg',
         'bbdo@gmail.com',
         '$2a$10$8eXkBQUGwQo8CFt4LgYRQ.4nHFnpR96xaVHHyBKj6GtGSKDU/QOjO',
-        true,
         true
     );
 
@@ -302,12 +312,11 @@ INSERT INTO credit (ad_id, title, name)
         (5, 'Writer', 'Mike Borell');
 
 
--- organization #3: claimed --
-INSERT INTO organization (name, email, claimed)
+-- organization #3:  --
+INSERT INTO organization (name, email)
     VALUES (
         'KNOCK Inc.',
-        'knock@gmail.com',
-        true
+        'knock@gmail.com'
     );
 
 -- ad #6
