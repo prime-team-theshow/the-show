@@ -1,0 +1,47 @@
+<div style="height:768px;" layout="column" ng-cloak>
+  <section layout="row" flex>
+
+      <!-- sidenav view -->
+      <md-sidenav
+          class="md-sidenav-left"
+          md-component-id="left"
+          md-is-locked-open="true"
+          md-whiteframe="2">
+
+          <!-- sidenav toolbar -->
+          <md-toolbar class="md-theme-gray">
+              <h1 class="md-toolbar-tools">The Show</h1>
+          </md-toolbar>
+
+          <!-- sidenav content -->
+          <md-content layout-padding>
+              <!-- categories -->
+              <div ng-repeat="category in wc.sampleList">
+                  <div layout="row">
+                      <md-subheader
+                          class="md-no-sticky"
+                          ng-click="wc.toggleShowCategory($index)">
+                          {{ category.name }}
+                          <md-icon>{{ category.show ? "expand_less" : "expand_more" }}</md-icon>
+                      </md-subheader>
+                  </div>
+                  <!-- winners -->
+                  <div ng-show="category.show" ng-repeat="winner in category.winners">
+                      <md-list-item ng-click="null">
+                          <p>{{ winner }}</p>
+                      </md-list-item>
+                  </div>
+              </div>
+          </md-content>
+      </md-sidenav>
+
+      <!-- details view -->
+      <md-content flex layout-padding>
+
+          <div layout="column" layout-align="top center">
+              winner details here
+          </div>
+          <div flex></div>
+      </md-content>
+  </section>
+</div>

@@ -31,8 +31,8 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
         templateUrl: '/views/login.html',
         controller: 'LoginController as lc'
     }).when('/winners/:year', {
-        templateUrl: '/views/winner.html',
-        controller: 'WinnerController as wc'
+        templateUrl: '/views/winners.html',
+        controller: 'WinnersController as wc'
     }).when('/test-admin', {
         templateUrl: '/views/test-admin.html',
         controller: 'TestAdmin as tac'
