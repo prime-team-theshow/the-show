@@ -160,14 +160,14 @@ ALTER TABLE social_media
 -- email: admin@gmail.com --
 INSERT INTO admin (email, password)
     VALUES ('admin@gmail.com', '$2a$10$8eXkBQUGwQo8CFt4LgYRQ.4nHFnpR96xaVHHyBKj6GtGSKDU/QOjO');
--- mailer account -- 
+-- mailer account | theshowbookmn@gmail.com  -- 
 INSERT INTO admin (email, password, ismailer, invite_template, remind_template, pass_reset)
     VALUES ('theshowbookmn@gmail.com', 
-    '$2a$10$n9vs7Yhn55fMrDyaf0Z.gODx.NcvZoEmwIJg8mwt5BwQN4kSNGQ9.',
-     true,
-     'Hello, please follow the link below to create a username and password for your organization.',
-     'Hello, we noticed your account is still not setup yet. Please follow the link below to create a username and password.',
-     'Hello, please follow the below link and enter in the provided temporary password.'
+        '$2a$10$n9vs7Yhn55fMrDyaf0Z.gODx.NcvZoEmwIJg8mwt5BwQN4kSNGQ9.',
+        true,
+        'Hello, please follow the link below to create a username and password for your organization.',
+        'Hello, we noticed your account is still not setup yet. Please follow the link below to create a username and password.',
+        'Hello, please follow the below link and enter in the provided temporary password.'
      );
 
 
@@ -427,6 +427,25 @@ INSERT INTO credit (ad_id, title, name)
         (10, 'Art Director', 'Chue Yang'),
         (10, 'Agency Producer', 'Lisa Norman'),
         (10, 'Flame/Online Artist', 'Derek Johnson');
+
+-- organization #5: invited for registration testing  --
+-- navigate to http://localhost:6660/#!/registration/5 --
+INSERT INTO organization (name, email, invited)
+    VALUES (
+        'registration test',
+        'abc-123@email.com',
+        true
+    );
+
+-- organization #6: for admin dashboard testing  --
+-- this gmail account can be used to test the redirect link --
+INSERT INTO organization (name, email, invited)
+    VALUES (
+        'already invited org, remind me?',
+        'agency.test.theshow@gmail.com',
+        true
+    );
+
 
 -- INSERT INTO category (full_category)
 --     VALUES('');
