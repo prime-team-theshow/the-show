@@ -11,10 +11,8 @@ md-rowspan="2" md-colspan="6">
         <div class="md-toolbar-tools">
             <h2 class="md-flex">Agencies</h2>
         </div>
-    </md-toolbar>
-    <md-content flex>
-            <md-list>
-                    <md-toolbar layout="row" class="md-hue-3">
+    </md-toolbar> 
+    <md-toolbar layout="row" class="md-hue-3">
                             <div layout="row" class="md-toolbar-tools">
                             <span flex="20">Org Name</span>
                             <span flex="20">Complete?</span>
@@ -22,7 +20,10 @@ md-rowspan="2" md-colspan="6">
                               <span flex="20">Remind <md-tooltip md-direction="below">Send a reminder email to an organization who has not signed up yet.</md-tooltip></span>
                               <span flex="20">Revoke Access <md-tooltip md-direction="below">Revoke a signed-up org's access or un-invite an org.</md-tooltip></span>
                             </div>
-                          </md-toolbar>
+                        </md-toolbar>
+    <md-content flex> 
+       
+            <md-list>
                     <md-list-item ng-repeat="org in adc.orgs.notPending">
                       <div layout="row" flex="100" class="md-list-item-text">
                           
