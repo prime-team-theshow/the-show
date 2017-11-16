@@ -36,7 +36,11 @@ CREATE TABLE admin (
     id SERIAL PRIMARY KEY,
     email VARCHAR(200) NOT NULL UNIQUE,
     password VARCHAR(200) NOT NULL,
-    isadmin boolean DEFAULT TRUE,
+    ismailer BOOLEAN DEFAULT FALSE,
+    invite_template TEXT,
+    remind_template TEXT,
+    pass_reset TEXT,
+    isadmin BOOLEAN DEFAULT TRUE,
     CHECK (isadmin = TRUE)
 ); 
 
