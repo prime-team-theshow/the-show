@@ -5,46 +5,55 @@ md-row-height-gt-md="1:1" md-row-height="2:2"
 md-gutter="12px" md-gutter-gt-sm="8px" >
 
 <md-grid-tile
-md-rowspan="3" md-colspan="3">
+md-rowspan="2" md-colspan="6">
 <md-card flex="100">
-    <md-toolbar class="md-warn">
+    <md-toolbar class="md-primary">
         <div class="md-toolbar-tools">
-            <h2 class="md-flex">All Agencies</h2>
+            <h2 class="md-flex">Agencies</h2>
         </div>
     </md-toolbar>
-<md-content ng-controller="TestAdmin as tac" flex layout-margin>
-        <div layout="row" flex="100">
-                <div flex layout="column">
-                    <h3>pending</h3>
-                    <div ng-repeat="org in tac.orgs.pending">
-                        <p>{{org.name}}</p>
-                        <!-- show the button if the account has not been claimed -->
-                        <md-button ng-hide="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.acceptOrgClaim(org.id, org.email, tac.acceptMessage)">Accept Claim</md-button>
-                        <!-- show this button if the account has been invited or if it has an email and has not been invited or claimed -->
-                        <md-button ng-show="{{org.invited}} || !{{org.claimed}}" class="md-raised md-primary" ng-click="tac.remindOrg(org.id, org.email, tac.remindMessage)">Remind</md-button>
-                        <md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button>
-                    </div>
-                </div>
-                <md-divider></md-divider>
-                <div flex layout="column" layout-margin>
-                    
-                    <h3>not pending</h3>
-                    <div ng-repeat="org in tac.orgs.notPending">
-                        <p>{{org.name}}</p>
-                        <p>{{org.has_password}}</p>
-                        <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="tac.deactivateOrg(org.id)">Deactivate</md-button>
-                        <md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="tac.inviteOrg(tac.email, tac.inviteMessage, org.id)">Invite</md-button>
-                    </div>
-                </div>
-            </div>
-</md-content>
+    <md-content flex>
+            <md-list>
+                    <md-toolbar layout="row" class="md-hue-3">
+                            <div layout="row" class="md-toolbar-tools">
+                            <span flex="20">Org Name</span>
+                            <span flex="20">Complete?</span>
+                              <span flex="20">Invite <md-tooltip md-direction="below">Send an email to an organization allowing them to sign up.</md-tooltip></span>
+                              <span flex="20">Remind <md-tooltip md-direction="below">Send a reminder email to an organization who has not signed up yet.</md-tooltip></span>
+                              <span flex="20">Revoke Access <md-tooltip md-direction="below">Revoke a signed-up org's access or un-invite an org.</md-tooltip></span>
+                            </div>
+                          </md-toolbar>
+                    <md-list-item ng-repeat="org in adc.orgs.notPending">
+                      <div layout="row" flex="100" class="md-list-item-text">
+                          
+                        <h3 flex="20">{{org.name}}</h3>
+                        <div flex="20"></div>
+                        <div flex="20"><md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="adc.setInvite(org.id)">Invite</md-button>
+                            <md-button ng-show="{{org.has_password}}" class="md-raised md-primary" ng-disabled="true">Invite</md-button></div>
+                        <div flex="20"></div>
+                        <div flex="20"><md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="adc.denyOrg(org.id)">Revoke</md-button></div>
+                      </div>
+                    </md-list-item>
+                          <md-list-item ng-repeat="org in adc.orgs.pending">
+                                <div layout="row" flex="100" class="md-list-item-text">
+                                    
+                                  <h3 flex="20">{{org.name}}</h3>
+                                  <div flex="20"><md-icon md-svg-icon="vendors/icons/check.svg"></md-icon></div>
+                                  <div flex="20"></div>
+                                  <div flex="20"><md-button class="md-raised md-primary" ng-click="tac.setRemind(org.id, org.email)">Remind</md-button></div>
+                                   <div flex="20"><md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button></div>
+                                </div>
+                              </md-list-item>
+                  </md-list>
+    
+    </md-content>
 </md-card>
 
 
 </md-grid-tile>
 
 <md-grid-tile class="gray"
-md-rowspan="3" md-colspan="3">
+md-rowspan="1" md-colspan="6">
 <md-card flex="100">
         <md-toolbar class="md-warn">
             <div class="md-toolbar-tools">
