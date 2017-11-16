@@ -69,37 +69,37 @@ router.post('/types',
 
 // delete social media type
 router.delete('/types/:id',
-// function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         next();
-//     } else {
-//         console.log('socialmedia.router DELETE /socialmedia/types/:id user not authenticated');
-//         res.sendStatus(401);
-//     }
-// }, 
-function (req, res) {
-    pool.connect(function (connectionError, client, done) {
+    // function (req, res, next) {
+    //     if (req.isAuthenticated()) {
+    //         next();
+    //     } else {
+    //         console.log('socialmedia.router DELETE /socialmedia/types/:id user not authenticated');
+    //         res.sendStatus(401);
+    //     }
+    // }, 
+    function (req, res) {
+        pool.connect(function (connectionError, client, done) {
 
-        var socialMediaTypeId = req.params.id;
+            var socialMediaTypeId = req.params.id;
 
-        if (connectionError) {
-            console.log('DELETE /socialmedia/types/:id pool connect error', connectionError);
-        } else {
+            if (connectionError) {
+                console.log('DELETE /socialmedia/types/:id pool connect error', connectionError);
+            } else {
 
-            var query = 'DELETE FROM social_media_type WHERE id=' + socialMediaTypeId;
+                var query = 'DELETE FROM social_media_type WHERE id=' + socialMediaTypeId;
 
-            client.query(query, function (queryError, result) {
-                done()
-                if (queryError) {
-                    console.log('DELETE /socialmedia/types/:id query error', queryError);
-                    res.sendStatus(501);
-                } else {
-                    res.sendStatus(200);
-                }
-            })
-        }
+                client.query(query, function (queryError, result) {
+                    done()
+                    if (queryError) {
+                        console.log('DELETE /socialmedia/types/:id query error', queryError);
+                        res.sendStatus(501);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                })
+            }
+        });
     });
-});
 
 
 // add social media
@@ -146,31 +146,17 @@ router.post('/',
         });
     });
 
-// delete social media
-router.delete('/:id',
-// function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         next();
-//     } else {
-//         console.log('organization.router DELETE /socialmedia/:id user not authenticated');
-//         res.sendStatus(401);
-//     }
-// }, 
-function (req, res) {
+router.put('/:id', function (req, res) {
     pool.connect(function (connectionError, client, done) {
-
-        var socialMediaId = req.params.id;
-
         if (connectionError) {
-            console.log('DELETE /socialmedia/:id pool connect error', connectionError);
+            console.log('PUT /socialmedia/:id pool connect error', connectionError);
         } else {
-
-            var query = 'DELETE FROM social_media WHERE id=' + socialMediaId;
-
+            var query = 'PUT FROM social_media SET social_media.url=$1 WHERE id=$2;';
+            var values = [req.params.id, req.body.url];
             client.query(query, function (queryError, result) {
                 done()
                 if (queryError) {
-                    console.log('DELETE /socialmedia/:id query error', queryError);
+                    console.log('PUT /socialmedia/:id query error', queryError);
                     res.sendStatus(501);
                 } else {
                     res.sendStatus(200);
@@ -179,6 +165,36 @@ function (req, res) {
         }
     });
 });
+
+// delete social media
+router.delete('/:id',
+    // function (req, res, next) {
+    //     if (req.isAuthenticated()) {
+    //         next();
+    //     } else {
+    //         console.log('organization.router DELETE /socialmedia/:id user not authenticated');
+    //         res.sendStatus(401);
+    //     }
+    // }, 
+    function (req, res) {
+        pool.connect(function (connectionError, client, done) {
+            if (connectionError) {
+                console.log('DELETE /socialmedia/:id pool connect error', connectionError);
+            } else {
+                var query = 'DELETE FROM social_media WHERE id=$1;';
+                var values = [req.params.id];
+                client.query(query, function (queryError, result) {
+                    done()
+                    if (queryError) {
+                        console.log('DELETE /socialmedia/:id query error', queryError);
+                        res.sendStatus(501);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                })
+            }
+        });
+    });
 
 // export
 module.exports = router;
