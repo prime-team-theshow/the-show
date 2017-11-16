@@ -2,13 +2,12 @@
     background: #f5f5f5; 
 }
 
-.title {
-    float: left;
-    text-decoration-style: bold;
-}
-
 .socialLogo {
     margin: 2px;
+}
+
+.the-show {
+    font-family: 'Baloo Bhai', cursive;
 }
 
 .centered {
@@ -33,6 +32,15 @@
 
 #orgProfile {
     background-color: gray;
+}
+
+.md-wide {
+    width: 300px;
+}
+
+a:link {
+    color: crimson;
+    text-decoration: none;
 }
 
 
