@@ -71,14 +71,29 @@
 
         <!-- details view -->
         <md-content flex layout-padding>
+            <div flex="25"></div>
 
             <!-- if addObj is empty, display landing page -->
             <div ng-if="!wc.adObj.ad">
                 {{wc.yearObj.year.background}} {{wc.yearObj.year.png}}
             </div>
+            
 
             <!-- else display ad details -->
-            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
+            <div flex="75" ng-if="wc.adObj.ad" layout="column" layout-align="top center">
+                    <div layout="row">
+                <md-grid-list ng-repeat="media in wc.adObj.ad.medias"
+                    md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+                    md-row-height-gt-md="1:1" md-row-height="4:3"
+                    md-gutter="8px" md-gutter-gt-sm="4px">
+            
+                <md-grid-tile 
+                              md-rowspan="3"
+                              md-colspan="1">
+                              <img src="{{media.url}}">
+                </md-grid-tile>
+              </md-grid-list>
+            </div>
                 Organization: {{wc.adObj.ad.organization}}<br>
                 Ad Name: {{wc.adObj.ad.name}}<br>
                 Award: {{wc.adObj.ad.award}}<br>
