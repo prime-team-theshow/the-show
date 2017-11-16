@@ -25,7 +25,9 @@ md-rowspan="3" md-colspan="3">
                         <md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button>
                     </div>
                 </div>
-                <div flex layout="column">
+                <md-divider></md-divider>
+                <div flex layout="column" layout-margin>
+                    
                     <h3>not pending</h3>
                     <div ng-repeat="org in tac.orgs.notPending">
                         <p>{{org.name}}</p>
