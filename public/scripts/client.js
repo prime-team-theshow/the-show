@@ -42,6 +42,9 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     }).when('/create-year', {
         templateUrl: '/views/create-year.html',
         controller: 'CreateYearController as cyc'
+    }).when('/changePassword', {
+        templateUrl: '/views/changePw.html',
+        controller: 'ChangePwController as cc'
     }).otherwise('/');
 
 }); // end config
