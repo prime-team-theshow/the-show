@@ -13,8 +13,9 @@
             <md-content layout-padding>
                 <!-- toggle groupBy -->
                 <div layout="row">
-                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="hc.disableGroupByCategoryBtn">Category</md-button>
-                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="hc.disableGroupByOrgBtn">Organization</md-button>
+                    Group by:
+                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByCategoryBtn">Category</md-button>
+                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByOrgBtn">Organization</md-button>
                 </div>
 
                 <!-- categories -->
