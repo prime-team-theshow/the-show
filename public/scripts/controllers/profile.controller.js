@@ -21,12 +21,12 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
         } else {
             vm.profileData.editable = false;
         } 
-        console.log("agency profile admin?", vm.profileData.editable);
-        return vm.profileData.editable;
+        console.log("agency profile admin?", vm.profileData.editable, profileEmail, userEmail);
     };
 
     vm.displayProfile = function () {
         OrgService.getOrgProfile($routeParams.id).then(function (response) {
+            vm.checkForAgencyAdmin(OrgService.orgProfileObj.orgProfile.email, AuthService.user.username);
             vm.profileData.orgId = OrgService.orgProfileObj.orgProfile.id;
             vm.profileData.ads = OrgService.orgProfileObj.orgProfile.ads;
             vm.profileData.name = OrgService.orgProfileObj.orgProfile.name;
@@ -50,11 +50,6 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
         claimed: ''
     };
 
-
-    vm.claimProfile = function() {
-        console.log('you have claimed this profile!')
-    };
-
     vm.goToEditProfile = function() {
         $location.path('/edit/' + vm.profileData.orgId);
     };
@@ -63,7 +58,6 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
         $location.path('/winners/2017');
     };
 
-    vm.checkForAgencyAdmin(OrgService.orgProfileObj.orgProfile.email, AuthService.user.email);
     vm.displayProfile();
 
 }); // end ProfileController

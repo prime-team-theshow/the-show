@@ -4,7 +4,11 @@ This controller is for the home view.
 - and some other things
 */
 
-myApp.controller('HomeController', function (OrgService) {
+myApp.controller('HomeController', function (OrgService, $location) {
     console.log('in HomeController');
     var vm = this;
+
+    vm.pageTurn = function() {
+        $location.path('/winners/2017');
+    }
 }); // end HomeController
