@@ -10,95 +10,123 @@ This controller is for the winner view.
 */
 
 
-myApp.controller('WinnersController', function (OrgService, AuthService, $http) {
+myApp.controller('WinnersController', function (WinnersService, $routeParams) {
     console.log('in WinnerController');
     var vm = this;
-    
-        vm.sampleList = [
-            {
-                name: 'category1',
-                winners: ['winner1', 'winner2', 'winner3', 'winner4', 'winner5'],
-                show: false
-            }, {
-                name: 'category2',
-                winners: ['winner1', 'winner2', 'winner3', 'winner4', 'winner5'],
-                show: false
-    
-            }, {
-                name: 'category3',
-                winners: ['winner1', 'winner2', 'winner3', 'winner4', 'winner5'],
-                show: false
-    
-            }, {
-                name: 'category4',
-                winners: ['winner1', 'winner2', 'winner3', 'winner4', 'winner5'],
-                show: false
-    
-            }, {
-                name: 'category5',
-                winners: ['winner1', 'winner2', 'winner3', 'winner4', 'winner5'],
-                show: false
-    
-            },
-        ];
-    
-        vm.toggleShowCategory = function (index) {
-            console.log('category index:', index);
-                vm.sampleList[index].show = !vm.sampleList[index].show;
-        };
-    
-        vm.toggleLeft = buildDelayedToggler('left');
-    
-        vm.close = function () {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav('left').close()
-                .then(function () {
-                    $log.debug("close LEFT is done");
-                });
-    
-        };
-    
-        /**
-         * Supplies a function that will continue to operate until the
-         * time is up.
-         */
-        function debounce(func, wait, context) {
-            var timer;
-    
-            return function debounced() {
-                var context = $scope,
-                    args = Array.prototype.slice.call(arguments);
-                $timeout.cancel(timer);
-                timer = $timeout(function () {
-                    timer = undefined;
-                    func.apply(context, args);
-                }, wait || 10);
-            };
-        }
-    
-        /**
-         * Build handler to open/close a SideNav; when animation finishes
-         * report completion in console
-         */
-        function buildDelayedToggler(navID) {
-            return debounce(function () {
-                // Component lookup should always be available since we are not using `ng-if`
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
+
+    vm.yearObj = WinnersService.yearObj;
+    vm.adObj = {};
+    vm.groupBy = [];
+    vm.disableGroupByCategoryBtn = true;
+    vm.disableGroupByOrgBtn = false;
+
+    var yearParam = $routeParams.year;
+    var groupedByOrg = [];
+    var groupedByCategory = [];
+
+    function fetchYear(year) {
+        WinnersService.getYear(year)
+            .then(function (response) {
+                // create grouped by category array
+                vm.yearObj.year.ads.reduce(function (grouped, ad) {
+                    // find matching category by cateory name
+                    var index = grouped.findIndex(function (category) {
+                        return category.name === ad.category;
                     });
-            }, 200);
-        }
-    
-        function buildToggler(navID) {
-            return function () {
-                // Component lookup should always be available since we are not using `ng-if`
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
+
+                    // if no matching category found
+                    if (index === -1) {
+
+                        // create new category
+                        var categoryToAdd = { name: ad.category, winners: [], show: false };
+
+                        // add current ad in new category
+                        categoryToAdd.winners.push({ id: ad.id, name: ad.name, award: ad.award });
+
+                        // add new category to grouped array
+                        grouped.push(categoryToAdd);
+                    } else { // category already exists
+
+                        // add current ad to existing category
+                        grouped[index].winners.push({ id: ad.id, name: ad.name, award: ad.award });
+                    }
+
+                    // return updated grouped array
+                    return grouped;
+                }, groupedByCategory); // end group by category reduce
+
+                // create grouped by organization array
+                vm.yearObj.year.ads.reduce(function (grouped, ad) {
+                    // find matching organization by cateory name
+                    var index = grouped.findIndex(function (organization) {
+                        return organization.name === ad.organization;
                     });
-            };
+
+                    // if no matching organization found
+                    if (index === -1) {
+
+                        // create new organization
+                        var categoryToAdd = { name: ad.organization, winners: [], show: false };
+
+                        // add current ad in new organization
+                        categoryToAdd.winners.push({ id: ad.id, name: ad.name, award: ad.award });
+
+                        // add new organization to grouped array
+                        grouped.push(categoryToAdd);
+                    } else { // organization already exists
+
+                        // add current ad to existing organization
+                        grouped[index].winners.push({ id: ad.id, name: ad.name, award: ad.award });
+                    }
+
+                    // return updated grouped array
+                    return grouped;
+                }, groupedByOrg); // end group by org reduce
+            }); // end WinnersService.getYear().then
+
+        // set vm.groupBy base on toggle button
+        if (vm.disableGroupByCategoryBtn) {
+            vm.groupBy = groupedByCategory;
+        } else {
+            vm.groupBy = groupedByOrg;
         }
+
+        console.log('groupedByCategory', groupedByCategory);
+        console.log('groupedByOrg', groupedByOrg);
+
+    } // end fetchYear()
+
+    function fetchAd(adId) {
+        WinnersService.getAd(adId)
+            .then(function (response) {
+                console.log('fetched ad:', vm.adObj.ad);
+                vm.adObj = WinnersService.adObj;
+            }); // end WinnersService.getAd().then
+    } // end fetchAd()
+
+    vm.toggleShowCategory = function (index) {
+        console.log('category index:', index);
+        vm.groupBy[index].show = !vm.groupBy[index].show;
+    }; // end toggleShowCategory()
+
+    vm.changeWinnerDetails = function (adId) {
+        console.log('winner detials id:', adId);
+        fetchAd(adId);
+    }
+
+    vm.toggleGroupBy = function () {
+        // toggle groupBy buttons
+        vm.disableGroupByCategoryBtn = !vm.disableGroupByCategoryBtn;
+        vm.disableGroupByOrgBtn = !vm.disableGroupByOrgBtn;
+
+        // toggle groupBy array
+        if (vm.disableGroupByCategoryBtn) {
+            vm.groupBy = groupedByCategory;
+        } else {
+            vm.groupBy = groupedByOrg;
+        }
+    };
+
+    fetchYear(yearParam);
+
 }); // end WinnerController
