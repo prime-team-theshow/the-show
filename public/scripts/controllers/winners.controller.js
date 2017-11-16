@@ -99,8 +99,8 @@ myApp.controller('WinnersController', function (WinnersService, $routeParams) {
     function fetchAd(adId) {
         WinnersService.getAd(adId)
             .then(function (response) {
-                console.log('fetched ad:', vm.adObj.ad);
                 vm.adObj = WinnersService.adObj;
+                console.log('fetched ad:', vm.adObj.ad);
             }); // end WinnersService.getAd().then
     } // end fetchAd()
 
@@ -110,7 +110,7 @@ myApp.controller('WinnersController', function (WinnersService, $routeParams) {
     }; // end toggleShowCategory()
 
     vm.changeWinnerDetails = function (adId) {
-        console.log('winner detials id:', adId);
+        console.log('winner details id:', adId);
         fetchAd(adId);
     }
 
