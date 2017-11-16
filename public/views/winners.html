@@ -38,12 +38,17 @@
 
         <!-- details view -->
         <md-content flex layout-padding>
-            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
-                {{wc.adObj.ad}}
-            </div>
+
+            <!-- if addObj is empty, display landing page -->
             <div ng-if="!wc.adObj.ad">
                 {{wc.yearObj.year.background}} {{wc.yearObj.year.png}}
             </div>
+
+            <!-- else display ad details -->
+            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
+                {{wc.adObj.ad}}
+            </div>
+            
         </md-content>
     </section>
 </div>
