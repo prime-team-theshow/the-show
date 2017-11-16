@@ -1,6 +1,6 @@
 <div layout="column" ng-cloak class="md-inline-form">
-        <md-content theme="dark" layout-gt-sm="row" class="centered" layout-padding>
-                <md-card>
+        <md-content layout-gt-sm="row" class="centered" layout-padding>
+                <md-card class="md-wide">
                         <md-input-container>
                                 <label>Email</label>
                                 <input ng-model="lc.userToLogin.username" type="email">
@@ -13,5 +13,5 @@
                         <md-button ng-click="lc.login()">Login</md-button>
                 </md-card>
         </md-content>
-        <a class="centered" href="#">Forgot Password?</a>
+        <a class="centered" href="http://localhost:6660/#!/changePassword"><strong>Forgot Password?</strong></a>
 </div>
