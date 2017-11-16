@@ -4,13 +4,45 @@
         <!-- sidenav view -->
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true" md-whiteframe="2">
 
-            <!-- sidenav toolbar -->
-            <md-toolbar class="md-theme-gray">
-                <h1 class="md-toolbar-tools">The Show</h1>
-            </md-toolbar>
-
+        
             <!-- sidenav content -->
-            <md-content layout-padding>
+            <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="Category" ng-click="wc.toggleGroupBy()">
+
+                                <div ng-repeat="group in wc.groupBy">
+                                        <div layout="row">
+                                            <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                                                {{ group.name }}
+                                                <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                                            </md-list-item>
+                                        </div>
+                                        <!-- winners -->
+                                        <div ng-show="group.show" ng-repeat="winner in group.winners">
+                                            <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                                                <div flex="25"></div>
+                                                <p>{{ winner.name }}</p>
+                                            </md-list-item>
+                                        </div>
+                                    </div>
+                            </md-tab>
+                            <md-tab label="Agency" ng-click="wc.toggleGroupBy()">
+                                    <div ng-repeat="group in wc.groupBy">
+                                            <div layout="row">
+                                                <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                                                    {{ group.name }}
+                                                    <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                                                </md-list-item>
+                                            </div>
+                                            <!-- winners -->
+                                            <div ng-show="group.show" ng-repeat="winner in group.winners">
+                                                <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                                                    <div flex="25"></div>
+                                                    <p>{{ winner.name }}</p>
+                                                </md-list-item>
+                                            </div>
+                                        </div>
+                            </md-tab>
                 <!-- toggle groupBy -->
                 <div layout="row">
                     Group by:
@@ -21,14 +53,15 @@
                 <!-- categories -->
                 <div ng-repeat="group in wc.groupBy">
                     <div layout="row">
-                        <md-subheader class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                        <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
                             {{ group.name }}
                             <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
-                        </md-subheader>
+                        </md-list-item>
                     </div>
                     <!-- winners -->
                     <div ng-show="group.show" ng-repeat="winner in group.winners">
                         <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                            <div flex="25"></div>
                             <p>{{ winner.name }}</p>
                         </md-list-item>
                     </div>
@@ -46,7 +79,12 @@
 
             <!-- else display ad details -->
             <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
-                {{wc.adObj.ad}}
+                Organization: {{wc.adObj.ad.organization}}<br>
+                Ad Name: {{wc.adObj.ad.name}}<br>
+                Award: {{wc.adObj.ad.award}}<br>
+                Advertizer: {{wc.adObj.ad.advertiser}}<br>
+                Credits:<br>
+                <span ng-repeat="credit in wc.adObj.ad.credits">{{credit.title}}: {{credit.name}}</span>
             </div>
             
         </md-content>

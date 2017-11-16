@@ -63,13 +63,16 @@ myApp.service('OrgService', function ($http) {
 
     /**
      * update social media links
+     * 
+     * @param socialMediaId: string
+     * @param url: string
      */
-    sv.updateSocialMedia = function (orgId, typeId, url) {
-        return $http.put('/socialmedia/' + orgId, typeId, url)
-        .catch(function (error) {
-            console.error('OrgService updateSocialMedia() error:', error);
-        }); // end $http.put
-} // end updateOrgProfile()
+    sv.updateSocialMedia = function (socialMediaId, url) {
+        return $http.put('/socialmedia/' + socialMediaId, { url: url })
+            .catch(function (error) {
+                console.error('OrgService updateSocialMedia() error:', error);
+            }); // end $http.put
+    } // end updateOrgProfile()
 
 
 
