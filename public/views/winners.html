@@ -80,18 +80,18 @@
             
 
             <!-- else display ad details -->
-            <div flex="75" ng-if="wc.adObj.ad" layout="column" layout-align="top center">
+            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
                     <div layout="row">
-                <md-grid-list ng-repeat="media in wc.adObj.ad.medias"
-                    md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+                <md-grid-list
+                    md-cols="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6"
                     md-row-height-gt-md="1:1" md-row-height="4:3"
                     md-gutter="8px" md-gutter-gt-sm="4px">
-            
-                <md-grid-tile 
-                              md-rowspan="3"
-                              md-colspan="1">
-                              <img src="{{media.url}}">
-                </md-grid-tile>
+                <md-grid-tile md-rowspan="2" md-colspan="5">
+                    <div ng-repeat="media in wc.adObj.ad.medias">
+                        <img src="{{media.url}}">
+                    </div>
+                
+            </md-grid-tile>
               </md-grid-list>
             </div>
                 Organization: {{wc.adObj.ad.organization}}<br>
@@ -100,7 +100,7 @@
                 Advertizer: {{wc.adObj.ad.advertiser}}<br>
                 Credits:<br>
                 <span ng-repeat="credit in wc.adObj.ad.credits">{{credit.title}}: {{credit.name}}</span>
-            </div>
+    
             
         </md-content>
     </section>
