@@ -1,8 +1,8 @@
 <section ng-if="rc.if.show">
     <div layout="column" ng-cloak class="md-inline-form">
         
-        <h2>Register</h2>
-        <h3>{{rc.org.name}}</h3>
+        <h2 class="centered">Register</h2>
+        <h3 class="centered">{{rc.org.name}}</h3>
         <md-content layout-gt-sm="row" class="centered" layout-padding>
                 <md-card class="md-wide">
                 <md-input-container>
@@ -13,7 +13,7 @@
                     <label>Password</label>
                     <input ng-model="rc.org.password" type="password">
                 </md-input-container>
-                <md-button class="md-raised md-warn" ng-click="rc.orgRegister()">Register User</md-button>
+                <md-button class="md-raised md-primary" ng-click="rc.orgRegister()">Register User</md-button>
             </md-card>
         </md-content>
     </div>

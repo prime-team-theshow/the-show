@@ -79,7 +79,7 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         };
         vm.socialMediaTypesObj.socialMediaTypes.forEach(function (socialMediaType) {
             if (socialMediaType.url != '') {
-                //OrgService.updateSocialMedia(vm.profileData.orgId, vm.socialMediaTypesObj.typeId, url);
+                OrgService.updateSocialMedia(vm.profileData.orgId, vm.socialMediaTypesObj.typeId, url);
                 console.log("socialMediaType Info:", socialMediaType.url, socialMediaType.name)
             }
         });
