@@ -16,6 +16,8 @@
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="vendors/photoswipe/photoswipe.css"> 
+    <link rel="stylesheet" href="vendors/photoswipe/default-skin/default-skin.css"> 
 
     <!-- Angular Material -->
     <link href="vendors/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
@@ -32,6 +34,9 @@
     <!-- ngMessages -->
     <script src="vendors/angular-messages/angular-messages.min.js" charset="utf-8" type="text/javascript"></script>
 
+    <!-- photoswipe -->
+    <script src="vendors/photoswipe/photoswipe.min.js"></script> 
+    <script src="vendors/photoswipe/photoswipe-ui-default.min.js"></script> 
     <!-- ********* Client Side ********* -->
     <script src="scripts/client.js" charset="utf-8" type="text/javascript"></script>
     <!-- Controllers -->
@@ -63,11 +68,16 @@
 </head>
 
 <body ng-app="myApp">
+
     <header>
         <span class="centered">
             <h1 class="the-show"><img src="assets/AdFed.svg" class="pin-img">The Show</h1>
         </span>
     </header>
+
+
+
+
     <main>
         <ng-view>
 
