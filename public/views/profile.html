@@ -13,18 +13,18 @@
                                 </md-card-header>
                                 <md-card-body>
                                         <div layout="row">
-                                                <a ng-href="https://{{pc.profileData.website}}" target="_blank" class="centered">See Our Website</a>
+                                                <a ng-href="{{pc.profileData.website}}" target="_blank" class="centered">See Our Website</a>
                                         </div>
                                         <div layout="row">
                                                 <div layout="cloumn" class="centered">
                                                         <span ng-repeat="social in pc.profileData.social_medias" class="socialLogo">
-                                                                <a href="{{social.url}}" target="_blank">
+                                                                <a ng-href="{{social.url}}" target="_blank">
                                                                         <img src="{{social.logo}}" height="20">
                                                                 </a>
                                                         </span>
                                                 </div>
                                         </div>
-                                        <md-button ng-if="pc.profileData.editable === true" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
+                                        <md-button ng-if="pc.profileData.editable" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
                                 </md-card-body>
                         </md-card>
                 </div>
