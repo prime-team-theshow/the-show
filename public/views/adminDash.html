@@ -50,8 +50,34 @@ md-rowspan="2" md-colspan="6">
     </md-content>
 </md-card>
 
-
 </md-grid-tile>
+<md-grid-tile md-rowspan="2" md-colspan="6">
+<md-card layout="column" style="max-width:75%; min-width:75%;">
+    <h3>nodemailer invite</h3>
+    
+    <md-input-container class="md-block" flex-gt-sm>
+        <input type="email" placeholder="organization email address" ng-model="adc.orgToEmail.email" required>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Message</label>
+        <textarea name="inviteMessage" ng-model="tac.orgToEmail.message" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+        <md-button ng-if="adc.message.showInviteButton" class="md-raised md-primary" ng-click="adc.inviteOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Invite</md-button>
+    <md-button ng-if="adc.message.showRemindButton" class="md-raised md-primary" ng-click="adc.remindOrg(tac.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Reminder</md-button>
+    </md-input-container>
+</md-card>
+</md-grid-tile>
+
+<md-dialog aria-label="List dialog">
+    <md-dialog-content>
+      hi i am dialog wazzap
+      </md-list>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="closeDialog()" class="md-primary">Close Dialog</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+
+
 
 <md-grid-tile class="gray"
 md-rowspan="1" md-colspan="6">
