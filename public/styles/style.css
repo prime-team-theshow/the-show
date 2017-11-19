@@ -10,6 +10,11 @@
     font-family: 'Baloo Bhai', cursive;
 }
 
+.pin-img {
+    height: 30px;
+    width: 30px;
+}
+
 .centered {
     margin: auto;
     text-align: center;
@@ -29,11 +34,6 @@
     margin-right: 12px;
 }
 
-
-#orgProfile {
-    background-color: gray;
-}
-
 .md-wide {
     width: 300px;
 }
@@ -41,6 +41,18 @@
 a:link {
     color: crimson;
     text-decoration: none;
+}
+
+.logo {
+    background-color: gray;
+    height: 100px;
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.floatRight {
+    display: inline;
+
 }
 
 

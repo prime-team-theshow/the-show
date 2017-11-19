@@ -1,32 +1,25 @@
+<md-button ng-if="pc.loggedIn" class="floatRight">Logout</md-button>
 <div layout="column" md-cloak class="md-padding">
         <md-content class="md-padding" layout-lg="column">
-                <div>
-                        <md-card id="orgProfile">
-                                <md-card-header>
-                                        <md-card-avatar>
-                                                <img src="{{pc.profileData.logo}}" class="centered">
-                                        </md-card-avatar>
-                                        <md-card-header-text>
-                                                <span class="md-title">{{pc.profileData.name}}</span>
-                                                <span class "md-subhead">{{pc.profileData.description}}</span>
-                                        </md-card-header-text>
-                                </md-card-header>
-                                <md-card-body>
-                                        <div layout="row">
-                                                <a ng-href="{{pc.profileData.website}}" target="_blank" class="centered">See Our Website</a>
-                                        </div>
-                                        <div layout="row">
-                                                <div layout="cloumn" class="centered">
-                                                        <span ng-repeat="social in pc.profileData.social_medias" class="socialLogo">
-                                                                <a ng-href="{{social.url}}" target="_blank">
-                                                                        <img src="{{social.logo}}" height="20">
-                                                                </a>
-                                                        </span>
-                                                </div>
-                                        </div>
-                                        <md-button ng-if="pc.profileData.editable" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
-                                </md-card-body>
+                <div class="centered">
+                        <md-card class="logo centered">
+                        <img src="{{pc.profileData.logo}}" class="centered">
                         </md-card>
+                        <span><h1 class="centered">{{pc.profileData.name}}</h1></span>
+                        <span><p>{{pc.profileData.description}}</p></span>
+                        <div layout="row">
+                                <a ng-href="{{pc.profileData.website}}" target="_blank" class="centered"><strong>See Our Website</strong></a>
+                        </div>
+                        <div layout="row">
+                                <div layout="cloumn" class="centered">
+                                        <span ng-repeat="social in pc.profileData.social_medias" class="socialLogo">
+                                                <a ng-href="{{social.url}}" target="_blank">
+                                                        <img src="{{social.logo}}" height="30">
+                                                </a>
+                                        </span>
+                                </div>
+                        </div>
+                        <md-button ng-if="pc.profileData.editable" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
                 </div>
         </md-content>
 </div>
@@ -35,15 +28,15 @@
         <div ng-repeat="ad in pc.profileData.ads" flex-xs flex-gt-xs="25" layout="column">
                 <md-card ng-click="pc.goToWinnersView()">
                         <md-card-header class="bottom-margin-shrink">
-                                                <md-icon ng-if="ad.award === 'Gold'" md-svg-src="assets/AdFed.gold.svg" aria-label="gold" class="svg"></md-icon>
-                                                <md-icon ng-if="ad.award === 'Silver'" md-svg-src="assets/AdFed.silver.svg" aria-label="silver" class="svg"></md-icon>
-                                                <md-icon ng-if="ad.award === 'Bronze'" md-svg-src="assets/AdFed.bronze.svg" aria-label="bronze" class="svg"></md-icon>
+                                <md-icon ng-if="ad.award === 'Gold'" md-svg-src="assets/AdFed.gold.svg" aria-label="gold" class="svg"></md-icon>
+                                <md-icon ng-if="ad.award === 'Silver'" md-svg-src="assets/AdFed.silver.svg" aria-label="silver" class="svg"></md-icon>
+                                <md-icon ng-if="ad.award === 'Bronze'" md-svg-src="assets/AdFed.bronze.svg" aria-label="bronze" class="svg"></md-icon>
                                 <md-card-header-text>
                                         <span class="md-subhead">Award: {{ad.award}}</span>
                                         <span class="md-subhead top-margin-shrink">Category: {{ad.category}}</span>
                                 </md-card-header-text>
                         </md-card-header>
-                        <md-card-title >
+                        <md-card-title>
                                 <md-card-title-text>
                                         <span class="md-title centered top-margin-shrink">{{ad.name}}</span>
                                         <span class="md-subhead centered top-margin-shrink">{{ad.advertiser}}</span>

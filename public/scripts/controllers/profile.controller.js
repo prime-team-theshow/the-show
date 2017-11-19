@@ -15,6 +15,18 @@ myApp.controller('ProfileController', function (OrgService, AuthService, $http, 
 
     // if the email of the logged in user is the same as the email for this profile admin, show the edit button
 
+    vm.loggedIn = function() {
+        if (AuthService.user.username) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    vm.logout = function() {
+        AuthService.logout();
+    }
+
     vm.checkForAgencyAdmin = function (profileEmail, userEmail) {
         if (profileEmail === userEmail) {
             vm.profileData.editable = true;
