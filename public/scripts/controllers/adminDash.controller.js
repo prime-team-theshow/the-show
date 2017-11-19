@@ -1,8 +1,7 @@
 myApp.controller('AdminDashController', function (AdminService, NodeMailerService) {
     console.log('in AdminDashController');
     var vm = this;
-    
-    
+    vm.showTile = false;
         // object to hold filtered org data
         vm.orgs = {
             //all: AdminService.orgs.all,
@@ -50,6 +49,7 @@ myApp.controller('AdminDashController', function (AdminService, NodeMailerServic
         // sets up invite before sending
        
         vm.setInvite = function (orgId) {
+            vm.showTile = true;
             console.log('in setInvite');
             // show button to send invite
             vm.message.showInviteButton = true;
