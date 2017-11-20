@@ -64,6 +64,7 @@ myApp.controller('RegistrationController', function (AuthService, OrgService, $r
         // send org user inputs to service as an object
         AuthService.orgRegistration(vm.org).then( function () {
             // then redirect to login view
+            AuthService.registrationSuccess = true;
             $location.path('/login')
         }); // end AuthService.orgRegister
     }; // ebd orgRegister

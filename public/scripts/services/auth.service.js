@@ -10,6 +10,8 @@ myApp.service('AuthService', function ($http) {
     // object to hold login response
     self.user = {};
 
+    self.registrationSuccess = false;
+
     // temporary - allows admins to create a new admin login
     // this is for testing and works with /auth view
     self.adminRegister = function (userObj) {
