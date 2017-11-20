@@ -1,108 +1,120 @@
-
 <div style="height:768px;" layout="column" ng-cloak>
     <section layout="row" flex>
 
         <!-- sidenav view -->
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true" md-whiteframe="2">
 
-        
+
             <!-- sidenav content -->
             <md-content>
-                    <md-tabs md-dynamic-height md-border-bottom>
-                            <md-tab label="Category" ng-click="wc.toggleGroupBy()">
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Category" ng-click="wc.toggleGroupBy()">
 
-                                <div ng-repeat="group in wc.groupBy">
-                                        <div layout="row">
-                                            <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
-                                                {{ group.name }}
-                                                <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
-                                            </md-list-item>
-                                        </div>
-                                        <!-- winners -->
-                                        <div ng-show="group.show" ng-repeat="winner in group.winners">
-                                            <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
-                                                <div flex="25"></div>
-                                                <p>{{ winner.name }}</p>
-                                            </md-list-item>
-                                        </div>
-                                    </div>
-                            </md-tab>
-                            <md-tab label="Agency" ng-click="wc.toggleGroupBy()">
-                                    <div ng-repeat="group in wc.groupBy">
-                                            <div layout="row">
-                                                <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
-                                                    {{ group.name }}
-                                                    <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
-                                                </md-list-item>
-                                            </div>
-                                            <!-- winners -->
-                                            <div ng-show="group.show" ng-repeat="winner in group.winners">
-                                                <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
-                                                    <div flex="25"></div>
-                                                    <p>{{ winner.name }}</p>
-                                                </md-list-item>
-                                            </div>
-                                        </div>
-                            </md-tab>
-                <!-- toggle groupBy -->
-                <div layout="row">
-                    Group by:
-                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByCategoryBtn">Category</md-button>
-                    <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByOrgBtn">Organization</md-button>
-                </div>
-
-                <!-- categories -->
-                <div ng-repeat="group in wc.groupBy">
+                        <div ng-repeat="group in wc.groupBy">
+                            <div layout="row">
+                                <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                                    {{ group.name }}
+                                    <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                                </md-list-item>
+                            </div>
+                            <!-- winners -->
+                            <div ng-show="group.show" ng-repeat="winner in group.winners">
+                                <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                                    <div flex="25"></div>
+                                    <p>{{ winner.name }}</p>
+                                </md-list-item>
+                            </div>
+                        </div>
+                    </md-tab>
+                    <md-tab label="Agency" ng-click="wc.toggleGroupBy()">
+                        <div ng-repeat="group in wc.groupBy">
+                            <div layout="row">
+                                <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                                    {{ group.name }}
+                                    <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                                </md-list-item>
+                            </div>
+                            <!-- winners -->
+                            <div ng-show="group.show" ng-repeat="winner in group.winners">
+                                <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                                    <div flex="25"></div>
+                                    <p>{{ winner.name }}</p>
+                                </md-list-item>
+                            </div>
+                        </div>
+                    </md-tab>
+                    <!-- toggle groupBy -->
                     <div layout="row">
-                        <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
-                            {{ group.name }}
-                            <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
-                        </md-list-item>
+                        Group by:
+                        <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByCategoryBtn">Category</md-button>
+                        <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByOrgBtn">Organization</md-button>
                     </div>
-                    <!-- winners -->
-                    <div ng-show="group.show" ng-repeat="winner in group.winners">
-                        <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
-                            <div flex="25"></div>
-                            <p>{{ winner.name }}</p>
-                        </md-list-item>
+
+                    <!-- categories -->
+                    <div ng-repeat="group in wc.groupBy">
+                        <div layout="row">
+                            <md-list-item flex="100" class="md-no-sticky" ng-click="wc.toggleShowCategory($index)">
+                                {{ group.name }}
+                                <md-icon>{{ group.show ? "expand_less" : "expand_more" }}</md-icon>
+                            </md-list-item>
+                        </div>
+                        <!-- winners -->
+                        <div ng-show="group.show" ng-repeat="winner in group.winners">
+                            <md-list-item ng-click="wc.changeWinnerDetails(winner.id)">
+                                <div flex="25"></div>
+                                <p>{{ winner.name }}</p>
+                            </md-list-item>
+                        </div>
                     </div>
-                </div>
             </md-content>
         </md-sidenav>
 
         <!-- details view -->
         <md-content flex layout-padding>
-            <div flex="25"></div>
+            
 
             <!-- if addObj is empty, display landing page -->
             <div ng-if="!wc.adObj.ad">
-                {{wc.yearObj.year.background}} {{wc.yearObj.year.png}}
+                <div style="background-image: url({{wc.yearObj.year.background}});">
+                    <br>
+                    <br>
+                    <img class="center" src="{{wc.yearObj.year.png}}">
+                </div>
+                <img class="background" src="{{wc.yearObj.year.background}}">
             </div>
-            
+
 
             <!-- else display ad details -->
-            <div ng-if="wc.adObj.ad" layout="column" layout-align="top center">
-                    <div layout="row">
-                <md-grid-list
-                    md-cols="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6"
-                    md-row-height-gt-md="1:1" md-row-height="4:3"
-                    md-gutter="8px" md-gutter-gt-sm="4px">
-                <md-grid-tile md-rowspan="2" md-colspan="5">
-                    <div ng-repeat="media in wc.adObj.ad.medias">
-                        <img src="{{media.url}}">
+            <div ng-if="wc.adObj.ad" layout="column">
+                <div flex="25"></div>
+                <!-- medias -->
+                <md-grid-list md-rows="3" md-cols="3" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
+                        md-gutter-gt-sm="4px">
+                <md-grid-tile flex="row" md-rowspan="3" md-colspan="2">
+                        <div class="media" ng-repeat="media in wc.adObj.ad.medias">
+                                <img class="media" src="{{media.url}}">
                     </div>
-                
-            </md-grid-tile>
-              </md-grid-list>
+                </md-grid-tile>
+                    
+                    <md-grid-tile md-rowspan="3" md-colspan="2">
+                    <p style="font-family:Trebuchet MS;" flex="column">
+                    Organization: {{wc.adObj.ad.organization}}
+                    <br> Ad Name: {{wc.adObj.ad.name}}
+                    <br> Award: {{wc.adObj.ad.award}}
+                    <br> Advertizer: {{wc.adObj.ad.advertiser}}
+                    <br>
+                    <span ng-repeat="credit in wc.adObj.ad.credits">{{credit.title}}: {{credit.name}}</span>
+                </div>
+                    </md-grid-tile>
+                </md-grid-list>
             </div>
-                Organization: {{wc.adObj.ad.organization}}<br>
-                Ad Name: {{wc.adObj.ad.name}}<br>
-                Award: {{wc.adObj.ad.award}}<br>
-                Advertizer: {{wc.adObj.ad.advertiser}}<br>
-                Credits:<br>
-                <span ng-repeat="credit in wc.adObj.ad.credits">{{credit.title}}: {{credit.name}}</span>
-    
-            
+                <br>
+
+                <!-- text -->
+                
+
+            </div>
         </md-content>
     </section>
+
 </div>
