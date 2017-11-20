@@ -452,7 +452,7 @@ INSERT INTO category (full_category)
 
 -- ad #11
 INSERT INTO ad (year_id, organization_id, category_id, name, award, advertiser)
-    VALUES(1, 7, 8, 'BeenThere', 'Gold', 'Travel');
+    VALUES(1, 6, 8, 'BeenThere', 'Gold', 'Travel');
 
 INSERT INTO media (ad_id, type, url)
     VALUES
