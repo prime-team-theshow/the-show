@@ -64,3 +64,8 @@ a:link {
 .media {
     width: 100%;
 }
+
+.box {
+    border-style: solid;
+    border-color: lightgray
+}

@@ -25,7 +25,7 @@ md-rowspan="2" md-colspan="6">
     <md-content flex> 
        
             <md-list>
-                    <md-list-item ng-repeat="org in adc.orgs.notPending">
+                    <md-list-item class="box" ng-repeat="org in adc.orgs.notPending">
                       <div layout="row" flex="100" class="md-list-item-text">
                           
                         <h3 flex="20">{{org.name}}</h3>
@@ -36,7 +36,7 @@ md-rowspan="2" md-colspan="6">
                         <div flex="20"><md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="adc.denyOrg(org.id)">Revoke</md-button></div>
                       </div>
                     </md-list-item>
-                          <md-list-item ng-repeat="org in adc.orgs.pending">
+                          <md-list-item class="box" ng-repeat="org in adc.orgs.pending">
                                 <div layout="row" flex="100" class="md-list-item-text">
                                     
                                   <h3 flex="20">{{org.name}}</h3>
