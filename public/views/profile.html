@@ -1,4 +1,5 @@
 <md-button ng-if="pc.loggedIn" class="floatRight">Logout</md-button>
+<div ng-include="'views/partials/header.html'"></div>
 <div layout="column" md-cloak class="md-padding">
         <md-content class="md-padding" layout-lg="column">
                 <div class="centered">
@@ -19,7 +20,7 @@
                                         </span>
                                 </div>
                         </div>
-                        <md-button ng-if="pc.profileData.editable" ng-click="pc.goToEditProfile()">Edit This Info</md-button>
+                        <md-button ng-if="pc.profileData.editable" ng-click="pc.goToEditProfile()" class="md-primary">Edit This Info</md-button>
                 </div>
         </md-content>
 </div>
