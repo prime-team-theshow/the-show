@@ -2,6 +2,8 @@ myApp.controller('LoginController', function (AuthService, OrgService, $location
     console.log('in LoginController');
     var vm = this;
 
+    vm.registrationSuccess = AuthService.registrationSuccess;
+
     vm.goToProfile = function() {
         console.log("AuthService.user: ", AuthService.user);
         if (AuthService.user.isadmin) {
@@ -21,6 +23,7 @@ myApp.controller('LoginController', function (AuthService, OrgService, $location
         AuthService.login(vm.userToLogin).then(function (response) {
             console.log("AuthService.user: ", AuthService.user);
            vm.goToProfile();
+           AuthService.registrationSuccess = false;
         });
     };
 
