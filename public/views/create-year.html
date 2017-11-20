@@ -1,6 +1,11 @@
 <div ng-include="'views/partials/header.html'"></div>
-<md-content>
-    <div layout="column" layout-align="center">
+<md-content class="md-padding">
+    <md-card layout="column" layout-align="center" layout-padding>
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+                <span class="md-headline">Create New Award Year</span>
+            </md-card-title-text>
+        </md-card-title>
         <form name="yearForm">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>year</label>
@@ -22,5 +27,5 @@
             </md-input-container>
         </div>
         <md-button class="md-raised md-primary" ng-disabled="cyc.disableCreateBtn">Create</md-button>
-    </div>
+    </md-card>
 </md-content>
