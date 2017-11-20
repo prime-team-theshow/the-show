@@ -1,7 +1,7 @@
 <div layout="row" styles="min-height:100%"ng-cloak>
 
     <!-- side nav view -->
-    <md-whiteframe flex="30" class="md-whiteframe-4dp"`>
+    <md-whiteframe flex="30" class="md-whiteframe-4dp" >
 
         <!-- logo container -->
         <md-toolbar layout-align="center center">
@@ -10,7 +10,7 @@
         </md-toolbar>
 
         <!-- sidenav content -->
-        <md-content layout-margin>
+        <md-content layout-margin style="background: white">
             <!-- toggle groupBy -->
             <div layout="row">
                 <md-button ng-click="wc.toggleGroupBy()" class="md-raised" ng-disabled="wc.disableGroupByCategoryBtn">Category</md-button>
@@ -44,7 +44,7 @@
 
             <!-- if addObj is empty, display landing page -->
             <div layout-align="center center" style="background-image: url({{wc.yearObj.year.background}});" ng-if="!wc.adObj.ad">
-                <img src="{{wc.yearObj.year.png}}">
+                <img class="splash adMedia" src="{{wc.yearObj.year.png}}">
             </div>
 
             <!-- else display ad details -->
@@ -52,6 +52,9 @@
 
                 <!-- main info -->
                 <div>
+                    <p><md-icon ng-if="wc.adObj.ad.award === 'Gold'" md-svg-src="assets/AdFed.gold.svg" aria-label="gold" class="svg"></md-icon></p>
+                    <p><md-icon ng-if="wc.adObj.ad.award === 'Silver'" md-svg-src="assets/AdFed.silver.svg" aria-label="silver" class="svg"></md-icon></p>
+                    <p><md-icon ng-if="wc.adObj.ad.award === 'Bronze'" md-svg-src="assets/AdFed.bronze.svg" aria-label="bronze" class="svg"></md-icon></p>
                     <p>Award: {{ wc.adObj.ad.award }}</p>
                     <p>Category: {{ wc.adObj.ad.category }}</p>
                     <p>Organization: {{ wc.adObj.ad.organization }}</p>
@@ -59,16 +62,14 @@
 
                 <!-- credits -->
                 <div>
-                    Credits:
-                    <ul>
-                        <li ng-repeat="credit in wc.adObj.ad.credits">{{ credit.title }}: {{ credit.name }}</li>
-                    </ul>
+                    <h4>Credits:</h4>
+                    <p ng-repeat="credit in wc.adObj.ad.credits">{{ credit.title }}: {{ credit.name }}</li>
                 </div>
 
                 <!-- medias -->
                 <div layout="row" layout-padding layout-fill>
                     <div layout-padding ng-repeat="media in wc.adObj.ad.medias">
-                        <img src="{{ media.url }}">
+                        <img class="adMedia" src="{{ media.url }}">
                     </div>
                 </div>
             </div>

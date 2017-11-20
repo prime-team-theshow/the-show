@@ -69,3 +69,12 @@ a:link {
     border-style: solid;
     border-color: lightgray
 }
+
+.adMedia {
+    width: 80%;
+}
+
+.splash {
+    margin-left: 15%;
+    width: 70%
+}
