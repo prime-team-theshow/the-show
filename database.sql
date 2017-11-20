@@ -428,29 +428,22 @@ INSERT INTO credit (ad_id, title, name)
         (10, 'Agency Producer', 'Lisa Norman'),
         (10, 'Flame/Online Artist', 'Derek Johnson');
 
--- organization #5: invited for registration testing  --
--- navigate to http://localhost:6660/#!/registration/5 --
-INSERT INTO organization (name, email, invited)
-    VALUES (
-        'registration test',
-        'abc-123@email.com',
-        true
-    );
 
--- organization #6: for admin dashboard testing  --
+-- organization #5: alicia's bull it  --
 -- this gmail account can be used to test the redirect link --
 INSERT INTO organization (name, email, invited)
     VALUES (
-        'already invited org, remind me?',
+        'Bull It',
         'agency.test.theshow@gmail.com',
         true
     );
 
--- organization #7: demo --
-INSERT INTO organization (name, email)
+-- organization #6: demo --
+INSERT INTO organization (name, email, invited)
     VALUES (
         'S.S. Hax',
-        'sshax@gmail.com'
+        'sshax@gmail.com',
+        true
     );
 
 -- category #8
