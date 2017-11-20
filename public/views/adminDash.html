@@ -54,12 +54,14 @@ md-rowspan="2" md-colspan="6">
 
 <md-grid-tile ng-show="adc.showTile" md-rowspan="2" md-colspan="6">
 <md-card layout="column" style="max-width:75%; min-width:75%;">
-    <h3>nodemailer invite</h3>
-    
-    <md-input-container class="md-block" flex-gt-sm>
+    <md-toolbar class="md-primary"><div class="md-toolbar-tools">
+        <h2 class="md-flex">Agencies</h2>
+    </div></md-toolbar>
+    <br>
+    <md-input-container class="md-block" flex-gt-sm layout-margin>
         <input type="email" placeholder="organization email address" ng-model="adc.orgToEmail.email" required>
     </md-input-container>
-    <md-input-container class="md-block">
+    <md-input-container class="md-block" layout-margin>
         <label>Message</label>
         <textarea name="inviteMessage" ng-model="adc.orgToEmail.message" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
         <md-button ng-if="adc.message.showInviteButton" class="md-raised md-primary" ng-click="adc.inviteOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Invite</md-button>

@@ -18,8 +18,8 @@
             </div>
         </div>
     </div>
-    <div layout="column" style="max-width:75%; min-width:75%;">
-        <h3>nodemailer invite</h3>
+    <div layout="column" style="max-width:75%; min-width:75%;" layout margin>
+        <h3>Invite</h3>
         <md-button ng-if="tac.message.showInviteButton" class="md-raised md-primary" ng-click="tac.inviteOrg(tac.orgToEmail.email, tac.orgToEmail.message, tac.orgToEmail.orgId)">Send Invite</md-button>
         <md-button ng-if="tac.message.showRemindButton" class="md-raised md-primary" ng-click="tac.remindOrg(tac.orgToEmail.email, tac.orgToEmail.message, tac.orgToEmail.orgId)">Send Reminder</md-button>
         <md-input-container class="md-block" flex-gt-sm>
