@@ -1,4 +1,4 @@
-myApp.controller('AdminDashController', function (AdminService, NodeMailerService) {
+myApp.controller('AdminDashController', function (AdminService, NodeMailerService, $location) {
     console.log('in AdminDashController');
     var vm = this;
     vm.showTile = false;
@@ -76,6 +76,12 @@ myApp.controller('AdminDashController', function (AdminService, NodeMailerServic
             // sets email to email value and shows in the input
             vm.orgToEmail.email = email;
         }; // end setRemind
+        
+        // redirect to new year view
+        vm.newYearView = function () {
+            console.log('in newYearView');
+            $location.path('/create-year');
+        }; // end newYearView
     
     
     
