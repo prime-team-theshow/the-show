@@ -55,6 +55,13 @@ a:link {
 
 }
 
+.center {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
 
-
-  
+.media {
+    width: 20%;
+    height: 20%;
+}
