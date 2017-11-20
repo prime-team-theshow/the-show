@@ -27,6 +27,16 @@ require('dotenv').config();
 //     } // end auth
 // }); // end transporter
 
+// GMAIL from DB
+// (allow less secure apps on gmail) https://support.google.com/accounts/answer/6010255?hl=en
+var transporterTest = nodemailer.createTransport({
+    service: 'gmail', // built in SMTP connection details - cases sensitive
+    auth: {
+        user: process.env.GMAIL_UN,
+        pass: process.env.GMAIL_PW
+    } // end auth
+}); // end transporter
+
 // GMAIL
 // (allow less secure apps on gmail) https://support.google.com/accounts/answer/6010255?hl=en
 var transporter = nodemailer.createTransport({
