@@ -90,19 +90,18 @@
                 <!-- medias -->
                 <md-grid-list md-rows="3" md-cols="3" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px"
                         md-gutter-gt-sm="4px">
-                <md-grid-tile md-rowspan="3" md-colspan="2">
+                <md-grid-tile flex="row" md-rowspan="3" md-colspan="2">
                         <div class="media" ng-repeat="media in wc.adObj.ad.medias">
                                 <img class="media" src="{{media.url}}">
                     </div>
                 </md-grid-tile>
                     
                     <md-grid-tile md-rowspan="3" md-colspan="2">
-                    <div layout="column">
+                    <p style="font-family:Trebuchet MS;" flex="column">
                     Organization: {{wc.adObj.ad.organization}}
                     <br> Ad Name: {{wc.adObj.ad.name}}
                     <br> Award: {{wc.adObj.ad.award}}
                     <br> Advertizer: {{wc.adObj.ad.advertiser}}
-                    <br> Credits:
                     <br>
                     <span ng-repeat="credit in wc.adObj.ad.credits">{{credit.title}}: {{credit.name}}</span>
                 </div>

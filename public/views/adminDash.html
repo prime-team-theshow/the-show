@@ -42,8 +42,8 @@ md-rowspan="2" md-colspan="6">
                                   <h3 flex="20">{{org.name}}</h3>
                                   <div flex="20"><md-icon md-svg-icon="vendors/icons/check.svg"></md-icon></div>
                                   <div flex="20"></div>
-                                  <div flex="20"><md-button class="md-raised md-primary" ng-click="tac.setRemind(org.id, org.email)">Remind</md-button></div>
-                                   <div flex="20"><md-button class="md-raised md-warn" ng-click="tac.denyOrg(org.id)">Deny</md-button></div>
+                                  <div flex="20"><md-button class="md-raised md-primary" ng-click="adc.setRemind(org.id, org.email)">Remind</md-button></div>
+                                   <div flex="20"><md-button class="md-raised md-warn" ng-click="adc.denyOrg(org.id)">Deny</md-button></div>
                                 </div>
                               </md-list-item>
                   </md-list>
@@ -61,9 +61,9 @@ md-rowspan="2" md-colspan="6">
     </md-input-container>
     <md-input-container class="md-block">
         <label>Message</label>
-        <textarea name="inviteMessage" ng-model="tac.orgToEmail.message" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+        <textarea name="inviteMessage" ng-model="adc.orgToEmail.message" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
         <md-button ng-if="adc.message.showInviteButton" class="md-raised md-primary" ng-click="adc.inviteOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Invite</md-button>
-    <md-button ng-if="adc.message.showRemindButton" class="md-raised md-primary" ng-click="adc.remindOrg(tac.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Reminder</md-button>
+    <md-button ng-if="adc.message.showRemindButton" class="md-raised md-primary" ng-click="adc.remindOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Reminder</md-button>
     </md-input-container>
 </md-card>
 </md-grid-tile>
@@ -77,8 +77,9 @@ md-rowspan="1" md-colspan="6">
             </div>
         </md-toolbar>
     <md-content flex="100a" layout-margin>
-            <input type="file" ng-upload="uploaded_file = $file">
-            <md-button>add csv file</md-button>
+        <md-button class="md-raised md-primary" ng-click="adc.newYearView()">Create New Year</md-button>
+            <!-- <input type="file" ng-upload="uploaded_file = $file">
+            <md-button>add csv file</md-button> -->
     </md-content>
     </md-card>
 </md-grid-tile>
