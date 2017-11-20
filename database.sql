@@ -446,6 +446,30 @@ INSERT INTO organization (name, email, invited)
         true
     );
 
+-- organization #7: demo --
+INSERT INTO organization (name, email)
+    VALUES (
+        'S.S. Hax',
+        'sshax@gmail.com'
+    );
+
+-- category #8
+INSERT INTO category (full_category)
+    VALUES('Website');
+
+-- ad #11
+INSERT INTO ad (year_id, organization_id, category_id, name, award, advertiser)
+    VALUES(1, 7, 8, 'BeenThere', 'Gold', 'Travel');
+
+INSERT INTO media (ad_id, type, url)
+    VALUES
+    (11, 1, './assets/images/landing.jpeg'),
+    (11, 1, './assets/images/profile.jpeg');
+
+
+INSERT INTO credit (ad_id, title, name)
+    VALUES
+        (11, 'Creative Directory', 'Xiong Vang');
 
 -- INSERT INTO category (full_category)
 --     VALUES('');
