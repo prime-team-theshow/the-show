@@ -64,13 +64,18 @@
             </md-card>
         </md-grid-tile>
         <md-grid-tile ng-show="adc.showTile" md-rowspan="2" md-colspan="6">
-                <md-toolbar class="md-primary">
+                <!-- <md-toolbar class="md-primary">
                         <div class="md-toolbar-tools">
                             <h2 class="md-flex">Email an Agency</h2>
                         </div>
-                    </md-toolbar>
+                    </md-toolbar> -->
             <md-card layout="column" style="max-width:75%; min-width:75%;" layout-margin>
-                <h3>nodemailer invite</h3>
+                <md-content>
+                <md-toolbar class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">Email Agency</h2>
+                    </div>
+                </md-toolbar>
                 <md-input-container class="md-block" flex-gt-sm>
                     <input type="email" placeholder="organization email address" ng-model="adc.orgToEmail.email" required>
                 </md-input-container>
@@ -80,6 +85,7 @@
                     <md-button ng-if="adc.message.showInviteButton" class="md-raised md-primary" ng-click="adc.inviteOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Invite</md-button>
                     <md-button ng-if="adc.message.showRemindButton" class="md-raised md-primary" ng-click="adc.remindOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Reminder</md-button>
                 </md-input-container>
+            </md-content>
             </md-card>
         </md-grid-tile>
         <!-- <md-grid-tile class="gray"
