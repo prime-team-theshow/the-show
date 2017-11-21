@@ -1,4 +1,4 @@
-<md-button ng-if="pc.loggedIn()" class="floatRight md-raised" ng-click="pc.logout()">Logout</md-button>
+<md-button ng-if="pc.profileData.editable && pc.loggedIn()" class="floatRight md-raised" ng-click="pc.logout()">Logout</md-button>
 <div ng-include="'views/partials/header.html'"></div>
 <div layout="column" md-cloak class="md-padding">
         <md-content class="md-padding" layout-lg="column">
