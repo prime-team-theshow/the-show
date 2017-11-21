@@ -462,7 +462,7 @@ INSERT INTO media (ad_id, type, url)
 
 INSERT INTO credit (ad_id, title, name)
     VALUES
-        (11, 'Creative Directory', 'Xiong Vang');
+        (11, 'Creative Director', 'Xiong Vang');
 
 -- INSERT INTO category (full_category)
 --     VALUES('');
