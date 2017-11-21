@@ -65,6 +65,7 @@ myApp.controller('AdminDashController', function (AdminService, NodeMailerServic
     
         // sets up reminder values before sending reminder
         vm.setRemind = function (orgId, email) {
+            
             console.log('in setRemind');
             // show button to send reminder
             vm.message.showRemindButton = true;
