@@ -12,18 +12,34 @@ This controller is for the winner view.
 
 myApp.controller('WinnersController', function (WinnersService, $routeParams) {
     console.log('in WinnerController');
+
     var vm = this;
 
-    vm.yearObj = WinnersService.yearObj;
-    vm.adObj = {};
-    vm.groupBy = [];
-    vm.disableGroupByCategoryBtn = true;
-    vm.disableGroupByOrgBtn = false;
-
+    // grabs year from param
     var yearParam = $routeParams.year;
+
+    // stores group by org list
     var groupedByOrg = [];
+
+    // stores group by category list
     var groupedByCategory = [];
 
+    // stores all awards for year
+    vm.yearObj = WinnersService.yearObj;
+
+    // stores ad for details view
+    vm.adObj = {};
+
+    // stores list o feed accordion
+    vm.groupBy = [];
+
+    // disables group by category button
+    vm.disableGroupByCategoryBtn = true;
+
+    // disables group by org button
+    vm.disableGroupByOrgBtn = false;
+
+    // fetch winners for year to show in accordion
     function fetchYear(year) {
         WinnersService.getYear(year)
             .then(function (response) {
@@ -96,6 +112,7 @@ myApp.controller('WinnersController', function (WinnersService, $routeParams) {
 
     } // end fetchYear()
 
+    // fetch ad to show in details view
     function fetchAd(adId) {
         WinnersService.getAd(adId)
             .then(function (response) {
@@ -104,6 +121,7 @@ myApp.controller('WinnersController', function (WinnersService, $routeParams) {
             }); // end WinnersService.getAd().then
     } // end fetchAd()
 
+    // show and hides groupes
     vm.toggleShowCategory = function (index) {
         console.log('category index:', index);
         vm.groupBy[index].show = !vm.groupBy[index].show;
@@ -114,6 +132,7 @@ myApp.controller('WinnersController', function (WinnersService, $routeParams) {
         fetchAd(adId);
     }
 
+    // toggles group by category or org
     vm.toggleGroupBy = function () {
         // toggle groupBy buttons
         vm.disableGroupByCategoryBtn = !vm.disableGroupByCategoryBtn;

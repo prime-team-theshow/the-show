@@ -64,3 +64,17 @@ a:link {
 .media {
     width: 100%;
 }
+
+.box {
+    border-style: solid;
+    border-color: lightgray
+}
+
+.adMedia {
+    width: 80%;
+}
+
+.splash {
+    margin-left: 15%;
+    width: 70%
+}

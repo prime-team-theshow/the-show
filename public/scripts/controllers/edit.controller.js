@@ -79,14 +79,14 @@ myApp.controller('EditController', function (OrgService, AuthService, $http, $lo
         };
         vm.socialMediaTypesObj.socialMediaTypes.forEach(function (socialMediaType) {
             if (socialMediaType.url != '') {
-                OrgService.updateSocialMedia(vm.profileData.orgId, vm.socialMediaTypesObj.typeId, url);
+                OrgService.updateSocialMedia(vm.socialMediaTypesObj.typeId, socialMediaType.url);
                 console.log("socialMediaType Info:", socialMediaType.url, socialMediaType.name)
             }
         });
-        OrgService.updateOrgProfile(vm.profileData.orgId, profile);
-        vm.goToProfile(vm.profileData.orgId);
+        OrgService.updateOrgProfile(vm.profileData.orgId, profile).then(function(response) {
+            vm.goToProfile(vm.profileData.orgId);
+        });
     };
-
     vm.displayProfileInfo();
 
 });
