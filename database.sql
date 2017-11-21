@@ -431,11 +431,12 @@ INSERT INTO credit (ad_id, title, name)
 
 -- organization #5: alicia's bull it  --
 -- this gmail account can be used to test the redirect link --
-INSERT INTO organization (name, email, invited)
+INSERT INTO organization (name, email, invited, logo)
     VALUES (
         'Bull It',
         'agency.test.theshow@gmail.com',
-        true
+        true,
+        './images/bullitLogo.png'
     );
 
 -- organization #6: demo --
