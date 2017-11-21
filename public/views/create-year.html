@@ -1,0 +1,31 @@
+<div ng-include="'views/partials/header.html'"></div>
+<md-content class="md-padding">
+    <md-card layout="column" layout-align="center" layout-padding>
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+                <span class="md-headline">Create New Award Year</span>
+            </md-card-title-text>
+        </md-card-title>
+        <form name="yearForm">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>year</label>
+                <input type="number" min="1906" step="1" ng-model="cyc.yearIn">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>background</label>
+                <input type="url" ng-model="cyc.backgroundIn">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>png</label>
+                <input type="url" ng-model="cyc.pngIn">
+            </md-input-container>
+        </form>
+        <div layout="row">
+            <p>CSV:</p>
+            <md-input-container class="md-block" flex-gt-sm>
+                <input type="file" accept=".csv" onchange="angular.element(this).controller().onFileNameChanged(this)" aria-label="CSV File">
+            </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary" ng-disabled="cyc.disableCreateBtn">Create</md-button>
+    </md-card>
+</md-content>

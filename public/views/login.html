@@ -1,0 +1,23 @@
+<div ng-include="'views/partials/header.html'"></div>
+<div ng-if="lc.registrationSuccess">
+        <h1 class="centered">Registration Successful!</h1>
+</div>
+<div layout="column" ng-cloak class="md-inline-form">
+        <md-content layout-gt-sm="row" class="centered" layout-padding>
+                <md-card class="md-wide">
+                        <h1 class="centered">Login</h1>
+                        <h3>View And Edit Your Agency Profile</h3>
+                        <md-input-container>
+                                <label>Email</label>
+                                <input ng-model="lc.userToLogin.username" type="email">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Password</label>
+                                <input ng-model="lc.userToLogin.password" type="password">
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" ng-click="lc.login()">Login</md-button>
+                </md-card>
+        </md-content>
+        <a class="centered" href="http://localhost:6660/#!/changePassword"><strong>Forgot Password?</strong></a>
+</div>

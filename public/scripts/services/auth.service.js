@@ -7,31 +7,28 @@ myApp.service('AuthService', function ($http) {
     console.log('in AuthService');
     var self = this;
 
-    // object to hold getUser response
-    self.getUser = {};
-
     // object to hold login response
     self.user = {};
 
-
-
-
-    /************** $http **************/
+    self.registrationSuccess = false;
 
     // temporary - allows admins to create a new admin login
+    // this is for testing and works with /auth view
     self.adminRegister = function (userObj) {
         console.log('in adminRegister');
-        $http.post('/register/admin', userObj).then(function (response) {
+        return $http.post('/register/admin', userObj).then(function (response) {
             console.log('admin registration successful');
         }).catch(function (response) {
             console.log('Registration error: ', response);
         }); // end catch
     }; // end adminRegister
 
-    // allows agencies to create a new login
+
+    // allows agencies to create a new login - POST
+    // this is for testing and works with /auth view
     self.orgRegister = function (userObj) {
         console.log('in orgRegister');
-        $http.post('/register/organization', userObj).then(function (response) {
+        return $http.post('/register/organization', userObj).then(function (response) {
             console.log('user registration successful');
         }).catch(function (response) {
             console.log('Registration error: ', response);
@@ -58,15 +55,16 @@ myApp.service('AuthService', function ($http) {
     // logout admin and org users
     self.logout = function () {
         console.log('in logout');
-        $http.get('/auth/logout').then(function (response) {
+        return $http.get('/auth/logout').then(function (response) {
             console.log('logged out');
+            self.user = {};
         }); // end GET
     }; // end adminLogout
 
     // gets user info from the server and logs it on client
     self.getUser = function () {
         console.log(' in getUser');
-        $http.get('/auth').then( function(response) {
+        return $http.get('/auth').then( function(response) {
             console.log('/auth response.data ', response.data);
             // if the user has a current session on the server
             if (response.data.username) {
@@ -78,6 +76,16 @@ myApp.service('AuthService', function ($http) {
         }); // end auth GET
     }; // end getUser
 
+    // allows agencies to create a new login - PUT
 
+    // this is for the registration view
+    self.orgRegistration = function (userObj) {
+        console.log('in orgRegister');
+        return $http.put('/register/organization', userObj).then(function (response) {
+            console.log('user registration successful');
+        }).catch(function (response) {
+            console.log('Registration error: ', response);
+        }); // end catch
+    }; // end orgRegister
 
 }); // end AuthService

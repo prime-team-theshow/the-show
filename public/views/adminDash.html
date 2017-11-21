@@ -1,141 +1,107 @@
+<div ng-include="'views/partials/header.html'"></div>
 <section layout-margin>
-<md-grid-list
-md-cols="6" md-cols-xs="3" md-cols-sm="3" md-cols-md="6" md-cols-gt-md="6"
-md-row-height-gt-md="1:1" md-row-height="2:2"
-md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-list md-cols="6" md-cols-xs="3" md-cols-sm="3" md-cols-md="6" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2"
+        md-gutter="12px" md-gutter-gt-sm="8px">
 
-<md-grid-tile
-md-rowspan="1" md-colspan="3">
-<md-card flex="100">
-    <md-toolbar class="md-warn">
-        <div class="md-toolbar-tools">
-            <h2 class="md-flex">Current Agency Profiles</h2>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised" style="background-color:rgb(95, 93, 93); color:white;" ng-click="adc.newYearView()"> Create New Year </md-button>
         </div>
-    </md-toolbar>
-<md-content flex layout-margin>
-    <ul>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-    </ul>
-</md-content>
-</md-card>
-</md-grid-tile>
-
-<md-grid-tile class="gray"
-md-rowspan="3" md-colspan="3">
+        <md-grid-tile md-rowspan="2" md-colspan="6">
+            <md-card flex="100">
+                <md-toolbar class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">Agencies</h2>
+                    </div>
+                </md-toolbar>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div layout="row" class="md-toolbar-tools centered">
+                        <span flex="20">Org Name</span>
+                        <span flex="20">Complete?</span>
+                        <span flex="20">Invite
+                            <md-tooltip md-direction="below">Send an email to an organization allowing them to sign up.</md-tooltip>
+                        </span>
+                        <span flex="20">Remind
+                            <md-tooltip md-direction="below">Send a reminder email to an organization who has not signed up yet.</md-tooltip>
+                        </span>
+                        <span flex="20">Revoke Access
+                            <md-tooltip md-direction="below">Revoke a signed-up org's access or un-invite an org.</md-tooltip>
+                        </span>
+                    </div>
+                </md-toolbar>
+                <md-content flex>
+                    <md-list>
+                        <md-list-item ng-repeat="org in adc.orgs.notPending">
+                            <div layout="row" flex="100" class="md-list-item-text centered">
+                                <h3 flex="20">{{org.name}}</h3>
+                                <div flex="20"></div>
+                                <div flex="20">
+                                    <md-button ng-hide="{{org.has_password}}" class="md-raised md-primary" ng-click="adc.setInvite(org.id)">Invite</md-button>
+                                    <md-button ng-show="{{org.has_password}}" class="md-raised md-primary" ng-disabled="true">Invite</md-button>
+                                </div>
+                                <div flex="20"></div>
+                                <div flex="20">
+                                    <md-button ng-show="{{org.has_password}}" class="md-raised md-warn" ng-click="adc.denyOrg(org.id)">Revoke</md-button>
+                                </div>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-repeat="org in adc.orgs.pending">
+                            <div layout="row" flex="100" class="md-list-item-tex centered">
+                                <h3 flex="20">{{org.name}}</h3>
+                                <div class="centered" flex="20">
+                                    <md-icon md-svg-icon="vendors/icons/check.svg"></md-icon>
+                                </div>
+                                <div flex="20"></div>
+                                <div flex="20" class="centered">
+                                    <md-button class="md-raised md-primary" ng-click="adc.setRemind(org.id, org.email)">Remind</md-button>
+                                </div>
+                                <div flex="20" class="centered">
+                                    <md-button class="md-raised md-warn" ng-click="adc.denyOrg(org.id)">Deny</md-button>
+                                </div>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-card>
+        </md-grid-tile>
+        <md-grid-tile ng-show="adc.showTile" md-rowspan="2" md-colspan="6">
+                <!-- <md-toolbar class="md-primary">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-flex">Email an Agency</h2>
+                        </div>
+                    </md-toolbar> -->
+            <md-card layout="column" style="max-width:75%; min-width:75%;" layout-margin>
+                <md-content>
+                <md-toolbar class="md-primary">
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">Email Agency</h2>
+                    </div>
+                </md-toolbar>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input type="email" placeholder="organization email address" ng-model="adc.orgToEmail.email" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Message</label>
+                    <textarea name="inviteMessage" ng-model="adc.orgToEmail.message" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+                    <md-button ng-if="adc.message.showInviteButton" class="md-raised md-primary" ng-click="adc.inviteOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Invite</md-button>
+                    <md-button ng-if="adc.message.showRemindButton" class="md-raised md-primary" ng-click="adc.remindOrg(adc.orgToEmail.email, adc.orgToEmail.message, adc.orgToEmail.orgId)">Send Reminder</md-button>
+                </md-input-container>
+            </md-content>
+            </md-card>
+        </md-grid-tile>
+        <!-- <md-grid-tile class="gray"
+md-rowspan="1" md-colspan="6">
 <md-card flex="100">
         <md-toolbar class="md-warn">
             <div class="md-toolbar-tools">
-                <h2 class="md-flex">Current Agency Profiles</h2>
+                <h2 class="md-flex">Upload CSV</h2>
             </div>
         </md-toolbar>
-    <md-content flex layout-margin>
-        so much content
+    <md-content flex="100a" layout-margin>
+        <md-button class="md-raised md-primary" ng-click="adc.newYearView()">Create New Year</md-button>
+        
     </md-content>
     </md-card>
-</md-grid-tile>
+</md-grid-tile> -->
 
-<md-grid-tile
-md-rowspan="1" md-colspan="3">
-<md-card flex="100">
-    <md-toolbar class="md-warn">
-        <div class="md-toolbar-tools">
-            <h2 class="md-flex">Invited Agencies</h2>
-        </div>
-    </md-toolbar>
-<md-content flex layout-margin>
-    <ul>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-        <li>agency</li>
-    </ul>
-</md-content>
-</md-card>
-</md-grid-tile>
-
-<md-grid-tile
-md-rowspan="1" md-colspan="3">
-<md-card flex="100">
-    <md-toolbar class="md-primary">
-        <div class="md-toolbar-tools">
-            <h2 class="md-flex">Invite An Agency</h2>
-        </div>
-    </md-toolbar>
-          <md-content layout-padding>
-            <div>
-              <form name="inviteAgency">
-        
-                <div layout="row">
-                  <md-input-container flex>
-                    <label>Contact Name</label>
-                    <input ng-model="user.contact">
-                  </md-input-container>
-                  
-                  <md-input-container flex>
-                  <label>Agency Name</label>
-                  <input ng-model="user.agency">
-                </md-input-container>
-        
-                </div>
-        
-                <div layout-gt-sm="row">
-                  <md-input-container class="md-block" flex-gt-sm>
-                    <label>Email</label>
-                    <input ng-model="user.email">
-                  </md-input-container>
-
-                  <md-button>submit</md-button>
-        
-                </div>
-        
-              </form>
-            </div>
-          </md-content>
-</md-card>
-</md-grid-tile>
-
-</md-grid-list>
+    </md-grid-list>
 </section>

@@ -9,7 +9,7 @@ All ads will have a clickable link that redirects to the Ad view. This page will
 
 ## Built With
  
-Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Filestack (Stretch)
+Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Angular Route, AngularJS Material, HTML5, CSS3
 
 ## Getting Started
  
@@ -22,18 +22,11 @@ Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Filest
 - [Node.js](https://nodejs.org/en/)
 - List other prerequisites here
  
- 
 ### Installing
  
-[ ] Steps to get the development environment running.
- 
-```sql
-CREATE TABLE "users" (
-  "id" serial primary key,
-  "username" varchar(80) not null UNIQUE,
-  "password" varchar(240) not null
-);
-```
+1. Fork and clone the repo
+2. Run the database.sql script
+3. npm install
  
 ## Screen Shot
  
@@ -41,32 +34,25 @@ CREATE TABLE "users" (
  
 ## Documentation
  
-Scope for The Show: https://docs.google.com/document/d/1F3_L0C9H7oaSyulgAbpf9wVwdLsBiu3qhKeQZ3LmJv8/edit?usp=sharing
+[Scope for The Show](https://docs.google.com/document/d/1F3_L0C9H7oaSyulgAbpf9wVwdLsBiu3qhKeQZ3LmJv8/edit?usp=sharing)
  
 ### Completed Features
- 
-High level list of items completed.
- 
-- [ ] Year-Home View: filter winners by company or category
-- [ ] Admin View: Upload CSV & media, Agency profile & user management
-- [ ] Ads: Display award, category, organization, agency, people credited
-- [ ] Agency Profile: list of ads by agency 
+
+- New-Year View: Upload CSV, background image, update year, and set media directory for use of admin
+- Admin Dashboard: Management of and email communication to users for Agency profiles
+- Agency Profiles: Display agency description, logo, website and social media URLs as well as list each agency's awarded ads 
+- Year-Home View: Filter winners by company or category; Displays award, category, organization, agency, and credits
+- User authentication: Admin users and Agency users login and register using Passport
  
 ### Next Steps
  
-Features that you would like to add at some point in the future.
- 
-- [ ] Swipe/Page turn function between landing page and our views
-- [ ] Image, Video, and Audio file conversion 
+- Swipe/Page turn function between original landing page and our views
+- Image, Video, and Audio file conversion to uniform size and format
  
 ## Deployment
  
-- [ ] Add additional notes about how to deploy this on a live system
+[ ] Add additional notes about how to deploy this on a live system
  
 ## Authors
  
-Alicia Wilking, Xiong Vang, Hunter Rancourt, Sam Martorana, and Sarah Cooke
-
-## Acknowledgments
-
-- [ ] * Hat tip to anyone who's code was useds
+[Alicia Wilking](https://github.com/AliciaKay), [Xiong Vang](https://github.com/XiongVang), [Hunter Rancourt](https://github.com/skwid138), [Sam Martorana](https://github.com/carnationcrab), and [Sarah Cooke](https://github.com/marshcooke)

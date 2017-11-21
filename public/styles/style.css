@@ -1,8 +1,80 @@
 .gray {
-    background: #f5f5f5; 
+    background: #eee5e5; 
 }
 
-.title {
+.socialLogo {
+    margin: 2px;
+}
+
+.the-show {
+    font-family: 'Baloo Bhai', cursive;
+}
+
+.pin-img {
+    height: 30px;
+    width: 30px;
+}
+
+.centered {
+    margin: auto;
     text-align: center;
 }
-  
+
+.bottom-margin-shrink {
+    margin-bottom: -10%;
+}
+
+.top-margin-shrink {
+    margin-top: -4%;
+}
+
+.svg {
+    height: 100% !important;
+    width: 15% !important;
+    margin-right: 12px;
+}
+
+.md-wide {
+    width: 300px;
+}
+
+a:link {
+    color: crimson;
+    text-decoration: none;
+}
+
+.logo {
+    background-color: gray;
+    height: 100px;
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.floatRight {
+    margin-top: 2px;
+    margin-right: 2px;
+}
+
+.center {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
+
+.media {
+    width: 100%;
+}
+
+.box {
+    border-style: solid;
+    border-color: lightgray
+}
+
+.adMedia {
+    width: 80%;
+}
+
+.splash {
+    margin-left: 15%;
+    width: 70%
+}

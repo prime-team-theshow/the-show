@@ -3,7 +3,7 @@ console.log('client.js sourced');
 // AngularJS and sourced in modules
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-myApp.config(function ($routeProvider) {
+myApp.config(function ($routeProvider, $mdThemingProvider) {
 
     // client side routing
     $routeProvider.when('/', {
@@ -12,7 +12,7 @@ myApp.config(function ($routeProvider) {
     }).when('/auth', {
         templateUrl: '/views/auth.html',
         controller: 'AuthController as ac'
-    }).when('/profile/:name', {
+    }).when('/profile/:id', {
         templateUrl: '/views/profile.html',
         controller: 'ProfileController as pc'
     }).when('/admin', {
@@ -21,9 +21,30 @@ myApp.config(function ($routeProvider) {
     }).when('/mail', {
         templateUrl: '/views/test.nodemailer.html',
         controller: 'NodeMailerController as nmc'
+    }).when('/edit/:id', {
+        templateUrl: '/views/edit.html',
+        controller: 'EditController as ec'
     }).when('/adminDash', {
         templateUrl: '/views/adminDash.html',
         controller: 'AdminDashController as adc'
+    }).when('/login', {
+        templateUrl: '/views/login.html',
+        controller: 'LoginController as lc'
+    }).when('/winners/:year', {
+        templateUrl: '/views/winners.html',
+        controller: 'WinnersController as wc'
+    }).when('/test-admin', {
+        templateUrl: '/views/test-admin.html',
+        controller: 'TestAdmin as tac'
+    }).when('/registration/:orgId', {
+    templateUrl: '/views/registration.html',
+    controller: 'RegistrationController as rc'
+    }).when('/create-year', {
+        templateUrl: '/views/create-year.html',
+        controller: 'CreateYearController as cyc'
+    }).when('/changePassword', {
+        templateUrl: '/views/changePw.html',
+        controller: 'ChangePwController as cc'
     }).otherwise('/');
 
 }); // end config

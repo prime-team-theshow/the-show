@@ -10,16 +10,23 @@
     <!-- favicon -->
     <link rel="icon" type="image/png" href="myfavicon.png">
 
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="vendors/photoswipe/photoswipe.css"> 
+    <link rel="stylesheet" href="vendors/photoswipe/default-skin/default-skin.css"> 
+
     <!-- Angular Material -->
     <link href="vendors/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    
+
     <!-- Angular and Angular-Route -->
     <script src="vendors/angular/angular.js" charset="utf-8" type="text/javascript"></script>
     <script src="vendors/angular-route/angular-route.js" charset="utf-8" type="text/javascript"></script>
-    
+
     <!-- Angular Material -->
     <script src="vendors/angular-animate/angular-animate.min.js" charset="utf-8" type="text/javascript"></script>
     <script src="vendors/angular-aria/angular-aria.min.js" charset="utf-8" type="text/javascript"></script>
@@ -27,34 +34,43 @@
     <!-- ngMessages -->
     <script src="vendors/angular-messages/angular-messages.min.js" charset="utf-8" type="text/javascript"></script>
 
-    <!-- ng-upload -->
-    <script src="vendors/ng-upload/ng-upload.js" charset="utf-8" type="text/javascript"></script>
-
+    <!-- photoswipe -->
+    <script src="vendors/photoswipe/photoswipe.min.js"></script> 
+    <script src="vendors/photoswipe/photoswipe-ui-default.min.js"></script> 
     <!-- ********* Client Side ********* -->
     <script src="scripts/client.js" charset="utf-8" type="text/javascript"></script>
     <!-- Controllers -->
     <script src="scripts/controllers/home.controller.js" charset="utf-8" type="text/javascript"></script>
-    <script src="scripts/controllers/auth.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/profile.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/admin.controller.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/controllers/adminDash.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/login.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/registration.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/edit.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/winners.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/changePw.controller.js" charset="utf-8" type="text/javascript"></script>
+    <!-- for testing -->
+    <script src="scripts/controllers/auth.controller.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/controllers/createYear.controller.js" charset="utf-8" type="text/javascript"></script>
+    <!-- for testing -->
     <script src="scripts/controllers/test.nodemailer.controller.js" charset="utf-8" type="text/javascript"></script>
-    
-  <!-- Services -->
+    <script src="scripts/controllers/test.admin.controller.js" charset="utf-8" type="text/javascript"></script>
+    <!-- Services -->
     <script src="scripts/services/auth.service.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/services/org.service.js" charset="utf-8" type="text/javascript"></script>
     <script src="scripts/services/admin.service.js" charset="utf-8" type="text/javascript"></script>
-    <script src="scripts/services/test.nodemailer.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/nodeMailer.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/winners.service.js" charset="utf-8" type="text/javascript"></script>
+    <script src="scripts/services/csv.service.js" charset="utf-8" type="text/javascript"></script>
+
 
 
 </head>
 
 <body ng-app="myApp">
-    <header>
-        <div class="title">
-        <img src="assets/annualTitle.png" height="100" width="100">
-        </div>
-    </header>
+
+        <div ng-include="views/partials/header.html"></div>
+        
     <main>
         <ng-view>
 

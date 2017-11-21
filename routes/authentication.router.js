@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
     // check if user is logged in
     if (req.isAuthenticated()) {
         // send back user object from database
-        console.log('logged in req.user ->', req.user);
+        console.log('User req.user.id, req.user.email, req.user.isadmin ', req.user.id, req.user.email, req.user.isadmin);
 
         var userInfo = {
             username: req.user.email,

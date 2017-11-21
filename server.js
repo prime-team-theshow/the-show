@@ -30,9 +30,10 @@ var indexRouter = require('./routes/index.router');
 var organizationRouter = require('./routes/organization.router');
 var socialMediaRouter = require('./routes/socialmedia.router');
 var adminDashRouter = require('./routes/adminDash.router');
-
-// for testing nodeMailer
-var nodeMailerRouter = require('./routes/test.nodemailer.router');
+var nodeMailerRouter = require('./routes/nodemailer.router');
+var adminRouter = require('./routes/admin.router');
+var winnersRouter = require('./routes/winners.router');
+var createRouter = require('./routes/create.router');
 
 // use routes
 app.use('/register', registrationRouter);
@@ -40,13 +41,14 @@ app.use('/auth', userAuth);
 app.use('/org', organizationRouter);
 app.use('/socialmedia', socialMediaRouter);
 app.use('/adminDash', adminDashRouter);
-
-// for testing nodeMailer
+app.use('/winners', winnersRouter);
 app.use('/mail', nodeMailerRouter);
+app.use('/admin', adminRouter);
+app.use('/create', createRouter);
 
 app.use('/', indexRouter); // this route should be last to catch everything
 
 // server listening
-app.listen(port, function() {
+app.listen(port, function () {
     console.log('Server listening on port: ', port);
 }); // end listen

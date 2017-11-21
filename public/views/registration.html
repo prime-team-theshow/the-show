@@ -1,0 +1,20 @@
+<div ng-include="'views/partials/header.html'"></div>
+<section ng-if="rc.if.show">
+    <div layout="column" ng-cloak class="md-inline-form">
+            <h1 class="centered">Register</h1>
+            <h3>View And Edit Your Agency Profile</h3>
+        <md-content layout-gt-sm="row" class="centered" layout-padding>
+                <md-card class="md-wide">
+                <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="rc.org.newEmail" type="email">
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input ng-model="rc.org.password" type="password">
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="rc.orgRegister()">Register User</md-button>
+            </md-card>
+        </md-content>
+    </div>
+</section>
