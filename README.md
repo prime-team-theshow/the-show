@@ -45,15 +45,15 @@ Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Angula
 
 ## Screenshots 
 - Administrative Dash
-![Administrative Dashboard](/public/images/administrative_dashboard.png "Administrative Dashboard")
-![AdminDash - Invite Email](/public/images/admindash_-_invite_email.png "AdminDash - Reminder Email")
-![AdminDash - Invite Email](/public/images/admindash_-_remind_email.png "AdminDash - Reminder Email")
-![AdminDash - Create New Year](/public/images/admindash_-_create_new_year.png "AdminDash - Create New Year")
+![Administrative Dashboard](./public/images/administrativeDashboard.png "Administrative Dashboard")
+![AdminDash - Invite Email](./public/images/adminDashInviteEmail.png "AdminDash - Reminder Email")
+![AdminDash - Reminder Email](./public/images/adminDashRemindEmail.png "AdminDash - Reminder Email")
+![AdminDash - Create New Year](./public/images/adminDashCreateNewYear.png "AdminDash - Create New Year")
 - Winners View
-![Winners View](/public/images/winners-view.png "Winners View")
-![Winners Ad View - Category](/public/images/Winners_Ad_View_-_Category.png "Winners Ad View - Category")
-![Winners Ad View - Company](/public/images/Winners_Ad_View_-_Company.png "Winners Ad View - Company")
+![Winners View](./public/images/winnersView.png "Winners View")
+![Winners Ad View - Category](./public/images/winnersAdVeiwCategory.png "Winners Ad View - Category")
+![Winners Ad View - Company](./public/images/winnersAdVeiwCompany.png "Winners Ad View - Company")
 - Agency Profile View
-![Agency Profile - Public](/public/images/Agency_Profile_-_Public.png "Agency Profile - Public")
-![Agency Profile - Edit Button](/public/images/Agency_Profile_-_Edit_Button.png "Agency Profile - Edit Button")
-![Agency Profile - Editing Profile](/public/images/Agency_Profile_-_Editing_Profile.png "Agency Profile - Editing Profile")
+![Agency Profile - Public](./public/images/agencyProfilePublic.png "Agency Profile - Public")
+![Agency Profile - Edit Button](./public/images/agencyProfileEditButton.png "Agency Profile - Edit Button")
+![Agency Profile - Editing Profile](./public/images/agencyProfileEditing.png "Agency Profile - Editing Profile")
