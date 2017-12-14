@@ -42,3 +42,18 @@ Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Angula
 ## Authors
  
 [Alicia Wilking](https://github.com/AliciaKay), [Xiong Vang](https://github.com/XiongVang), [Hunter Rancourt](https://github.com/skwid138), [Sam Martorana](https://github.com/carnationcrab), and [Sarah Cooke](https://github.com/marshcooke)
+
+## Screenshots 
+- Administrative Dash
+![Administrative Dashboard](/server/public/images/administrative_dashboard.png "Administrative Dashboard")
+![AdminDash - Invite Email](/server/public/images/admindash_-_invite_email.png "AdminDash - Reminder Email")
+![AdminDash - Invite Email](/server/public/images/admindash_-_remind_email.png "AdminDash - Reminder Email")
+![AdminDash - Create New Year](/server/public/images/admindash_-_create_new_year.png "AdminDash - Create New Year")
+- Winners View
+![Winners View](/server/public/images/homepage.png "Winners View")
+![Winners Ad View - Category](/server/public/images/Winners_Ad_View_-_Category.png "Winners Ad View - Category")
+![Winners Ad View - Company](/server/public/images/Winners_Ad_View_-_Company.png "Winners Ad View - Company")
+- Agency Profile View
+![Agency Profile - Public](/server/public/images/Agency_Profile_-_Public.png "Agency Profile - Public")
+![Agency Profile - Edit Button](/server/public/images/Agency_Profile_-_Edit_Button.png "Agency Profile - Edit Button")
+![Agency Profile - Editing Profile](/server/public/images/Agency_Profile_-_Editing_Profile.png "Agency Profile - Editing Profile")
