@@ -51,8 +51,8 @@ Node, ExpressJS, AngularJS, JavaScript, PostgreSQL, Passport, NodeMailer, Angula
 ![AdminDash - Create New Year](./public/images/adminDashCreateNewYear.png "AdminDash - Create New Year")
 - Winners View
 ![Winners View](./public/images/winnersView.png "Winners View")
-![Winners Ad View - Category](./public/images/winnersAdVeiwCategory.png "Winners Ad View - Category")
-![Winners Ad View - Company](./public/images/winnersAdVeiwCompany.png "Winners Ad View - Company")
+![Winners Ad View - Category](./public/images/winnersAdViewCategory.png "Winners Ad View - Category")
+![Winners Ad View - Company](./public/images/winnersAdViewCompany.png "Winners Ad View - Company")
 - Agency Profile View
 ![Agency Profile - Public](./public/images/agencyProfilePublic.png "Agency Profile - Public")
 ![Agency Profile - Edit Button](./public/images/agencyProfileEditButton.png "Agency Profile - Edit Button")
